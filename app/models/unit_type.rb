@@ -1,4 +1,5 @@
 class UnitType < ActiveRecord::Base
-  belongs_to :icon
   attr_accessible :name
+
+  belongs_to :icon
 end
