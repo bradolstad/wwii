@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  location: 
+  date: 2013-02-21 20:55:09
+  campaign: 
+  zoom_level: 1
+  event_type: 
+
+two:
+  name: MyString
+  location: 
+  date: 2013-02-21 20:55:09
+  campaign: 
+  zoom_level: 1
+  event_type: 
