@@ -5,6 +5,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.references :unit_type
       t.string :size
       t.references :icon
+      t.string :country
 
       t.timestamps
     end
