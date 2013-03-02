@@ -76,9 +76,10 @@ ActiveRecord::Schema.define(:version => 20130222030722) do
   end
 
   create_table "locations", :force => true do |t|
-    t.float    "lattitude"
+    t.float    "latitude"
     t.float    "longitude"
     t.string   "name"
+    t.boolean  "gmaps"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
