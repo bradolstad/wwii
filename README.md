@@ -40,6 +40,7 @@ We want to make something that allows users to look at / view the events of WW2 
 ## Gems
 * Gone
 * Geocoder
+* gmaps4rails
 
 ## To-dos (Dillon)
 * Terminology (What's a campaign, what's an operation)
