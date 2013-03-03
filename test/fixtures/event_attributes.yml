@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  event: 
+  unit: 
+  country: 
+  operation: 
+
+two:
+  event: 
+  unit: 
+  country: 
+  operation: 
