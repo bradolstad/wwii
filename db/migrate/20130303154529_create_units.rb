@@ -3,6 +3,7 @@ class CreateUnits < ActiveRecord::Migration
     create_table :units do |t|
       t.string :name
       t.references :unit_type
+      t.integer :old_id
       t.references :country
       t.timestamps
     end

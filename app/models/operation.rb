@@ -1,5 +1,5 @@
 class Operation < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :old_id
 
   belongs_to :campaign
 

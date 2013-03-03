@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130303155033) do
+ActiveRecord::Schema.define(:version => 20130303193626) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -22,9 +22,12 @@ ActiveRecord::Schema.define(:version => 20130303155033) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
+    t.integer  "old_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "countries", ["old_id"], :name => "index_countries_on_old_id"
 
   create_table "event_attributes", :force => true do |t|
     t.integer  "event_id"
@@ -45,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20130303155033) do
     t.string   "description"
     t.float    "lat"
     t.float    "lng"
+    t.integer  "unique_id"
     t.boolean  "gmaps"
     t.datetime "event_date"
     t.datetime "created_at",  :null => false
@@ -54,9 +58,12 @@ ActiveRecord::Schema.define(:version => 20130303155033) do
   create_table "operations", :force => true do |t|
     t.string   "name"
     t.integer  "campaign_id"
+    t.integer  "old_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "operations", ["old_id"], :name => "index_operations_on_old_id"
 
   create_table "unit_types", :force => true do |t|
     t.string   "name"
@@ -67,12 +74,14 @@ ActiveRecord::Schema.define(:version => 20130303155033) do
   create_table "units", :force => true do |t|
     t.string   "name"
     t.integer  "unit_type_id"
+    t.integer  "old_id"
     t.integer  "country_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
 
   add_index "units", ["country_id"], :name => "index_units_on_country_id"
+  add_index "units", ["old_id"], :name => "index_units_on_old_id"
   add_index "units", ["unit_type_id"], :name => "index_units_on_unit_type_id"
 
 end
