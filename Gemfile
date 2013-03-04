@@ -11,6 +11,7 @@ gem 'gmaps4rails'
 group :development do
   gem 'rails-erd'
   gem 'sqlite3'
+  gem 'seed_dump'
 end
 
 group :production do
