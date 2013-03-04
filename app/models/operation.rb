@@ -19,6 +19,7 @@ class Operation < ActiveRecord::Base
   end
 
   def boundaries
-    return self.events.map { |event| "lat:#{event.lat},lng:#{event.lng}"  }
+    locations = self.events.collect { |event| {lat:event.lat,lng:event.lng} }
+    return locations.uniq
   end
 end

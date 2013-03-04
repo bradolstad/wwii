@@ -1,7 +1,22 @@
 <h1>Operations#index</h1>
 <p>Find me in app/views/operations/index.html.erb</p>
-<ul>
+<table>
+  <thead>
+    <th>Operation</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Locations</th>
+  </thead>
+  <tbody>
+
 <% @operations.each do |operation| %>
-  <li><%= operation.name %> - Started: <%= operation.start_date %>, Ended: <%= operation.end_date %> - <%= operation.boundaries %> </li>
+  <tr>
+  <td><%= operation.name %></td>
+  <td><%= operation.start_date.strftime("%A, %B %e %Y") unless operation.start_date == nil %></td>
+  <td><%= operation.end_date.strftime("%A, %B %e %Y") unless operation.end_date == nil %></td>
+  <td><%= operation.boundaries %></td>
+</tr>
 <% end %>
-</ul>
+
+  </tbody>
+</table>
