@@ -1,2 +1,7 @@
 <h1>Operations#index</h1>
 <p>Find me in app/views/operations/index.html.erb</p>
+<ul>
+<% @operations.each do |operation| %>
+  <li><%= operation.name %> - Started: <%= operation.start_date %>, Ended: <%= operation.end_date %> - <%= operation.boundaries %> </li>
+<% end %>
+</ul>
