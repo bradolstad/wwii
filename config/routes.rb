@@ -1,8 +1,5 @@
 Wwii::Application.routes.draw do
 
-  resources :campaigns
-
-
   root :to => 'Campaigns#index'
 
   resources :operations
