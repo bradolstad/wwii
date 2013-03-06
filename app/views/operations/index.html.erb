@@ -12,8 +12,8 @@
 <% @operations.each do |operation| %>
   <tr>
   <td><%= operation.name %></td>
-  <td><%= operation.start_date.strftime("%A, %B %e %Y") unless operation.start_date == nil %></td>
-  <td><%= operation.end_date.strftime("%A, %B %e %Y") unless operation.end_date == nil %></td>
+  <td><%= operation.start_date.strftime("%a, %B %e %Y") unless operation.start_date == nil %></td>
+  <td><%= operation.end_date.strftime("%a, %B %e %Y") unless operation.end_date == nil %></td>
   <td><%= operation.boundaries %></td>
 </tr>
 <% end %>

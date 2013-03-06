@@ -70,22 +70,29 @@ unittotal = Unit.count
 puts "Units created: #{unittotal}"
 
 Unit.all.each do |unit|
+    unit.name = unit.name.gsub("-","").lstrip
+    unit.save
+end
+
+
+Unit.all.each do |unit|
     if unit.name.downcase.include? "usa"
         unit.country_id = Country.find_by_name("United States").id
-        unit.save
-    elsif (unit.name.downcase.include?("canada") || unit.name.downcase.include?("canadian") || unit.name.downcase.include?("toronto")|| unit.name.downcase.include?("nova scotia")||unit.name.downcase.include?("new brunswick") || unit.name.downcase.include?("winnipeg"))
+
+    elsif unit.name.downcase.include?("canad" || "toronto" ||"nova scotia" || "new brunswick" || "winnipeg")
         unit.country_id = Country.find_by_name("Canada").id
-        unit.save
+
     elsif unit.name.downcase.include? "uk"
         unit.country_id = Country.find_by_name("United Kingdom").id
-        unit.save
-    elsif (unit.name.downcase.include?("france") || unit.name.downcase.include?("french"))
+
+    elsif (unit.name.downcase.include?("france" || "french"))
         unit.country_id = Country.find_by_name("France").id
-        unit.save
-    elsif (unit.name.downcase.include?("poland") || unit.name.downcase.include?("polish"))
+
+    elsif (unit.name.downcase.include?("poland" || "polish"))
         unit.country_id = Country.find_by_name("Poland").id
-        unit.save
+
     end
+    unit.save
 end
 
 puts "Units mapped to country: #{Unit.where("country_id > 0").count} out of #{unittotal}"
