@@ -169,7 +169,7 @@ Event.destroy_all
 EventAttribute.destroy_all
 
 #load in the events from a json file
-raw_events = JSON.load(File.open( '/parsed_data.json', "r" ))
+raw_events = JSON.load(File.open( 'db/parsed_data.json', "r" ))
 
 raw_events.each do |row|
     find_out_what_table(row["old_id"])
