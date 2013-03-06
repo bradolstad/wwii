@@ -1,20 +1,19 @@
-<h1>Operations#index</h1>
-<p>Find me in app/views/operations/index.html.erb</p>
-<table>
+<h1>Operations</h1>
+<%= link_to "New Operation", new_operation_path, class:"btn btn-success" %>
+<table class="table table-striped">
   <thead>
     <th>Operation</th>
-    <th>Start</th>
-    <th>End</th>
-    <th>Locations</th>
+    <th>Campaign</th>
+    <th>Actions</th>
   </thead>
   <tbody>
 
 <% @operations.each do |operation| %>
   <tr>
   <td><%= operation.name %></td>
-  <td><%= operation.start_date.strftime("%a, %B %e %Y") unless operation.start_date == nil %></td>
-  <td><%= operation.end_date.strftime("%a, %B %e %Y") unless operation.end_date == nil %></td>
-  <td><%= operation.boundaries %></td>
+  <td><%= operation.campaign.name unless operation.campaign == nil %></td>
+
+  <td><%= link_to "Edit", edit_operation_path(operation),class:"btn btn-warning" %> <%= link_to "Delete", operation_path(operation), :method=>'delete', :confirm=>'Are you sure?', class:"btn btn-danger" %></td>
 </tr>
 <% end %>
 

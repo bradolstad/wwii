@@ -100,59 +100,40 @@ puts "Units mapped to country: #{Unit.where("country_id > 0").count} out of #{un
 Unit.all.each do |unit|
     if unit.name.downcase.include?("dragoon")
         unit.unit_type_id = UnitType.find_by_name("Brigade").id
-        unit.save
     elsif unit.name.downcase.include?("brigade")
         unit.unit_type_id = UnitType.find_by_name("Brigade").id
-        unit.save
     elsif unit.name.downcase.include?("squad")
         unit.unit_type_id = UnitType.find_by_name("Squadron").id
-        unit.save
     elsif unit.name.downcase.include?("squadron")
         unit.unit_type_id = UnitType.find_by_name("Squadron").id
-        unit.save
     elsif unit.name.downcase.include?("hussars")
         unit.unit_type_id = UnitType.find_by_name("Regiment").id
-        unit.save
-    elsif unit.name.downcase.include?("artillery")
-        unit.unit_type_id = UnitType.find_by_name("Battalion").id
-        unit.save
     elsif unit.name.downcase.include?("troop")
         unit.unit_type_id = UnitType.find_by_name("Company").id
-        unit.save
     elsif unit.name.downcase.include?("company")
         unit.unit_type_id = UnitType.find_by_name("Company").id
-        unit.save
     elsif unit.name.downcase.include?("rifles")
         unit.unit_type_id = UnitType.find_by_name("Regiment").id
-        unit.save
     elsif unit.name.downcase.include?("gordon")
         unit.unit_type_id = UnitType.find_by_name("Regiment").id
-        unit.save
     elsif unit.name.downcase.include?("borderers")
         unit.unit_type_id = UnitType.find_by_name("Regiment").id
-        unit.save
     elsif unit.name.downcase.include?("fusiliers")
         unit.unit_type_id = UnitType.find_by_name("Regiment").id
-        unit.save
     elsif unit.name.downcase.include?("glasgow")
         unit.unit_type_id = UnitType.find_by_name("Battalion").id
-        unit.save
-     elsif unit.name.downcase.include?("battalion")
+    elsif unit.name.downcase.include?("battalion")
         unit.unit_type_id = UnitType.find_by_name("Battalion").id
-        unit.save
     elsif unit.name.downcase.include?("seaforth")
         unit.unit_type_id = UnitType.find_by_name("Regiment").id
-        unit.save
     elsif unit.name.downcase.include?("regiment")
         unit.unit_type_id = UnitType.find_by_name("Regiment").id
-        unit.save
     elsif unit.name.downcase.include?("cornwall")
         unit.unit_type_id = UnitType.find_by_name("Battalion").id
-        unit.save
     elsif unit.name.downcase.include?("durham")
         unit.unit_type_id = UnitType.find_by_name("Battalion").id
-        unit.save
     end
+    unit.save
 end
 
 puts "Units mapped to type: #{Unit.where('unit_type_id>0').count}"
