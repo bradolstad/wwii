@@ -16,11 +16,11 @@ class Event < ActiveRecord::Base
   end
 
   def latitude=(value)
-    self.lat = value
+    return true
   end
 
   def longitude=(value)
-    self.lng = value
+    return true
   end
 
   def date_formated
@@ -28,7 +28,7 @@ class Event < ActiveRecord::Base
   end
 
   def gmaps4rails_address
-    "address"
+    return nil
   end
 
   def gmaps4rails_infowindow
