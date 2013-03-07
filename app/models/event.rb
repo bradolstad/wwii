@@ -15,6 +15,14 @@ class Event < ActiveRecord::Base
     return self.lng
   end
 
+  def latitude=(value)
+    self.latitude = value
+  end
+
+  def longitude=(value)
+    self.lng = value
+  end
+
   def date_formated
     return event_date.strftime('%a, %b %e %Y') unless event_date.nil?
   end
