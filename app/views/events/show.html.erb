@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
-
+<h2><%= @event.name %><br>
+  <small><%= @event.event_date.strftime('%a, %b %e %Y') unless @event.event_date.nil? %></small>
+</h2>
+<%= gmaps4rails(@marker) %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back', :back %>

@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
-
-
+<h1><%= @campaign.name %></h1>
+<h3>Operations</h3>
+<ul>
+  <% @campaign.operations.each do |operation| %>
+    <li><%= link_to operation.name, operation %></li>
+  <% end %>
+</ul>
 <%= link_to 'Edit', edit_campaign_path(@campaign) %> |
 <%= link_to 'Back', campaigns_path %>

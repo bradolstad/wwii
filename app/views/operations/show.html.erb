@@ -1,7 +1,15 @@
 <p id="notice"><%= notice %></p>
-<p><%= @operation.name %></p>
-<p><%= @operation.start_date %></p>
-<p><%= @operation.end_date %></p>
-
+<h1>
+  <%= @operation.name %><br>
+  <small><%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %> - <%= @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></small>
+</h1>
+<ul>
+  <% @operation.events.each do |event| %>
+    <li><%= link_to event.name, event %></li>
+  <% end %>
+</ul>
 <%= link_to 'Edit', edit_operation_path(@operation) %> |
-<%= link_to 'Back', operations_path %>
+<%= link_to 'Back', :back %>
+<%= gmaps({"polygons"=> { "data" => @polygons_json }
+     })
+ %>

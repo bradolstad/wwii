@@ -11,5 +11,5 @@
  *= require_self
  *= require bootstrap
  *= require bootstrap-responsive
- *= require gmaps4rails
+  *= require gmaps4rails
  */

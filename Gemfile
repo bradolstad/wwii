@@ -7,6 +7,8 @@ gem 'rails', '3.2.12'
 
 # google maps gem
 gem 'gmaps4rails'
+# pagination
+gem 'kaminari'
 
 group :development do
   gem 'rails-erd'

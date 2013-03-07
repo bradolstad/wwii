@@ -1,21 +1,22 @@
-<h1>Listing events</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= link_to 'New Event', new_event_path %><table class="table table-striped">
+  <thead>
+    <th>Date</th>
+    <th>Event Name</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+  </thead>
 
 <% @events.each do |event| %>
   <tr>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= event.event_date %></td>
+    <td><%= event.name %></td>
+    <td><%= event.lat %></td>
+    <td><%= event.lng %></td>
+    <td><%= link_to 'Show', event, class:"btn" %></td>
+    <td><%= link_to 'Edit', edit_event_path(event), class:"btn btn-warning" %></td>
+    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
   </tr>
 <% end %>
 </table>
+<%= paginate @events %>
 
-<br />
-
-<%= link_to 'New Event', new_event_path %>
