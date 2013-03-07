@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
   end
 
   def gmaps4rails_address
-
+    "address"
   end
 
   def gmaps4rails_infowindow
