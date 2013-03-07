@@ -14,7 +14,7 @@ class CountriesController < ApplicationController
   # GET /countries/1.json
   def show
     @country = Country.find(params[:id])
-
+    @units = @country.units
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @country }

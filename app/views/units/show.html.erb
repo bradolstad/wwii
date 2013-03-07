@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
-
-
+<h2><%= @unit.name %></h2>
+<h4>Events</h4>
+<ul>
+  <% @unit.events.each do |event| %>
+    <li><%= link_to event.name, event %> <%= event.date_formated %></li>
+  <% end  %>
+</ul>
 <%= link_to 'Edit', edit_unit_path(@unit) %> |
 <%= link_to 'Back', units_path %>

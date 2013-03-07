@@ -1,3 +1,4 @@
+<h2>Units</h2>
 <table class="table table-striped">
   <thead>
     <th>Name</th>
@@ -7,10 +8,13 @@
 
 <% @units.each do |unit| %>
   <tr>
-    <td><%= unit.name %></td>
+    <td><%= link_to unit.name, unit %></td>
     <td><%= unit.country.name unless unit.country == nil %> </td>
     <td><%= unit.unit_type.name unless unit.unit_type == nil %>
-    <td><%= link_to 'Show', unit %> <%= link_to 'Edit', edit_unit_path(unit) %> <%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>
+      <%= link_to 'Edit', edit_unit_path(unit), class: "btn btn-warning" %>
+      <%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    </td>
   </tr>
 <% end %>
 </table>

@@ -9,8 +9,11 @@
 
 <% @countries.each do |country| %>
   <tr>
-    <td><%= country.name %></td>
-    <td><%= link_to 'Show', country, class:"btn" %> <%= link_to 'Edit', edit_country_path(country), class:"btn btn-warning" %> <%= link_to 'Destroy', country, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+    <td><%= link_to country.name, country %></td>
+    <td>
+      <%= link_to 'Edit', edit_country_path(country), class:"btn btn-warning" %>
+      <%= link_to 'Destroy', country, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+    </td>
   </tr>
 <% end %>
 </table>

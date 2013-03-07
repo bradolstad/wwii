@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 <h1><%= @country.name %></h1>
-
+<h4>Units</h4>
+<ul>
+  <% @units.each do |unit| %>
+    <li><%= link_to unit.name, unit %></li>
+  <% end  %>
+</ul>
 <%= link_to 'Edit', edit_country_path(@country),class:"btn btn-warning" %>
 <%= link_to 'Back', countries_path, class:"btn"%>

@@ -9,7 +9,7 @@
 
 <% @events.each do |event| %>
   <tr>
-    <td><%= event.event_date.strftime('%a, %b %e %Y') unless event.event_date.nil? %></td>
+    <td><%= event.date_formated %></td>
     <td><%= link_to event.name, event %></td>
     <td><%= event.lat %></td>
     <td><%= event.lng %></td>
