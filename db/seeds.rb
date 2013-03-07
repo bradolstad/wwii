@@ -180,7 +180,8 @@ raw_events.each do |row|
                 :name => row["name"],
                 :lat => row["lat"],
                 :lng => row["lng"],
-                :event_date => @date_id}
+                :event_date => @date_id,
+                :gmaps=> true}
             )
         new_event.save
 

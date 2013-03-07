@@ -14,10 +14,8 @@ class OperationsController < ApplicationController
   # GET /operations/1.json
   def show
     @operation = Operation.find(params[:id])
-
-    @polygons_json = @operation.events.to_gmaps4rails do |event, marker|
-      marker.json({ :lat => event.lat, :lng => event.lng })
-    end
+    @markers = @operation.events.to_gmaps4rails
+    logger.info "@markers= #{@markers.class}"
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @operation }
