@@ -4,17 +4,19 @@
     <th>Event Name</th>
     <th>Latitude</th>
     <th>Longitude</th>
+    <th>Actions</th>
   </thead>
 
 <% @events.each do |event| %>
   <tr>
-    <td><%= event.event_date %></td>
-    <td><%= event.name %></td>
+    <td><%= event.event_date.strftime('%a, %b %e %Y') unless event.event_date.nil? %></td>
+    <td><%= link_to event.name, event %></td>
     <td><%= event.lat %></td>
     <td><%= event.lng %></td>
-    <td><%= link_to 'Show', event, class:"btn" %></td>
-    <td><%= link_to 'Edit', edit_event_path(event), class:"btn btn-warning" %></td>
-    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+    <td>
+      <%= link_to 'Edit', edit_event_path(event), class:"btn btn-warning" %>
+      <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+    </td>
   </tr>
 <% end %>
 </table>

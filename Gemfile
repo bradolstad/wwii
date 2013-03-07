@@ -14,6 +14,7 @@ group :development do
   gem 'rails-erd'
   gem 'sqlite3'
   gem 'seed_dump'
+  gem 'quiet_assets'
 end
 
 group :production do
