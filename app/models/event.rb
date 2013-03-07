@@ -16,7 +16,7 @@ class Event < ActiveRecord::Base
   end
 
   def latitude=(value)
-    self.latitude = value
+    self.lat = value
   end
 
   def longitude=(value)
