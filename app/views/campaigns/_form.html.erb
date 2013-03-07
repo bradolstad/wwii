@@ -3,7 +3,7 @@
     <div id="error_explanation">
       <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
 
-      <ul>
+      <ul class="unstyled">
       <% @campaign.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>

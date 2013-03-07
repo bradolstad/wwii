@@ -15,7 +15,9 @@ class OperationsController < ApplicationController
   def show
     @operation = Operation.find(params[:id])
     @markers = @operation.events.to_gmaps4rails
-    logger.info "@markers= #{@markers.class}"
+
+    @polygon_json = @markers
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @operation }

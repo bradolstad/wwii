@@ -3,7 +3,6 @@ class UnitsController < ApplicationController
   # GET /units.json
   def index
     @units = Unit.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @units }
@@ -14,7 +13,7 @@ class UnitsController < ApplicationController
   # GET /units/1.json
   def show
     @unit = Unit.find(params[:id])
-
+    @markers = @unit.events.to_gmaps4rails
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @unit }
@@ -25,7 +24,6 @@ class UnitsController < ApplicationController
   # GET /units/new.json
   def new
     @unit = Unit.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @unit }

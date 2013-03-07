@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 <h1>
   <%= @operation.name %><br>
-  <small><%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %> - <%= @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></small>
+  <small><%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %>  <%= @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></small>
 </h1>
 <div class="span4">
-  <ul>
+  <ul class="unstyled">
     <% @operation.events.each do |event| %>
       <li><%= link_to event.name, event %></li>
     <% end %>
