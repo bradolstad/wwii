@@ -3,12 +3,15 @@
   <%= @operation.name %><br>
   <small><%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %> - <%= @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></small>
 </h1>
-<ul>
-  <% @operation.events.each do |event| %>
-    <li><%= link_to event.name, event %></li>
-  <% end %>
-</ul>
-<%= link_to 'Edit', edit_operation_path(@operation) %> |
-<%= link_to 'Back', :back %>
-<%= gmaps4rails(@markers)
- %>
+<div class="span4">
+  <ul>
+    <% @operation.events.each do |event| %>
+      <li><%= link_to event.name, event %></li>
+    <% end %>
+  </ul>
+  <%= link_to 'Edit', edit_operation_path(@operation) %> |
+  <%= link_to 'Back', :back %>
+</div>
+<div class="span8">
+  <%= gmaps4rails(@markers) %>
+</div>
