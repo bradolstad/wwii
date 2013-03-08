@@ -6,10 +6,11 @@ namespace :wwii do
     Event.all.each do |event|
         if (event.name.include?(" on ")) && (event.name.split(" on ").last.split("-").last.start_with?('19'))
           split_name = event.name.split(" on ")
-          puts "Event matched... #{event.name}"
+          puts "Event matched: #{event.name}"
           if new_date = DateTime.parse(split_name.last)
             split_name.delete_at(-1)
             new_name = split_name.join(" ")
+            puts "Name: #{new_date}, Date: #{new_date}"
             event.update_attributes(event_date:new_date,name:new_name)
             updated += 1
           end
