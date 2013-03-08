@@ -10,7 +10,7 @@ namespace :wwii do
           if new_date = DateTime.parse(split_name.last)
             split_name.delete_at(-1)
             new_name = split_name.join(" ")
-            puts "Name: #{new_date}, Date: #{new_date}"
+            puts "Name: #{new_name}, Date: #{new_date}"
             event.update_attributes(event_date:new_date,name:new_name)
             updated += 1
           end
