@@ -5,30 +5,10 @@ class Event < ActiveRecord::Base
   has_many :operations, :through => :event_attributes
   has_many :units,  :through => :event_attributes
 
-  acts_as_gmappable
-
-  def latitude
-    return self.lat
-  end
-
-  def longitude
-    return self.lng
-  end
-
-  def latitude=(value)
-    return true
-  end
-
-  def longitude=(value)
-    return true
-  end
+  acts_as_gmappable :process_geocoding=>false,:lat_column=>"lat", :lng_column=>"lng"
 
   def date_formated
     return event_date.strftime('%a, %b %e %Y') unless event_date.nil?
-  end
-
-  def gmaps4rails_address
-    return nil
   end
 
   def gmaps4rails_infowindow
