@@ -210,4 +210,3 @@ updated = 0
         end
     end
     puts "Event records updated: #{updated}"
-end
