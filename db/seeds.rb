@@ -195,16 +195,19 @@ end # end of main loop through rows
 puts "Events created: #{Event.count}"
 puts "Event Attributes created: #{EventAttribute.count}"
 
-events = Event.all
-events.each do |event|
-    if (event.name.include?(" on ")) && (split_name = event.name.split(" on ")) && (event.name.split(" on ").last.include?("-"))
-        new_date = DateTime.parse(split_name.last)
-        split_name.delete_at[-1]
-        new_name = split_name.join(" ")
-        event.update_attributes(event_date:new_date,name:new_name)
-    elsif eventdate = EventDate.find_by_old_id(event.old_id)
-        event.event_date = DateTime.parse(eventdate.name)
-        event.save
+updated = 0
+    Event.all.each do |event|
+        if (event.name.include?(" on ")) && (event.name.split(" on ").last.split("-").last.start_with?('19'))
+          split_name = event.name.split(" on ")
+          puts "Event matched: #{event.name}"
+          if new_date = DateTime.parse(split_name.last)
+            split_name.delete_at(-1)
+            new_name = split_name.join(" ")
+            puts "Name: #{new_name}, Date: #{new_date}"
+            event.update_attributes(event_date:new_date,name:new_name)
+            updated += 1
+          end
+        end
     end
+    puts "Event records updated: #{updated}"
 end
-
