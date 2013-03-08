@@ -1,0 +1,12 @@
+<tr id="campaign_<%= campaign.id %>">
+  <td>
+    <%= link_to campaign.name, campaign %>
+  </td>
+  <td>
+    <%= campaign.operations.count %>
+  </td>
+  <td>
+    <%= link_to 'Edit', edit_campaign_path(campaign),remote:true, class:"btn btn-warning" %>
+    <%= link_to 'Destroy', campaign, method: :delete, remote:true, class:"btn btn-danger" %>
+  </td>
+</tr>

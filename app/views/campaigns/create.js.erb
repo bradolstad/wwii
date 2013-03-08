@@ -1,0 +1,6 @@
+<% if @campaign.errors.any? %>
+  $('input#campaign_name').addClass('input-error');
+<% else %>
+  $('tbody').append('<%= j(render "campaign",:campaign=>@campaign) %>');
+  $('input#campaign_name').val('');
+<% end %>

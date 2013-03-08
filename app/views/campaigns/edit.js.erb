@@ -1,0 +1,2 @@
+$('tr#campaign_<%= @campaign.id %> td:first').empty();
+$('tr#campaign_<%= @campaign.id %> td:first').append('<%= j(render "form", :campaign=>@campaign) %>')

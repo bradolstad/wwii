@@ -1,29 +1,6 @@
-<%= form_for(@unit) do |f| %>
-  <% if @unit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@unit.errors.count, "error") %> prohibited this unit from being saved:</h2>
-
-      <ul class="unstyled">
-      <% @unit.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-<div>
-  <%= f.label :name %>
+<%= form_for(@unit, :html=>{class:"form-inline"},remote:true) do |f| %>
   <%= f.text_field :name %>
-</div>
-<div>
-  <%= f.label :unit_type %>
-  <%= f.collection_select :unit_type_id, UnitType.all, :id, :name %>
-</div>
-<div>
-  <%= f.label :country %>
-  <%= f.collection_select :country_id, Country.all, :id, :name %>
-</div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.collection_select :unit_type_id, UnitType.all, :id, :name, prompt:'Select a Unit Type' %>
+  <%= f.collection_select :country_id, Country.all, :id, :name, prompt:'Select a Country' %>
+  <%= f.submit class:"btn" %>
 <% end %>

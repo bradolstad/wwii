@@ -16,9 +16,11 @@ class Event < ActiveRecord::Base
   end
 
   def gmaps4rails_infowindow
-    "<h4>#{name}<br>
-      <small>#{date_formated}</small>
-    </h4>"
+    "<h6>#{name}<br><small>#{date_formated}</small></h6>"
+  end
+
+  def gmaps4rails_title
+      return event_date.strftime("%b %e %Y") unless event_date.nil?
   end
 
 end

@@ -1,0 +1,2 @@
+$('tr#operation_<%= @operation.id %> td:first').empty();
+$('tr#operation_<%= @operation.id %> td:first').append('<%= j(render "form", :operation=>@operation) %>')

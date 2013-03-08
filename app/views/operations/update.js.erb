@@ -1,0 +1,5 @@
+<% if @operation.errors.any? %>
+
+<% else %>
+  $('tr#operation_<%= @operation.id %>').replaceWith('<%= j(render "operation",:operation=>@operation) %>');
+<% end %>

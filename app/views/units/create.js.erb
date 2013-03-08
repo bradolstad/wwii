@@ -1,0 +1,6 @@
+<% if @unit.errors.any? %>
+  $('input#unit_name').addClass('input-error');
+<% else %>
+  $('tbody').append('<%= j(render "unit",:unit=>@unit) %>');
+  $('input#unit_name').val('');
+<% end %>

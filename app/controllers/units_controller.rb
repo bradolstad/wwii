@@ -3,6 +3,7 @@ class UnitsController < ApplicationController
   # GET /units.json
   def index
     @units = Unit.all
+    @unit = Unit.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @units }
@@ -33,6 +34,12 @@ class UnitsController < ApplicationController
   # GET /units/1/edit
   def edit
     @unit = Unit.find(params[:id])
+
+    respond_to do |format|
+      format.html { redirect_to units_url }
+      format.json { head :no_content }
+      format.js
+    end
   end
 
   # POST /units
@@ -44,9 +51,11 @@ class UnitsController < ApplicationController
       if @unit.save
         format.html { redirect_to @unit, notice: 'Unit was successfully created.' }
         format.json { render json: @unit, status: :created, location: @unit }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @unit.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -60,9 +69,11 @@ class UnitsController < ApplicationController
       if @unit.update_attributes(params[:unit])
         format.html { redirect_to @unit, notice: 'Unit was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @unit.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -76,6 +87,7 @@ class UnitsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to units_url }
       format.json { head :no_content }
+      format.js
     end
   end
 end

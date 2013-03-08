@@ -1,0 +1,5 @@
+<% if @campaign.errors.any? %>
+
+<% else %>
+  $('tr#campaign_<%= @campaign.id %>').replaceWith('<%= j(render "campaign",:campaign=>@campaign) %>');
+<% end %>

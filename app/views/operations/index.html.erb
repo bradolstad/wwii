@@ -7,17 +7,9 @@
     <th>Actions</th>
   </thead>
   <tbody>
-
-<% @operations.each do |operation| %>
-  <tr>
-  <td><%= link_to operation.name, operation %></td>
-  <td><%= operation.campaign.name unless operation.campaign == nil %></td>
-  <td><%= operation.events.count %></td>
-
-  <td><%= link_to "Edit", edit_operation_path(operation),class:"btn btn-warning" %> <%= link_to "Delete", operation_path(operation), :method=>'delete', :confirm=>'Are you sure?', class:"btn btn-danger" %></td>
-</tr>
-<% end %>
-
+    <% @operations.each do |operation| %>
+      <%= render 'operation', :operation => operation %>
+    <% end %>
   </tbody>
 </table>
-<%= link_to "New Operation", new_operation_path, class:"btn btn-success" %>
+<%= render 'form' %>

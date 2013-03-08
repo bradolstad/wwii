@@ -3,7 +3,7 @@ class OperationsController < ApplicationController
   # GET /operations.json
   def index
     @operations = Operation.all
-
+    @operation = Operation.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @operations }
@@ -14,7 +14,8 @@ class OperationsController < ApplicationController
   # GET /operations/1.json
   def show
     @operation = Operation.find(params[:id])
-    @markers = @operation.events.to_gmaps4rails
+    @events = @operation.events.order(:event_date)
+    @markers = @events.to_gmaps4rails
 
     @polygon_json = @markers
 
@@ -32,12 +33,18 @@ class OperationsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @operation }
+      format.js
     end
   end
 
   # GET /operations/1/edit
   def edit
     @operation = Operation.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /operations
@@ -49,9 +56,11 @@ class OperationsController < ApplicationController
       if @operation.save
         format.html { redirect_to @operation, notice: 'Operation was successfully created.' }
         format.json { render json: @operation, status: :created, location: @operation }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @operation.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -65,9 +74,11 @@ class OperationsController < ApplicationController
       if @operation.update_attributes(params[:operation])
         format.html { redirect_to @operation, notice: 'Operation was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @operation.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -81,6 +92,7 @@ class OperationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to operations_url }
       format.json { head :no_content }
+      format.js
     end
   end
 end

@@ -1,0 +1,5 @@
+<% if @unit.errors.any? %>
+
+<% else %>
+  $('tr#unit_<%= @unit.id %>').replaceWith('<%= j(render "unit",:unit=>@unit) %>');
+<% end %>

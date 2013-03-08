@@ -6,6 +6,9 @@ class Operation < ActiveRecord::Base
   has_many :event_attributes
   has_many :events, :through => :event_attributes
 
+  validates_presence_of :name
+  validates_uniqueness_of :name
+
   def boundaries
     locations = self.events.collect { |event| {lat:event.lat,lng:event.lng} }
     return locations.uniq

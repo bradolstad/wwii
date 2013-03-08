@@ -5,8 +5,11 @@
 </h1>
 <div class="span4">
   <ul class="unstyled">
-    <% @operation.events.each do |event| %>
-      <li><%= link_to event.name, event %></li>
+    <% @events.each do |event| %>
+      <li>
+        <%= link_to event.name, event %><br>
+        <%= event.date_formated %>
+      </li>
     <% end %>
   </ul>
   <%= link_to 'Edit', edit_operation_path(@operation) %> |

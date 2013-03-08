@@ -13,3 +13,4 @@
  *= require bootstrap-responsive
   *= require gmaps4rails
  */
+ form input.input-error {border-color: red;}

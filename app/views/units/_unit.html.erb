@@ -1,0 +1,9 @@
+<tr id="unit_<%= unit.id %>">
+    <td><%= link_to unit.name, unit %></td>
+    <td><%= unit.country.name unless unit.country == nil %> </td>
+    <td><%= unit.unit_type.name unless unit.unit_type == nil %>
+    <td>
+      <%= link_to 'Edit', edit_unit_path(unit), class: "btn btn-warning",remote:true %>
+      <%= link_to 'Destroy', unit, method: :delete, remote:true, class: "btn btn-danger" %>
+    </td>
+  </tr>

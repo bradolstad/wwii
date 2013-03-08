@@ -1,32 +1,5 @@
-<%= form_for(@operation) do |f| %>
-  <% if @operation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@operation.errors.count, "error") %> prohibited this operation from being saved:</h2>
-
-      <ul class="unstyled">
-      <% @operation.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :campaign_id %>
+<%= form_for(@operation,:remote=>true, :html=>{class:"form-inline"}) do |f| %>
+    <%= f.text_field :name, :placeholder => 'Operation Name' %>
     <%= f.collection_select :campaign_id, Campaign.all, :id, :name,prompt:'Select a campaign' %>
-  </div>
-  <div>
-    <%= f.label :start_date %>
-    <%= f.date_select :start_date, start_year:1939,end_year:1947, prompt:'Select a date' %>
-  </div>
-  <div>
-    <%= f.label :end_date %>
-    <%= f.date_select :end_date, start_year:1939,end_year:1947,prompt:'Select a date' %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit class:"btn" %>
 <% end %>

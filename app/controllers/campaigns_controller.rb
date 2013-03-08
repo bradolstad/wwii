@@ -3,6 +3,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns.json
   def index
     @campaigns = Campaign.all
+    @campaign = Campaign.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @campaigns }
@@ -28,12 +29,17 @@ class CampaignsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @campaign }
+      format.js
     end
   end
 
   # GET /campaigns/1/edit
   def edit
     @campaign = Campaign.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /campaigns
@@ -43,11 +49,13 @@ class CampaignsController < ApplicationController
 
     respond_to do |format|
       if @campaign.save
-        format.html { redirect_to @campaign, notice: 'Campaign was successfully created.' }
+        format.html { redirect_to campaigns_path, notice: 'Campaign was successfully created.' }
         format.json { render json: @campaign, status: :created, location: @campaign }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @campaign.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -61,9 +69,11 @@ class CampaignsController < ApplicationController
       if @campaign.update_attributes(params[:campaign])
         format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @campaign.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -77,6 +87,7 @@ class CampaignsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to campaigns_url }
       format.json { head :no_content }
+      format.js
     end
   end
 end

@@ -1,0 +1,6 @@
+<% if @operation.errors.any? %>
+  $('input#operation_name').addClass('input-error');
+<% else %>
+  $('tbody').append('<%= j(render "operation",:operation=>@operation) %>');
+  $('input#operation_name').val('');
+<% end %>

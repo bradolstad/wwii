@@ -7,18 +7,7 @@
   </thead>
 
 <% @units.each do |unit| %>
-  <tr>
-    <td><%= link_to unit.name, unit %></td>
-    <td><%= unit.country.name unless unit.country == nil %> </td>
-    <td><%= unit.unit_type.name unless unit.unit_type == nil %>
-    <td>
-      <%= link_to 'Edit', edit_unit_path(unit), class: "btn btn-warning" %>
-      <%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-    </td>
-  </tr>
+  <%= render 'unit',:unit=>unit %>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Unit', new_unit_path %>
+<%= render 'form' %>
