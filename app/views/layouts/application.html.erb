@@ -12,10 +12,10 @@
     <%= gmaps(
           "map_options" => {
             "raw" => "{ styles : ww2MapStyle }"
-          },
-          "markers" => {
-            "data" => @markers
-          }
+          }#,
+          # "markers" => {
+          #   "data" => @markers
+          # }
     ) %>
     <script>
     var ww2MapStyle = [
