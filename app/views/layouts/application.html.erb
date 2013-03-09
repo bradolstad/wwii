@@ -9,7 +9,11 @@
 <body>
   <div id="ww2-map">
     <% #outputs the necessary scripts for gmaps4rails gem %>
-    <%= gmaps4rails([]) %>
+    <%= gmaps( "markers" =>
+        {
+          "data" => @markers
+        }
+    ) %>
   </div>
   <div id="main" class="container">
     <nav>
