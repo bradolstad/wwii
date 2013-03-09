@@ -7,7 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container">
+  <div id="ww2-map">
+     <%= gmaps4rails([]) %>
+  </div>
+<div id="main" class="container">
   <nav>
     <%= link_to "Campaigns", campaigns_path %> |
     <%= link_to "Operations", operations_path %> |
