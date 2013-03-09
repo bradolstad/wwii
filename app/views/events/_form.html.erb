@@ -1,3 +1,5 @@
+<%= gmaps4rails(@json) %>
+
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -10,8 +12,16 @@
       </ul>
     </div>
   <% end %>
-
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+<div>
+  <%= f.label :unit_name %>
+  <%= f.collection_select :unit_id, Unit.all, :id, :name, prompt:'Select a Unit'  %>
+</div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
