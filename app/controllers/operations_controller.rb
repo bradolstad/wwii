@@ -2,9 +2,17 @@ class OperationsController < ApplicationController
   # GET /operations
   # GET /operations.json
   def index
-    @operations = Operation.all
+    all_operations = Operation.all
+    @operations = []
+    all_operations.each do |operation|
+      if operation.events.count > 0
+        @operations << operation
+      end
+    end
     @operation = Operation.new
-    @markers = {lat:34.00,lng:5.00}.to_gmaps4rails
+
+    @markers = '[{"lat":47.398349,"lng":-9.008789}]'
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @operations }
