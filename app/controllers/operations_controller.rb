@@ -10,8 +10,7 @@ class OperationsController < ApplicationController
       end
     end
     @operation = Operation.new
-    @markers = {:lat=>47.398349,:lng=>-9.008789}.to_gmaps4rails
-
+    @markers = [{:lat=>47.398349,:lng=>-9.008789}].to_json
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @operations }
