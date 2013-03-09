@@ -40,8 +40,13 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(params[:event])
+    @event = Event.create(params[:event])
+    @event_attribute = EventAttribute.create
+    @event_attribute.event_id = @event.id
+    @event_attribute.unit_id = params[:unit_id]
 
+    @marker = @event.to_gmaps4rails
+    @json = Event.all.to_gmaps4rails
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }

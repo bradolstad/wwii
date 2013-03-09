@@ -24,9 +24,9 @@
       <%= link_to "Units", units_path %>
     </nav>
     <div class="row">
-      <%= yield %>
+      <%= yield :head %>
     </div>
   </div>
-  <%= yield :scripts %>
-</body>
+  <%= yield %>
+  <%= yield :scripts %></body>
 </html>
