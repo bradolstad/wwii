@@ -35,7 +35,11 @@ We want to make something that allows users to look at / view the events of WW2 
 * https://developers.google.com/maps/customize
 * http://www.maptiler.org/
 * http://www.morethanamap.com/
+* http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html
 * wikipedia
+
+## Help
+* http://stackoverflow.com/questions/6710297/how-to-configure-others-attributes-on-gmaps4rails
 
 ## Gems
 * Gone

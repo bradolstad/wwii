@@ -13,3 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+( function( $ ) {
+	$( document ).ready( function() {
+	} );
+} )( jQuery );
+
+// {
+// 	"featureType": "water",
+// 	"stylers": [
+// 		{ "color": "#938073" }
+// 	]
+// }
