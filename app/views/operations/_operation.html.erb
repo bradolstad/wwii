@@ -1,8 +1,8 @@
 
   <tr id="operation_<%= operation.id %>">
-    <td><%= link_to operation.name, operation %></td>
-    <td><%= operation.campaign.name unless operation.campaign == nil %></td>
-    <td><%= operation.events.count %></td>
+    <td><%= link_to operation.name, operation, remote:true  %></td>
+    <!-- <td><%= operation.campaign.name unless operation.campaign == nil %></td>
+    <td><%= operation.events.count %></td> -->
 
-    <td><%= link_to "Edit", edit_operation_path(operation),class:"btn btn-warning",remote:true %> <%= link_to "Delete", operation_path(operation), :method=>'delete', remote:true, class:"btn btn-danger" %></td>
+    <!-- <td><%= link_to "Edit", edit_operation_path(operation),class:"btn btn-warning",remote:true %> <%= link_to "Delete", operation_path(operation), :method=>'delete', remote:true, class:"btn btn-danger" %></td> -->
   </tr>

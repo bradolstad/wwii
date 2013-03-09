@@ -36,12 +36,12 @@ class @Gmaps4Rails
       draggable: true
       detect_location: false  # should the browser attempt to use geolocation detection features of HTML5?
       center_on_user: false   # centers map on the location detected through the browser
-      center_latitude: 0
-      center_longitude: 0
-      zoom: 7
+      center_latitude: 47.398349
+      center_longitude: -9.008789
+      zoom: 5
       maxZoom: null
       minZoom: null
-      auto_adjust : true      # adjust the map to the markers if set to true
+      auto_adjust : false      # adjust the map to the markers if set to true
       auto_zoom: false         # zoom given by auto-adjust
       bounds: []              # adjust map to these limits. Should be [{"lat": , "lng": }]
       raw: {}                  # raw json to pass additional options
