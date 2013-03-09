@@ -11,7 +11,8 @@ class OperationsController < ApplicationController
     end
     @operation = Operation.new
 
-    @markers = '[{"lat":47.398349,"lng":-9.008789}]'
+    #@markers = '[{"lat":47.398349,"lng":-9.008789}]'
+    @markers = {:lat=>47.398349,:lng=>-9.008789}
 
     respond_to do |format|
       format.html # index.html.erb

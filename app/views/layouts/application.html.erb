@@ -8,7 +8,7 @@
 </head>
 <body>
   <div id="ww2-map">
-     <%= gmaps4rails([]) %>
+     <%= gmaps("markers" => { "data" => @markers.to_json }) %>
   </div>
 <div id="main" class="container">
   <nav>
