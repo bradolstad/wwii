@@ -10,13 +10,12 @@ class OperationsController < ApplicationController
       end
     end
     @operation = Operation.new
-
-    #@markers = '[{"lat":47.398349,"lng":-9.008789}]'
-    @markers = {:lat=>47.398349,:lng=>-9.008789}
+    @markers = {:lat=>47.398349,:lng=>-9.008789}.to_gmaps4rails
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @operations }
+      format.js
     end
   end
 
@@ -26,7 +25,7 @@ class OperationsController < ApplicationController
     @operation = Operation.find(params[:id])
     @events = @operation.events.order(:event_date)
     @markers = @events.to_gmaps4rails
-    logger.info "markers = #{@markers}"
+    logger.info "@markers = #{@markers}"
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @operation }

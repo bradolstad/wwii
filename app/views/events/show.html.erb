@@ -2,7 +2,6 @@
 <h2><%= @event.name %><br>
   <small><%= @event.date_formated %></small>
 </h2>
-<%= gmaps4rails(@marker) %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', :back %>
