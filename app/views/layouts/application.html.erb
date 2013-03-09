@@ -16,11 +16,12 @@
     <%= link_to "Units", units_path %>
   </nav>
   <div class="row">
-    <%= yield %>
+    <%= yield :head %>
   </div>
 </div>
 <!-- outputs the necessary scripts for gmaps4rails gem -->
 
+<%= yield %>
 <%= yield :scripts %>
 
 </body>
