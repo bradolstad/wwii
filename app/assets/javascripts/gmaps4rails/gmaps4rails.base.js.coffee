@@ -49,7 +49,16 @@ class @Gmaps4Rails
         { lat : 34, lng : 20 },
         { lat : 34, lng : -45 }
       ]
-      raw: {}                  # raw json to pass additional options
+      raw: {
+        styles : [
+          {
+            "featureType" : "water",
+            "stylers" : [
+              { "color": "#938073" }
+            ]
+          }
+        ]
+      }                  # raw json to pass additional options
 
     @default_markers_conf =
       #Marker config
