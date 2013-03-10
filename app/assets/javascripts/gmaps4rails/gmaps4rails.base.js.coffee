@@ -41,9 +41,14 @@ class @Gmaps4Rails
       zoom: 4
       maxZoom: null
       minZoom: null
-      auto_adjust : true      # adjust the map to the markers if set to true
+      auto_adjust : false      # adjust the map to the markers if set to true
       auto_zoom: false         # zoom given by auto-adjust
-      bounds: []              # adjust map to these limits. Should be [{"lat": , "lng": }]
+      bounds: [                # adjust map to these limits. Should be [{"lat": , "lng": }]
+        { lat : 66, lng : -45 },
+        { lat : 66, lng : 20 },
+        { lat : 34, lng : 20 },
+        { lat : 34, lng : -45 }
+      ]
       raw: {}                  # raw json to pass additional options
 
     @default_markers_conf =
