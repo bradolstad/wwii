@@ -8,24 +8,9 @@
 </head>
 <body>
   <div id="ww2-map">
-    <%= gmaps(
-          "map_options" => {
-            "raw" => "{ styles : ww2MapStyle }"
-          }#,
-          # "markers" => {
-          #   "data" => @markers
-          # }
-    ) %>
-    <script>
-    var ww2MapStyle = [
-      {
-        "featureType": "water",
-        "stylers": [
-          { "color": "#938073" }
-        ]
-      }
-    ];
-    </script>
+
+    <% #outputs the necessary scripts for gmaps4rails gem %>
+    <%= gmaps({}) %>
   </div>
   <div id="main" class="container">
     <nav>
