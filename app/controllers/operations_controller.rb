@@ -68,11 +68,10 @@ class OperationsController < ApplicationController
     end
   end
 
-  # PUT /operations/1
-  # PUT /operations/1.json
   def update
     @operation = Operation.find(params[:id])
-
+    logger.info "@operation prior to update: #{@operation.inspect}"
+    logger.info "params contains: #{params.inspect}"
     respond_to do |format|
       if @operation.update_attributes(params[:operation])
         format.html { redirect_to @operation, notice: 'Operation was successfully updated.' }
