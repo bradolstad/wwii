@@ -3,16 +3,9 @@
   Operation <%= @operation.name %><br>
   <small><%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %>  <%= @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></small>
 </h1>
-<div class="span4">
-  <ul class="unstyled">
-    <% @events.each do |event| %>
-      <li>
-        <%= link_to event.name, event %><br>
-        <%= event.date_formated %>
-      </li>
-    <% end %>
-  </ul>
-  <%= link_to 'Edit', edit_operation_path(@operation) %> |
-  <%= link_to 'Back', :back %>
+<div class="span3">
+  <%= @operation.description %>
 </div>
+<div class="span3">
 
+</div>

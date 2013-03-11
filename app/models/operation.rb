@@ -10,12 +10,19 @@ class Operation < ActiveRecord::Base
   validates_uniqueness_of :name
 
   def self.events?
-    operations = Operation.all.map do |operation|
+    operations = Operation.order('start_date asc').map do |operation|
       if operation.events.count > 0
         operation
       end
     end
     return operations.compact
+  end
+
+  def units
+    units = self.events.collect do |event|
+      event.units
+    end
+    return units.flatten
   end
 
   def self.data
@@ -29,7 +36,7 @@ class Operation < ActiveRecord::Base
   end
 
   def date_formated(date_object)
-    return date_object.strftime('%a, %b %e %Y')
+    return date_object.strftime('%b %Y') unless date_object == nil
   end
 
   def boundaries

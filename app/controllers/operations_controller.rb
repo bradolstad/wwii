@@ -4,7 +4,7 @@ class OperationsController < ApplicationController
     @operations = Operation.events?
     @operation = Operation.new
 
-    @markers = [{:lat=>47.398349,:lng=>-9.008789}].to_json
+    @markers = [{}].to_json
 
     @operations_data = Operation.data
 
