@@ -1,0 +1,12 @@
+#ww2-map,.map_container,#map {
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%
+  }
+
+#main{position:relative;}
+
+/*temporary link color overide to make them more legible*/
+a {color: red;}

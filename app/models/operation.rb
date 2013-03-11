@@ -1,5 +1,5 @@
 class Operation < ActiveRecord::Base
-  attr_accessible :name, :old_id, :campaign_id, :start_date, :end_date
+  attr_accessible :name, :old_id, :campaign_id, :start_date, :end_date, :description
 
   belongs_to :campaign
 
@@ -22,13 +22,14 @@ class Operation < ActiveRecord::Base
     data = Operation.events?.map do |operation|
       {
         :id => operation.id,
-        :name => operation.name,
-        :start_date => operation.start_date,
-        :end_date => operation.end_date,
         :boundaries => operation.boundaries
       }
     end
     return data
+  end
+
+  def date_formated(date_object)
+    return date_object.strftime('%a, %b %e %Y')
   end
 
   def boundaries

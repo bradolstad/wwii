@@ -3,6 +3,9 @@
       <%= f.text_field :name, :placeholder => 'Operation Name' %>
     </div>
     <div>
+      <%= f.text_area :description, :placeholder => 'Operation Description' %>
+    </div>
+    <div>
       <%= f.label :start_date %>
       <%= f.date_select :start_date, start_year:1939,end_year:1949 %>
     </div>

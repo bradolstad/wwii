@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130308014527) do
+ActiveRecord::Schema.define(:version => 20130311165930) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20130308014527) do
     t.datetime "updated_at",  :null => false
     t.datetime "start_date"
     t.datetime "end_date"
+    t.string   "description"
   end
 
   add_index "operations", ["old_id"], :name => "index_operations_on_old_id"

@@ -1,7 +1,3 @@
-  <tr id="operation_<%= operation.id %>">
-    <td><%= link_to operation.name, operation, remote:true, :class => 'operation-link' %></td>
-    <!-- <td><%= operation.campaign.name unless operation.campaign == nil %></td>
-    <td><%= operation.events.count %></td> -->
-
-    <!-- <td><%= link_to "Edit", edit_operation_path(operation),class:"btn btn-warning",remote:true %> <%= link_to "Delete", operation_path(operation), :method=>'delete', remote:true, class:"btn btn-danger" %></td> -->
-  </tr>
+  <li id="operation_<%= operation.id %>">
+    <%= link_to "Operation #{operation.name}", operation, remote:true, :class => 'operation-link', id:"operation-link_#{operation.id}" %>
+  </li>
