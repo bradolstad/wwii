@@ -41,9 +41,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.create(params[:event])
-    @event_attribute = EventAttribute.create
-    @event_attribute.event_id = @event.id
-    @event_attribute.unit_id = params[:unit_id]
+    @event_attribute = EventAttribute.create(event_id:@event.id,unit_id:params[:unit_id])
 
     @marker = @event.to_gmaps4rails
     @json = Event.all.to_gmaps4rails

@@ -3,5 +3,85 @@
   <small><%= @event.date_formated %></small>
 </h2>
 
+<p>
+  <b>Location:</b>
+  <%= @event.address %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @event.lng %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @event.lat %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @event.event_date %>
+</p>
+
+<% content_for :scripts do %>
+    <script type="text/javascript" charset="utf-8">
+        Gmaps.map.HandleDragend = function(pos)
+          {
+            var geocoder = new google.maps.Geocoder();geocoder.geocode
+                            ({latLng: pos},
+                              function(responses)
+                                {if (responses && responses.length > 0) {alert(responses[0].formatted_address);}
+                                else
+                                {alert('Cannot determine address at this location.');
+                                  }
+                              });
+           };
+        var markersArray = [];
+        // On click, clear markers, place a new one, update coordinates in the form
+        Gmaps.map.callback = function() {
+            google.maps.event.addListener(Gmaps.map.serviceObject, 'click', function(event) {
+              clearOverlays();
+              placeMarker(event.latLng);
+              updateFormLocation(event.latLng);
+            });
+        };
+        // Update form attributes with given coordinates
+        function updateFormLocation(latLng) {
+            $('#event_lat').val(latLng.lat());
+            $('#event_lng').val(latLng.lng());
+        }
+        // Add a marker with an open infowindow
+        function placeMarker(latLng) {
+            var marker = new google.maps.Marker({
+                position: latLng,
+                map: Gmaps.map.serviceObject,
+                draggable: true
+            });
+            markersArray.push(marker);
+            // Set and open infowindow
+            var infowindow = new google.maps.InfoWindow({
+                content: '<div class="popup"><h2>Awesome!</h2><p>Drag me and adjust the zoom level.</p>'
+            });
+            infowindow.open(Gmaps.map.serviceObject,marker);
+            // Listen to drag & drop
+            google.maps.event.addListener(marker, 'dragend', function() {
+                updateFormLocation(this.getPosition());
+            });
+        }
+        // Removes the overlays from the map
+        function clearOverlays() {
+          if (markersArray) {
+            for (var i = 0; i < markersArray.length; i++ ) {
+              markersArray[i].setMap(null);
+            }
+          }
+          markersArray.length = 0;
+        }
+
+    </script>
+<% end %>
+
+
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', :back %>
+<%= link_to 'Back', events_path %>

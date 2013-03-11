@@ -1,25 +1,26 @@
 <%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul class="unstyled">
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
-<div>
-  <%= f.label :name %>
-  <%= f.collection_select :unit_id, Unit.all, :id, :name, prompt:'Select a Unit'  %>
-</div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :Longitude %><br />
+    <%= f.text_field :lng %>
+  </div>
+  <div class="field">
+    <%= f.label :Latitude %><br />
+    <%= f.text_field :lat %>
+  </div>
+  </div class="field">
+    <%= f.label :Date %><br/>
+    <%= f.date_select :event_date,start_year:1939,end_year:1949 %>
+  <div>
+   <%= select_tag :unit_id, options_from_collection_for_select(Unit.all, "id", "name") %>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-
