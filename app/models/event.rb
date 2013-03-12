@@ -1,6 +1,10 @@
 class Event < ActiveRecord::Base
   attr_accessible :event_date, :name, :lat, :lng, :gmaps , :old_id, :unique_id, :address, :unit_id, :operation_id, :country_id
 
+  belongs_to :unit
+  belongs_to :operation
+  belongs_to :country
+
   acts_as_gmappable :process_geocoding => :geocode?,:lat=>'lat', :lng=>'lng',:address => "address"
 
   def date_formated

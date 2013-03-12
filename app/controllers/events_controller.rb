@@ -1,8 +1,7 @@
 class EventsController < ApplicationController
-  # GET /events
-  # GET /events.json
+
   def index
-    @events = Event.order(:event_date).page params[:page]
+    @events = Event.order(:event_date).page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,8 +9,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/1
-  # GET /events/1.json
   def show
     @event = Event.find(params[:id])
     @markers = @event.to_gmaps4rails
@@ -21,8 +18,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/new
-  # GET /events/new.json
   def new
     @event = Event.new
     respond_to do |format|

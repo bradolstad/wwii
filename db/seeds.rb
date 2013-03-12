@@ -155,15 +155,24 @@ raw_events = JSON.load(File.open( 'db/parsed_data.json', "r" ))
 raw_events.each do |row|
     find_out_what_table(row["old_id"])
     event = Event.find_by_unique_id(row["unique_id"])
+
     if event.present?
         if @date_id
             event.event_date = DateTime.parse(@date_id)
             event.save
         end
-        # if it exists create a new attributes record
-        EventAttribute.create([
-            {event_id:event.id,country_id:@country_id,operation_id:@operation_id,unit_id:@unit_id}
-            ])
+        # if it exists check for an attributes record
+        eventattribute = EventAttribute.find_by_event_id(event.id)
+
+        if eventattribute.present?
+            #if an attribute record exists, update it
+            eventattribute.country_id = @country_id unless @country_id==nil
+            eventattribute.operation_id = @operation_id unless @operation_id==nil
+            eventattribute.unit_id = @unit_id unless @unit_id==nil
+            eventattribute.save
+        else #no eventattribute row yet
+            EventAttribute.create([{event_id:event.id,country_id:@country_id,operation_id:@operation_id,unit_id:@unit_id}])
+        end
     else #no event found
         new_event = Event.new(
             {
@@ -171,7 +180,8 @@ raw_events.each do |row|
                 :name => row["name"],
                 :lat => row["lat"],
                 :lng => row["lng"],
-                :event_date => @date_id}
+                :event_date => @date_id,
+                :gmaps=> true}
             )
         new_event.save
 
@@ -186,17 +196,17 @@ puts "Events created: #{Event.count}"
 puts "Event Attributes created: #{EventAttribute.count}"
 
 updated = 0
-Event.all.each do |event|
-    if (event.name.include?(" on ")) && (event.name.split(" on ").last.split("-").last.start_with?('19'))
-      split_name = event.name.split(" on ")
-      puts "Event matched: #{event.name}"
-      if new_date = DateTime.parse(split_name.last)
-        split_name.delete_at(-1)
-        new_name = split_name.join(" ")
-        puts "Name: #{new_name}, Date: #{new_date}"
-        event.update_attributes(event_date:new_date,name:new_name)
-        updated += 1
-      end
+    Event.all.each do |event|
+        if (event.name.include?(" on ")) && (event.name.split(" on ").last.split("-").last.start_with?('19'))
+          split_name = event.name.split(" on ")
+          puts "Event matched: #{event.name}"
+          if new_date = DateTime.parse(split_name.last)
+            split_name.delete_at(-1)
+            new_name = split_name.join(" ")
+            puts "Name: #{new_name}, Date: #{new_date}"
+            event.update_attributes(event_date:new_date,name:new_name)
+            updated += 1
+          end
+        end
     end
-end
 puts "Event records updated: #{updated}"

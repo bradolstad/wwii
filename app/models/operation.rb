@@ -3,13 +3,12 @@ class Operation < ActiveRecord::Base
 
   belongs_to :campaign
 
-  has_many :event_attributes
-  has_many :events, :through => :event_attributes
+  has_many :events
 
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  def self.events?
+   def self.events?
     operations = Operation.order('start_date asc').map do |operation|
       if operation.events.count > 0
         operation
@@ -20,9 +19,13 @@ class Operation < ActiveRecord::Base
 
   def units
     units = self.events.collect do |event|
-      event.units
+      if event.unit
+        event.unit
+      else
+        nil
+      end
     end
-    return units.flatten
+    return units.flatten.uniq.compact
   end
 
   def self.data

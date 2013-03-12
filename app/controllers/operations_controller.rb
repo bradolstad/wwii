@@ -1,10 +1,10 @@
 class OperationsController < ApplicationController
 
   def index
-    @operations = Operation.events?
+    @operations = Operation.all
     @operation = Operation.new
 
-    @markers = [{}].to_json
+    @markers = [].to_json
 
     @operations_data = Operation.data
 

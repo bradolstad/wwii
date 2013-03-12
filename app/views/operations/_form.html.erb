@@ -1,21 +1,14 @@
 <%= form_for(@operation) do |f| %>
     <div>
       <%= f.text_field :name, :placeholder => 'Operation Name' %>
-    </div>
-    <div>
       <%= f.label :description %>
       <%= f.text_area :description %>
-    </div>
-    <div>
       <%= f.label :start_date %>
-      <%= f.date_select :start_date, start_year: 1939,end_year: 1949 %>
-    </div>
-    <div>
+      <%= f.date_select :start_date, start_year: 1939,end_year: 1949, default:nil, include_blank:true %>
       <%= f.label :end_date %>
-      <%= f.date_select :end_date, start_year:1939,end_year:1949 %>
-    </div>
-    <div>
-      <%= f.collection_select :campaign_id, Campaign.all, :id, :name,prompt:'Select a campaign' %>
+      <%= f.date_select :end_date, start_year:1939,end_year:1949, default:nil, include_blank:true %>
+      <%= f.label :campaign_id %>
+      <%= f.collection_select :campaign_id, Campaign.all, :id, :name,default:nil, include_blank:true %>
     </div>
     <div>
       <%= f.submit class:"btn" %>
