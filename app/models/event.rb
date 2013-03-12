@@ -12,7 +12,15 @@ class Event < ActiveRecord::Base
   end
 
   def geocode?
-    (!address.blank? && (lat.blank? || lng.blank?)) || address_changed?
+    if !lat.blank? && !lat.blank?
+      false
+    elsif (lat.blank? || lng.blank?) && !address.blank?
+      true
+    elsif address_changed?
+      true
+    else
+      false
+    end
   end
 
   def gmaps4rails_infowindow

@@ -49,7 +49,9 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-
+    if params[:event][:address].nil?
+      params[:event][:address] = nil
+    end
     respond_to do |format|
       if @event.update_attributes(params[:event])
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
