@@ -17,10 +17,12 @@ class CampaignsController < ApplicationController
     #   operation.units
     # end
     # @units.flatten!
-    @markers = @operations.map do |operation|
-      operation.boundaries
-    end
-    @markers = @markers.to_json
+    # @markers = @operations.map do |operation|
+    #   operation.boundaries
+    # end
+    # @markers = @markers.to_json
+
+    @markers = [{}].to_json
     respond_to do |format|
       format.html
       format.json { render json: @campaign }

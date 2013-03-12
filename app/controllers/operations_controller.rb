@@ -4,7 +4,7 @@ class OperationsController < ApplicationController
     @operations = Operation.all
     @operation = Operation.new
 
-    @markers = [].to_json
+    @markers = [{}].to_json
 
     @operations_data = Operation.data
 

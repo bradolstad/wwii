@@ -7,10 +7,8 @@
         <%= operation.name %> - <%= operation.date_formated(operation.start_date) %>
       </a>
       <div id="operation_accordion_<%= operation.id %>" class="collapse">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat <%= link_to 'Go to =>', operation %>
+        <%= operation.description %><br>
+        <%= link_to 'Go to =>', operation %>
       </div>
     <% end %>
 </div>

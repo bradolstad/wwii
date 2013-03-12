@@ -1,1 +1,1 @@
-$('#operation_<%= @operation.id %>').append('<%= j render 'description', operation:@operation %>')
+Gmaps.map.replaceMarkers( JSON.parse( '<%= j raw(@markers) %>' ) );

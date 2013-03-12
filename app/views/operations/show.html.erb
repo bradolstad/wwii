@@ -3,9 +3,17 @@
   Operation <%= @operation.name %><br>
   <small><%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %>  <%= @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></small>
 </h1>
-<div class="span3">
-  <%= @operation.description %>
-</div>
-<div class="span3">
+<h4><%= @operation.description %></h4>
+<div class="highlight">
+  <% @events.each do |event| %>
+      <a data-toggle="collapse" data-target="#event_accordion_<%= event.id %>">
+        <%= event.name %> - <%= event.date_formated %>
+      </a>
+      <div id="event_accordion_<%= event.id %>" class="collapse">
+        Event - description
+        Event - Country
+        Event - Unit
+      </div>
+    <% end %>
 
 </div>

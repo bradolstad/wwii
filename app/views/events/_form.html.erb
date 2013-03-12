@@ -1,4 +1,5 @@
 <%= form_for(@event) do |f| %>
+    <p class="notice"><%= @event.errors.full_messages %> </p>
     <%= f.label :name %> <%= f.text_field :name %>
     <%= f.label :address %> <%= f.text_field :address %>
     <%= f.label :Latitude %> <%= f.text_field :lat %>
@@ -10,6 +11,8 @@
     <%= f.label :country_id %>
     <%= f.collection_select :country_id, Country.all, :id,:name, default:nil, include_blank:true %>
     <%= f.label :operation_id %>
-    <%= f.collection_select :operation_id, Operation.all, :id,:name, default:nil, include_blank:true %><br>
+    <%= f.collection_select :operation_id, Operation.all, :id,:name, default:nil, include_blank:true %>
+    <%= f.label :event_type_id %>
+    <%= f.collection_select :event_type_id, EventType.all, :id, :name, default:nil, include_blank:true %><br>
     <%= f.submit %>
 <% end %>

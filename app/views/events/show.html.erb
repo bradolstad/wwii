@@ -15,11 +15,27 @@
   <b>Longitude:</b>
   <%= @event.lng %>
 </p>
-
 <p>
   <b>Date:</b>
-  <%= @event.event_date %>
+  <%= @event.date_formated %>
 </p>
+<p>
+  <b>Country:</b>
+  <%= @event.country.name unless @event.country.nil? %>
+</p>
+<p>
+  <b>Unit:</b>
+  <%= @event.unit.name unless @event.unit.nil? %>
+</p>
+<p>
+  <b>Operation:</b>
+  <%= @event.operation.name unless @event.operation.nil? %>
+</p>
+<p>
+  <b>Event Type:</b>
+  <%= @event.event_type.name unless @event.event_type.nil? %>
+</p>
+
 
 <% content_for :scripts do %>
     <script type="text/javascript" charset="utf-8">

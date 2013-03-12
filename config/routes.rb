@@ -7,5 +7,6 @@ Wwii::Application.routes.draw do
   resources :units
   resources :events
   resources :countries
+  resources :event_types
 
 end
