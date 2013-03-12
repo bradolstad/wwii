@@ -210,3 +210,27 @@ updated = 0
         end
     end
 puts "Event records updated: #{updated}"
+
+record = 0
+Event.all.each do |event|
+  if attribute = EventAttribute.find_by_event_id(event.id)
+    event.country_id = attribute.country_id
+    event.operation_id = attribute.operation_id
+    event.unit_id = attribute.unit_id
+    event.save
+    record += 1
+  end
+end
+puts "Records updated with Event Attribute: #{record}"
+
+EventType.create([{name:"Plane Crash"}])
+
+record = 0
+eventtype = EventType.find_by_name("Plane Crash")
+Event.all.each do |event|
+  if event.name && event.name.include?(' lost at ')
+    event.update_attributes(event_type_id:eventtype.id)
+    record += 1
+  end
+end
+puts "Records updated with Event Type: #{record}"
