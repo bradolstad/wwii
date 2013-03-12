@@ -17,6 +17,11 @@ class Operation < ActiveRecord::Base
     return operations.compact
   end
 
+  def filtered_events
+    @event_type = EventType.where(name:"Plane Crash").first
+    return Event.where('operation_id=? AND event_type_id IS NOT ?', id, @event_type.id)
+  end
+
   def units
     units = self.events.collect do |event|
       if event.unit

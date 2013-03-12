@@ -12,7 +12,7 @@
       <div id="event_accordion_<%= event.id %>" class="collapse">
         Event - description
         Event - Country
-        Event - Unit
+        <%= link_to "Edit", edit_event_path(event) %>
       </div>
     <% end %>
 
