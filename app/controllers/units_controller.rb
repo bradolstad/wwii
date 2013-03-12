@@ -2,7 +2,7 @@ class UnitsController < ApplicationController
   # GET /units
   # GET /units.json
   def index
-    @units = Unit.all
+    @units = Unit.order(:name)
     @unit = Unit.new
     respond_to do |format|
       format.html # index.html.erb
@@ -74,7 +74,6 @@ class UnitsController < ApplicationController
       else
         format.html { render action: "edit" }
         format.json { render json: @unit.errors, status: :unprocessable_entity }
-        format.js
       end
     end
   end
