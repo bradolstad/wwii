@@ -1,9 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :event_date, :name, :lat, :lng, :gmaps , :old_id, :unique_id, :address
-
-  has_many :event_attributes
-  has_many :operations, :through => :event_attributes
-  has_many :units,  :through => :event_attributes
+  attr_accessible :event_date, :name, :lat, :lng, :gmaps , :old_id, :unique_id, :address, :unit_id, :operation_id, :country_id
 
   acts_as_gmappable :process_geocoding => :geocode?,:lat=>'lat', :lng=>'lng',:address => "address"
 
