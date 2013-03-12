@@ -25,14 +25,12 @@ class EventsController < ApplicationController
   # GET /events/new.json
   def new
     @event = Event.new
-
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @event }
     end
   end
 
-  # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
   end
@@ -41,8 +39,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.create(params[:event])
-    @event_attribute = EventAttribute.create(event_id:@event.id,unit_id:params[:unit_id])
-
     @marker = @event.to_gmaps4rails
     @json = Event.all.to_gmaps4rails
     respond_to do |format|
@@ -56,8 +52,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # PUT /events/1
-  # PUT /events/1.json
   def update
     @event = Event.find(params[:id])
 
