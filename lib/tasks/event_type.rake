@@ -4,7 +4,7 @@ namespace :wwii do
     record = 0
     eventtype = EventType.where(name:"Plane Crash").first
     Event.all.each do |event|
-      if event.name.include?(' lost at ')
+      if event.name && event.name.include?(' lost at ')
         event.update_attributes(event_type_id:eventtype.id)
         record += 1
       end
