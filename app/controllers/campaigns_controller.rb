@@ -13,10 +13,10 @@ class CampaignsController < ApplicationController
   def show
     @campaign = Campaign.find(params[:id])
     @operations = @campaign.operations
-    @units = @operations.collect do |operation|
-      operation.units
-    end
-    @units.flatten!
+    # @units = @operations.collect do |operation|
+    #   operation.units
+    # end
+    # @units.flatten!
     @markers = @operations.map do |operation|
       operation.boundaries
     end

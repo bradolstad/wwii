@@ -1,22 +1,16 @@
 <h1><%= @campaign.name %></h1>
 
-    <div class="span3">
-    <h4>Operations</h4>
-    <ul class="unstyled">
-      <% @operations.each do |operation| %>
-        <li>
-          <%= link_to operation.name, operation %> - <%= operation.date_formated(operation.start_date) %>
-        </li>
-      <% end %>
-    </ul>
-    </div>
-    <div class="span3">
-    <h4>Units Involved</h4>
-    <ul class="unstyled">
-      <% @units.each do |unit| %>
-        <li>
-          <%= unit.name %>
-        </li>
-      <% end %>
-    </ul>
-    </div>
+<div class="highlight">
+  <h4>Operations</h4>
+    <% @operations.each do |operation| %>
+      <a data-toggle="collapse" data-target="#operation_accordion_<%= operation.id %>">
+        <%= operation.name %> - <%= operation.date_formated(operation.start_date) %>
+      </a>
+      <div id="operation_accordion_<%= operation.id %>" class="collapse">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat <%= link_to 'Go to =>', operation %>
+      </div>
+    <% end %>
+</div>

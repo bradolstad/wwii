@@ -8,6 +8,4 @@ Wwii::Application.routes.draw do
   resources :events
   resources :countries
 
-  get 'streams' => 'Streams#index', :as => 'streams'
-
 end

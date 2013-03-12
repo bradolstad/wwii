@@ -11,4 +11,11 @@
 /*temporary link color overide to make them more legible*/
 a {color: red;}
 
-.highlight {background-color: white; opacity: 0.3;}
+.highlight {
+  padding: 10px;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, .3);
+  width: 375px;
+  height: 100%;
+  overflow: scroll;
+}
