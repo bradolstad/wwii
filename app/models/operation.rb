@@ -19,7 +19,7 @@ class Operation < ActiveRecord::Base
 
   def filtered_events
     @event_type = EventType.where(name:"Plane Crash").first
-    return Event.where('operation_id = ? AND event_type_id <> ?',self.id, @event_type.id)
+    return Event.where('operation_id = ? AND event_type_id != ?',self.id, @event_type.id)
   end
 
   def units
