@@ -10,9 +10,9 @@
   <div id="ww2-map">
 
   <!-- outputs the necessary scripts for gmaps4rails gem -->
-    <%= gmaps("markers" => {"data" => @markers}) %>
+    <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true}}) %>
   </div>
-  <div id="main" class="container">
+  <div id="main">
     <nav>
       <%= link_to "Campaigns", campaigns_path %> |
       <%= link_to "Operations", operations_path %> |

@@ -20,6 +20,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @markers = [{}].to_json
     respond_to do |format|
       format.html
       format.json { render json: @event }
@@ -28,6 +29,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @markers = @event.to_gmaps4rails
   end
 
   # POST /events
