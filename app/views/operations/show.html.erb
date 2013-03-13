@@ -10,9 +10,9 @@
         <%= event.name %> - <%= event.date_formated %>
       </a>
       <div id="event_accordion_<%= event.id %>" class="collapse">
-        Event - description
-        Event - Country
-        <%= link_to "Edit", edit_event_path(event) %>
+        <%= event.country.name unless event.country.nil? %><br>
+        <%= event.description %><br>
+        <%= link_to "Edit", edit_event_path(event) %><br><br>
       </div>
     <% end %>
 
