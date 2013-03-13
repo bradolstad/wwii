@@ -28,6 +28,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @json = @event.to_gmaps4rails
   end
 
   # POST /events
