@@ -19,7 +19,7 @@ class OperationsController < ApplicationController
   # GET /operations/1.json
   def show
     @operation = Operation.find(params[:id])
-    @events = @operation.filtered_events.order(:event_date)
+    @events = @operation.filtered_events
     @markers = @events.to_gmaps4rails
     respond_to do |format|
       format.html
