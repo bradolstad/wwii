@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :event_date, :name, :lat, :lng, :gmaps , :old_id, :unique_id, :address, :unit_id, :operation_id, :country_id, :event_type_id
+  attr_accessible :event_date, :name, :lat, :lng, :gmaps , :old_id, :unique_id, :address, :unit_id, :operation_id, :country_id, :event_type_id, :description
 
   belongs_to :unit
   belongs_to :operation
