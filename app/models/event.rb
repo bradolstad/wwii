@@ -1,9 +1,12 @@
 class Event < ActiveRecord::Base
-  attr_accessible :event_date, :name, :lat, :lng, :gmaps , :old_id, :unique_id, :address
+  attr_accessible :event_date, :name, :lat, :lng, :gmaps , :old_id, :unique_id, :address, :unit_id, :operation_id, :country_id, :event_type_id
 
-  has_many :event_attributes
-  has_many :operations, :through => :event_attributes
-  has_many :units,  :through => :event_attributes
+  belongs_to :unit
+  belongs_to :operation
+  belongs_to :country
+  belongs_to :event_type
+
+  validates_presence_of :name
 
   acts_as_gmappable :process_geocoding => :geocode?,:lat=>'lat', :lng=>'lng',:address => "address"
 
@@ -12,7 +15,15 @@ class Event < ActiveRecord::Base
   end
 
   def geocode?
-    (!address.blank? && (lat.blank? || lng.blank?)) || address_changed?
+    if !lat.blank? && !lat.blank?
+      false
+    elsif (lat.blank? || lng.blank?) && !address.blank?
+      true
+    elsif address_changed?
+      true
+    else
+      false
+    end
   end
 
   def gmaps4rails_infowindow

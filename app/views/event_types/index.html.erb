@@ -1,0 +1,5 @@
+<h1>EventTypes#index</h1>
+<% @event_types.each do |event_type| %>
+ <p> <%= event_type.name %> <%= link_to 'Edit', edit_event_type_path(event_type) %> <%= link_to "Delete", event_type, method:"delete" %></p>
+  <% end %>
+<%= link_to "New Event", new_event_type_path %>

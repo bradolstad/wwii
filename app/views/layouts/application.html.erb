@@ -9,8 +9,8 @@
 <body>
   <div id="ww2-map">
 
-    <% #outputs the necessary scripts for gmaps4rails gem %>
-    <%= gmaps({}) %>
+  <!-- outputs the necessary scripts for gmaps4rails gem -->
+    <%= gmaps("markers" => {"data" => @markers}) %>
   </div>
   <div id="main" class="container">
     <nav>
@@ -18,11 +18,11 @@
       <%= link_to "Operations", operations_path %> |
       <%= link_to "Events", events_path %> |
       <%= link_to "Countries", countries_path %> |
-      <%= link_to "Units", units_path %>
+      <%= link_to "Units", units_path %> |
+      <%= link_to "Event Types", event_types_path %>
     </nav>
-    <div class="row">
       <%= yield %>
-    </div>
   </div>
-  <%= yield :scripts %></body>
+  <%= yield :scripts %>
+</body>
 </html>

@@ -1,20 +1,19 @@
 <p id="notice"><%= notice %></p>
 <h1>
-  <%= @operation.name %><br>
+  Operation <%= @operation.name %><br>
   <small><%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %>  <%= @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></small>
 </h1>
-<div class="span4">
-  <ul class="unstyled">
-    <% @events.each do |event| %>
-      <li>
-        <%= link_to event.name, event %><br>
-        <%= event.date_formated %>
-      </li>
+<h4><%= @operation.description %></h4>
+<div class="highlight">
+  <% @events.each do |event| %>
+      <a data-toggle="collapse" data-target="#event_accordion_<%= event.id %>">
+        <%= event.name %> - <%= event.date_formated %>
+      </a>
+      <div id="event_accordion_<%= event.id %>" class="collapse">
+        Event - description
+        Event - Country
+        <%= link_to "Edit", edit_event_path(event) %>
+      </div>
     <% end %>
-  </ul>
-  <%= link_to 'Edit', edit_operation_path(@operation) %> |
-  <%= link_to 'Back', :back %>
-</div>
-<div class="span8">
-  <%= gmaps4rails(@markers) %>
+
 </div>

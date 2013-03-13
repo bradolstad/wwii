@@ -10,13 +10,21 @@ class CampaignsController < ApplicationController
     end
   end
 
-  # GET /campaigns/1
-  # GET /campaigns/1.json
   def show
     @campaign = Campaign.find(params[:id])
+    @operations = @campaign.operations
+    # @units = @operations.collect do |operation|
+    #   operation.units
+    # end
+    # @units.flatten!
+    # @markers = @operations.map do |operation|
+    #   operation.boundaries
+    # end
+    # @markers = @markers.to_json
 
+    @markers = [{}].to_json
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @campaign }
     end
   end

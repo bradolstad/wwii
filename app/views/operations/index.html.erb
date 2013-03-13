@@ -1,18 +1,8 @@
 <h1>Operations</h1>
-
 <div class="span4">
-  <table class="table table-striped">
-    <thead>
-      <th>Operation</th>
-      <!-- <th>Campaign</th>
-      <th>Events</th>
-      <th>Actions</th> -->
-    </thead>
-    <tbody>
-      <% @operations.each do |operation| %>
-        <%= render 'operation', :operation => operation %>
-      <% end %>
-    </tbody>
-  </table>
-<!--   <%= render 'form' %> -->
+  <ul class="unstyled">
+    <% @operations.each do |operation| %>
+      <%= render 'operation', :operation => operation %>
+    <% end %>
+  </ul>
 </div>

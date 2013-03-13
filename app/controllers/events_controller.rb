@@ -1,8 +1,7 @@
 class EventsController < ApplicationController
-  # GET /events
-  # GET /events.json
+
   def index
-    @events = Event.order(:event_date).page params[:page]
+    @events = Event.order(:event_date).page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,8 +9,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/1
-  # GET /events/1.json
   def show
     @event = Event.find(params[:id])
     @markers = @event.to_gmaps4rails
@@ -21,18 +18,14 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/new
-  # GET /events/new.json
   def new
     @event = Event.new
-
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @event }
     end
   end
 
-  # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
   end
@@ -41,10 +34,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.create(params[:event])
-    @event_attribute = EventAttribute.create
-    @event_attribute.event_id = @event.id
-    @event_attribute.unit_id = params[:unit_id]
-
     @marker = @event.to_gmaps4rails
     @json = Event.all.to_gmaps4rails
     respond_to do |format|
@@ -58,11 +47,11 @@ class EventsController < ApplicationController
     end
   end
 
-  # PUT /events/1
-  # PUT /events/1.json
   def update
     @event = Event.find(params[:id])
-
+    if params[:event][:address].nil?
+      params[:event][:address] = nil
+    end
     respond_to do |format|
       if @event.update_attributes(params[:event])
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }

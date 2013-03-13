@@ -1,16 +1,15 @@
 class Operation < ActiveRecord::Base
-  attr_accessible :name, :old_id, :campaign_id, :start_date, :end_date
+  attr_accessible :name, :old_id, :campaign_id, :start_date, :end_date, :description
 
   belongs_to :campaign
 
-  has_many :event_attributes
-  has_many :events, :through => :event_attributes
+  has_many :events
 
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  def self.events?
-    operations = Operation.all.map do |operation|
+   def self.events?
+    operations = Operation.order('start_date asc').map do |operation|
       if operation.events.count > 0
         operation
       end
@@ -18,17 +17,35 @@ class Operation < ActiveRecord::Base
     return operations.compact
   end
 
+  def filtered_events
+    @event_type = EventType.where(name:"Plane Crash").first
+    logger.info "Event Type: #{@event_type.inspect}"
+    return Event.where('operation_id = ?', id)
+  end
+
+  def units
+    units = self.events.collect do |event|
+      if event.unit
+        event.unit
+      else
+        nil
+      end
+    end
+    return units.flatten.uniq.compact
+  end
+
   def self.data
     data = Operation.events?.map do |operation|
       {
         :id => operation.id,
-        :name => operation.name,
-        :start_date => operation.start_date,
-        :end_date => operation.end_date,
         :boundaries => operation.boundaries
       }
     end
     return data
+  end
+
+  def date_formated(date_object)
+    return date_object.strftime('%b %Y') unless date_object == nil
   end
 
   def boundaries

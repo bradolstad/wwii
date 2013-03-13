@@ -1,10 +1,14 @@
-<p id="notice"><%= notice %></p>
 <h1><%= @campaign.name %></h1>
-<h3>Operations</h3>
-<ul class="unstyled">
-  <% @campaign.operations.each do |operation| %>
-    <li><%= link_to operation.name, operation %></li>
-  <% end %>
-</ul>
-<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
-<%= link_to 'Back', campaigns_path %>
+
+<div class="highlight">
+  <h4>Operations</h4>
+    <% @operations.each do |operation| %>
+      <a data-toggle="collapse" data-target="#operation_accordion_<%= operation.id %>">
+        <%= operation.name %> - <%= operation.date_formated(operation.start_date) %>
+      </a>
+      <div id="operation_accordion_<%= operation.id %>" class="collapse">
+        <%= operation.description %><br>
+        <%= link_to 'Go to =>', operation %>
+      </div>
+    <% end %>
+</div>

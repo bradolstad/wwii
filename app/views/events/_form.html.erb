@@ -1,27 +1,18 @@
-<%= gmaps4rails(@json) %>
-
 <%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul class="unstyled">
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
-<div>
-  <%= f.label :unit_name %>
-  <%= f.collection_select :unit_id, Unit.all, :id, :name, prompt:'Select a Unit'  %>
-</div>
-  <div class="actions">
+    <p class="notice"><%= @event.errors.full_messages %> </p>
+    <%= f.label :name %> <%= f.text_field :name %>
+    <%= f.label :address %> <%= f.text_field :address %>
+    <%= f.label :Latitude %> <%= f.text_field :lat %>
+    <%= f.label :Longitude %> <%= f.text_field :lng %>
+    <%= f.label :Date %>
+    <%= f.date_select :event_date,start_year:1939,end_year:1949, include_blank:true, default:nil %>
+    <%= f.label :unit_id %>
+    <%= f.collection_select :unit_id, Unit.all, :id, :name, default:nil, include_blank:true %>
+    <%= f.label :country_id %>
+    <%= f.collection_select :country_id, Country.all, :id,:name, default:nil, include_blank:true %>
+    <%= f.label :operation_id %>
+    <%= f.collection_select :operation_id, Operation.all, :id,:name, default:nil, include_blank:true %>
+    <%= f.label :event_type_id %>
+    <%= f.collection_select :event_type_id, EventType.all, :id, :name, default:nil, include_blank:true %><br>
     <%= f.submit %>
-  </div>
 <% end %>
-

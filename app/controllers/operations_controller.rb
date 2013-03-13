@@ -1,12 +1,10 @@
 class OperationsController < ApplicationController
-  # GET /operations
-  # GET /operations.json
-  def index
-    @operations = Operation.events?
 
+  def index
+    @operations = Operation.all
     @operation = Operation.new
 
-    @markers = [{:lat=>47.398349,:lng=>-9.008789}].to_json
+    @markers = [{}].to_json
 
     @operations_data = Operation.data
 
@@ -21,11 +19,10 @@ class OperationsController < ApplicationController
   # GET /operations/1.json
   def show
     @operation = Operation.find(params[:id])
-    @events = @operation.events.order(:event_date)
+    @events = @operation.filtered_events.order(:event_date)
     @markers = @events.to_gmaps4rails
-    logger.info "@markers = #{@markers}"
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @operation }
       format.js
     end
@@ -71,11 +68,10 @@ class OperationsController < ApplicationController
     end
   end
 
-  # PUT /operations/1
-  # PUT /operations/1.json
   def update
     @operation = Operation.find(params[:id])
-
+    logger.info "@operation prior to update: #{@operation.inspect}"
+    logger.info "params contains: #{params.inspect}"
     respond_to do |format|
       if @operation.update_attributes(params[:operation])
         format.html { redirect_to @operation, notice: 'Operation was successfully updated.' }
