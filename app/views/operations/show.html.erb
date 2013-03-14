@@ -1,13 +1,15 @@
-<p id="notice"><%= notice %></p>
-<h1>
-  Operation <%= @operation.name %><br>
-  <small><%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %>  <%= @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></small>
-</h1>
-<div class="highlight">
-  <%= raw(@wiki.sanitized_content) %>
+<h2 class="main-title">
+  Operation <%= @operation.name %></h2>
+  <p class="main-text"><%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %> to <%= @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></p>
+<div id="operations">
+  <ul class="main-list">
+  <div class="wiki">
+    <%= raw(@wiki.sanitized_content) %>
+  </div>
 
     <% @events.each do |event| %>
-      <a data-toggle="collapse" data-target="#event_accordion_<%= event.id %>">
+      <li class="main-list-item">
+      <a class="main-list-link" data-toggle="collapse" data-target="#event_accordion_<%= event.id %>">
         <%= event.name %> - <%= event.date_formated %>
       </a>
       <div id="event_accordion_<%= event.id %>" class="collapse">
@@ -15,6 +17,7 @@
         <%= event.description %><br>
         <%= link_to "Edit", edit_event_path(event) %><br><br>
       </div>
+    </li>
     <% end %>
-
+  </ul>
 </div>

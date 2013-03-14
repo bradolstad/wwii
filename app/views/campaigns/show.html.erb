@@ -1,14 +1,17 @@
-<h1><%= @campaign.name %></h1>
-
-<div class="highlight">
-  <h4>Operations</h4>
+<h2 class="main-title"><%= @campaign.name %></h2>
+<p class="main-text">Select an operation below</p>
+<ul class="main-list">
     <% @operations.each do |operation| %>
-      <a data-toggle="collapse" data-target="#operation_accordion_<%= operation.id %>">
+      <li class="main-list-item">
+        <a class="main-list-link" data-toggle="collapse" data-target="#operation_accordion_<%= operation.id %>">
         <%= operation.name %>
       </a>
       <div id="operation_accordion_<%= operation.id %>" class="collapse">
-        <%=  raw Wikipedia.find('Operation Market Garden').sanitized_content.slice(0..285) %>...</p>
-        <%= link_to 'Go to =>', operation %>
+        <div class="wiki">
+          <%=  raw Wikipedia.find('Operation Market Garden').sanitized_content.slice(0..285) %>...</p>
+          <%= link_to 'Go to =>', operation %>
+        </div>
       </div>
+    </li>
     <% end %>
-</div>
+  </ul>
