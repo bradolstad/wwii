@@ -3,29 +3,33 @@
 <head>
   <title>WWII</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "//fonts.googleapis.com/css?family=Montserrat:400,700|Gentium+Book+Basic", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="ww2-map">
-
-  <!-- outputs the necessary scripts for gmaps4rails gem -->
-    <% if @controller == "events" && @action == "edit" %>
-      <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true}}) %>
-    <% else %>
-      <%= gmaps("markers" => {"data" => @markers, "options"=>{"do_clustering"=>true}}) %>
-    <% end %>
-  </div>
-  <div id="main">
-    <nav>
-      <%= link_to "Campaigns", campaigns_path %> |
-      <%= link_to "Operations", operations_path %> |
-      <%= link_to "Events", events_path %> |
-      <%= link_to "Countries", countries_path %> |
-      <%= link_to "Units", units_path %> |
-      <%= link_to "Event Types", event_types_path %>
+  <div class="row-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top span12">
+      <div class="navbar-inner">
+        <div id="primary-menu" class="nav-collapse collapse span8 offset4">
+          <%= link_to "Campaigns", campaigns_path %> |
+          <%= link_to "Operations", operations_path %> |
+          <%= link_to "Events", events_path %> |
+          <%= link_to "Countries", countries_path %> |
+          <%= link_to "Units", units_path %> |
+          <%= link_to "Event Types", event_types_path %>
+        </div>
+      </div>
     </nav>
-      <%= yield %>
+  </div>
+  <% if @controller == "events" && @action == "edit" %>
+    <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true}}) %>
+  <% else %>
+    <%= gmaps("markers" => {"data" => @markers}) %>
+  <% end %>
+
+  <div id="main">
+    <%= yield %>
   </div>
   <%= yield :scripts %>
   <%= yield :scripts_callback %>
