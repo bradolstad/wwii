@@ -22,15 +22,14 @@
       </div>
     </nav>
   </div>
-  <div class="row-fluid">
-    <% if @controller == "events" && @action == "edit" %>
-      <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true}}) %>
-    <% else %>
-      <%= gmaps("markers" => {"data" => @markers}) %>
-    <% end %>
-    <div id="main">
-      <%= yield %>
-    </div>
+  <% if @controller == "events" && @action == "edit" %>
+    <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true}}) %>
+  <% else %>
+    <%= gmaps("markers" => {"data" => @markers}) %>
+  <% end %>
+
+  <div id="main">
+    <%= yield %>
   </div>
   <%= yield :scripts %>
   <%= yield :scripts_callback %>
