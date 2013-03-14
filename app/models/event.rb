@@ -14,6 +14,16 @@ class Event < ActiveRecord::Base
     return event_date.strftime('%a, %b %e %Y') unless event_date.nil?
   end
 
+  def flag_path
+    if self.country.present?
+      country.flag_path
+    elsif self.unit.country.present?
+      unit.country.flag_path
+    else
+      nil
+    end
+  end
+
   def geocode?
     if !lat.blank? && !lat.blank?
       false
@@ -27,7 +37,7 @@ class Event < ActiveRecord::Base
   end
 
   def gmaps4rails_infowindow
-    "<h6>#{name}<br><small>#{date_formated}</small></h6>"
+    "<h6>#{name}<br><small>#{date_formated}</small></h6><img src=\"/assets/#{flag_path}\" width=40 />"
   end
 
   def gmaps4rails_title

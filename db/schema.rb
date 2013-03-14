@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312163833) do
+ActiveRecord::Schema.define(:version => 20130314200234) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20130312163833) do
     t.integer  "old_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "flag_path"
   end
 
   add_index "countries", ["old_id"], :name => "index_countries_on_old_id"
