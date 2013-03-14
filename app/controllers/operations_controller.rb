@@ -15,15 +15,19 @@ class OperationsController < ApplicationController
     end
   end
 
-  # GET /operations/1
-  # GET /operations/1.json
   def show
     @operation = Operation.find(params[:id])
+
+    #todo - this is hard coded while we make it more robust
+    wiki_search = 'Operation Market Garden'
+    @wiki = Wikipedia.find(wiki_search)
+
     @events = @operation.filtered_events
     @markers = @events.to_gmaps4rails
+
     respond_to do |format|
       format.html
-      format.json { render json: @operation }
+      format.json { render json: @markers }
       format.js
     end
   end

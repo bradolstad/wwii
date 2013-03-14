@@ -1,3 +1,8 @@
+PATH
+  remote: vendor/gems/wikipedia-client-1.0.0
+  specs:
+    wikipedia-client (1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -131,3 +136,4 @@ DEPENDENCIES
   seed_dump
   sqlite3
   uglifier (>= 1.0.3)
+  wikipedia-client!

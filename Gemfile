@@ -7,8 +7,12 @@ gem 'rails', '3.2.12'
 
 # google maps gem
 gem 'gmaps4rails'
+
 # pagination
 gem 'kaminari'
+
+#wikipedia gem - copied into the app due to a bug in the gem
+gem 'wikipedia-client', :path => "vendor/gems/wikipedia-client-1.0.0"
 
 group :development do
   gem 'rails-erd'

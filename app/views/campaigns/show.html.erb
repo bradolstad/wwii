@@ -4,10 +4,10 @@
   <h4>Operations</h4>
     <% @operations.each do |operation| %>
       <a data-toggle="collapse" data-target="#operation_accordion_<%= operation.id %>">
-        <%= operation.name %> - <%= operation.date_formated(operation.start_date) %>
+        <%= operation.name %>
       </a>
       <div id="operation_accordion_<%= operation.id %>" class="collapse">
-        <%= operation.description %><br>
+        <%=  raw Wikipedia.find('Operation Market Garden').sanitized_content.slice(0..285) %>...</p>
         <%= link_to 'Go to =>', operation %>
       </div>
     <% end %>

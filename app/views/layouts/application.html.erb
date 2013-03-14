@@ -13,7 +13,7 @@
     <% if @controller == "events" && @action == "edit" %>
       <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true}}) %>
     <% else %>
-      <%= gmaps("markers" => {"data" => @markers}) %>
+      <%= gmaps("markers" => {"data" => @markers, "options"=>{"do_clustering"=>true}}) %>
     <% end %>
   </div>
   <div id="main">
