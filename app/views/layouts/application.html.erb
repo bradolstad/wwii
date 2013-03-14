@@ -10,9 +10,13 @@
   <div id="ww2-map">
 
   <!-- outputs the necessary scripts for gmaps4rails gem -->
-    <%= gmaps("markers" => {"data" => @markers}) %>
+    <% if @controller == "events" && @action == "edit" %>
+      <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true}}) %>
+    <% else %>
+      <%= gmaps("markers" => {"data" => @markers}) %>
+    <% end %>
   </div>
-  <div id="main" class="container">
+  <div id="main">
     <nav>
       <%= link_to "Campaigns", campaigns_path %> |
       <%= link_to "Operations", operations_path %> |
@@ -24,5 +28,6 @@
       <%= yield %>
   </div>
   <%= yield :scripts %>
+  <%= yield :scripts_callback %>
 </body>
 </html>

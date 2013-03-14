@@ -6,7 +6,7 @@
   width:100%
   }
 
-#main{position:relative;}
+#main{position:relative;width:400px;margin-left: 10%;}
 
 /*temporary link color overide to make them more legible*/
 a {color: red;}
