@@ -1,11 +1,10 @@
 class OperationsController < ApplicationController
 
   def index
-    @operations = Operation.all
+    @operations = Operation.events?
     @operation = Operation.new
 
-    @markers = [{}].to_json
-
+    @markers = {}.to_json
     @operations_data = Operation.data
 
     respond_to do |format|
@@ -24,7 +23,7 @@ class OperationsController < ApplicationController
 
     @events = @operation.filtered_events
     @markers = @events.to_gmaps4rails
-
+    logger.info @markers.inspect
     respond_to do |format|
       format.html
       format.json { render json: @markers }

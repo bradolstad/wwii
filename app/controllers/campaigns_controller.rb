@@ -1,9 +1,9 @@
 class CampaignsController < ApplicationController
-  # GET /campaigns
-  # GET /campaigns.json
+  require 'wikipedia'
   def index
     @campaigns = Campaign.all
     @campaign = Campaign.new
+    @markers = [{}].to_json
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @campaigns }
@@ -87,8 +87,6 @@ class CampaignsController < ApplicationController
     end
   end
 
-  # DELETE /campaigns/1
-  # DELETE /campaigns/1.json
   def destroy
     @campaign = Campaign.find(params[:id])
     @campaign.destroy
