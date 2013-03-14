@@ -65,7 +65,8 @@ body, h1, h2, h3, h4, h5, h6, li {
 }
 
 .main-list {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   max-height: 400px;
   margin-left: 0;
 
