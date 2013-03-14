@@ -1,3 +1,7 @@
+body, h1, h2, h3, h4, h5, h6, li {
+  line-height: 1.4;
+}
+
 .map_container,
 #map,
 #main {
@@ -10,9 +14,6 @@
 #map {
   width: 100%;
 }
-
-/*temporary link color overide to make them more legible*/
-a {color: red;}
 
 .highlight {
   padding: 10px;
@@ -47,10 +48,25 @@ a {color: red;}
   background-color: rgba(221, 214, 195, 0.8);
 }
 
+.main-title,
+.main-list {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
 .main-list {
   overflow: auto;
   max-height: 400px;
   margin-left: 5px;
 
+  font-size: 16px;
+
   list-style-type: none;
+}
+
+.main-title {
+  margin: 10px 0 0;
+
+  font-size: 48px;
 }

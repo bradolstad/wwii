@@ -32,6 +32,7 @@ We want to make something that allows users to look at / view the events of WW2 
 * Campaign
 
 ## Inspiration
+* http://www.scribd.com/doc/33230381/WWII-Campaign-Charts-Maps
 * https://developers.google.com/maps/customize
 * http://www.maptiler.org/
 * http://www.morethanamap.com/
