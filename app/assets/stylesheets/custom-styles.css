@@ -19,3 +19,15 @@ a {color: red;}
   height: 450px;
   overflow: scroll;
 }
+
+#primary-menu {
+  padding-right: 30px;
+  padding-left: 30px;
+
+  line-height: 40px;
+  text-align: right;
+}
+
+#main {
+  margin-top: 50px;
+}
