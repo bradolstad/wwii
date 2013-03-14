@@ -1,12 +1,15 @@
-#ww2-map,.map_container,#map {
+.map_container,
+#map,
+#main {
   position:absolute;
   top:0;
-  left:0;
   height:100%;
-  width:100%
-  }
+  box-sizing: border-box;
+}
 
-#main{position:relative;width:400px;margin-left: 10%;}
+#map {
+  width: 100%;
+}
 
 /*temporary link color overide to make them more legible*/
 a {color: red;}
@@ -28,6 +31,26 @@ a {color: red;}
   text-align: right;
 }
 
+.map_container {
+  width: 61.8%;
+  left: 38.2%;
+}
+
 #main {
-  margin-top: 50px;
+  overflow: hidden;
+  padding-top: 40px;
+  padding-left: 30px;
+  width: 38.2%;
+  left: 0;
+
+  background-color: #ddd6c3;
+  background-color: rgba(221, 214, 195, 0.8);
+}
+
+.main-list {
+  overflow: auto;
+  max-height: 400px;
+  margin-left: 5px;
+
+  list-style-type: none;
 }

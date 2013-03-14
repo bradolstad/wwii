@@ -7,13 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="ww2-map">
-    <% if @controller == "events" && @action == "edit" %>
-      <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true}}) %>
-    <% else %>
-      <%= gmaps("markers" => {"data" => @markers}) %>
-    <% end %>
-  </div>
   <div class="row-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top span12">
       <div class="navbar-inner">
@@ -28,8 +21,15 @@
       </div>
     </nav>
   </div>
-  <div id="main">
-    <%= yield %>
+  <div class="row-fluid">
+    <% if @controller == "events" && @action == "edit" %>
+      <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true}}) %>
+    <% else %>
+      <%= gmaps("markers" => {"data" => @markers}) %>
+    <% end %>
+    <div id="main">
+      <%= yield %>
+    </div>
   </div>
   <%= yield :scripts %>
   <%= yield :scripts_callback %>
