@@ -5,7 +5,7 @@
 <div id="operations">
   <ul class="main-list">
   <div class="wiki">
-    <%= raw @wiki.full_text %>
+    <%= raw link_to_pages(@wiki.full_text) %>
   </div>
 
     <% @events.each do |event| %>

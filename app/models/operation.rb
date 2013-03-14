@@ -43,6 +43,12 @@ class Operation < ActiveRecord::Base
     return data
   end
 
+  def self.list
+    operations = Operation.all.map do |operation|
+      {:name=>'Operation ' + operation.name, :id=>operation.id}
+    end
+  end
+
   def date_formated(date_object)
     return date_object.strftime('%b %Y') unless date_object == nil
   end
