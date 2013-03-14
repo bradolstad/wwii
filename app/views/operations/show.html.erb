@@ -1,6 +1,7 @@
 <h2 class="main-title">
   Operation <%= @operation.name %></h2>
-  <p class="main-text"><%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %> to <%= @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></p>
+  <p class="main-text">
+    <%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %><%= " to "+ @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></p>
 <div id="operations">
   <ul class="main-list">
   <div class="wiki">

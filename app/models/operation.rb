@@ -9,7 +9,7 @@ class Operation < ActiveRecord::Base
   validates_uniqueness_of :name
 
    def self.events?
-    operations = Operation.order('start_date asc').map do |operation|
+    operations = Operation.order('name asc').map do |operation|
       if operation.events.count > 0
         operation
       end
