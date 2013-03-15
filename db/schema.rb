@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130314200234) do
+ActiveRecord::Schema.define(:version => 20130314235148) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -65,14 +65,14 @@ ActiveRecord::Schema.define(:version => 20130314200234) do
     t.integer  "unique_id"
     t.boolean  "gmaps"
     t.datetime "event_date"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.integer  "old_id"
     t.string   "address"
     t.integer  "unit_id"
     t.integer  "country_id"
     t.integer  "operation_id"
-    t.integer  "event_type_id"
+    t.integer  "event_type_id", :default => 0
   end
 
   create_table "operations", :force => true do |t|
