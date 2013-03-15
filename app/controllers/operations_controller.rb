@@ -25,7 +25,7 @@ class OperationsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: wiki_raw }
+      format.json { render json: @events }
       format.js
     end
   end
