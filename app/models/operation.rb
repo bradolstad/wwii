@@ -17,9 +17,14 @@ class Operation < ActiveRecord::Base
     return operations.compact
   end
 
-  def filtered_events
+  def filtered_events(date=nil)
     @event_type = EventType.where(name:"Plane Crash").first
-    return Event.where('operation_id = ? AND event_type_id != ?',self.id, @event_type.id)
+    if date
+      date = DateTime.parse(date)
+      return Event.where('operation_id = ? AND event_type_id != ? AND event_date = ?',self.id, @event_type.id, date)
+    else
+      return Event.where('operation_id = ? AND event_type_id != ?',self.id, @event_type.id).order('event_date asc')
+    end
   end
 
   def units

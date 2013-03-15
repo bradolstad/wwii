@@ -17,7 +17,7 @@ class OperationsController < ApplicationController
   def show
     @operation = Operation.find(params[:id])
 
-    @events = @operation.filtered_events
+    @events = @operation.filtered_events(params["d"])
 
     @markers = @events.to_gmaps4rails
 
@@ -34,7 +34,7 @@ class OperationsController < ApplicationController
     end
 
     @wiki = Wiki.new(@operation.name)
-
+    logger.info @wiki.inspect
     respond_to do |format|
       format.html
       format.json { render json: @new_events }
