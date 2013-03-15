@@ -4,8 +4,8 @@
   <ul class="main-list">
     <% @unit.events.each do |event| %>
       <li class="main-list-item">
-        <%= link_to event.name, event, class:"main-list-link" %>
-        <%= event.date_formated %>
+        <%= link_to event.name+" "+event.date_formated, event, class:"main-list-link" %>
+
       </li>
     <% end  %>
   </ul>

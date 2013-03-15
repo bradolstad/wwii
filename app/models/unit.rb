@@ -4,6 +4,7 @@ class Unit < ActiveRecord::Base
   belongs_to :unit_type
   belongs_to :country
   has_many :events
+  belongs_to :unit_class
 
   validates_presence_of :name
   validates_uniqueness_of :name

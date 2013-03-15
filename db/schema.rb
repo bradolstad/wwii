@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130315154439) do
+ActiveRecord::Schema.define(:version => 20130315193100) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -90,8 +90,9 @@ ActiveRecord::Schema.define(:version => 20130315154439) do
 
   create_table "unit_classes", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "marker_path"
   end
 
   create_table "unit_types", :force => true do |t|
