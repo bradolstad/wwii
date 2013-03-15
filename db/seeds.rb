@@ -74,7 +74,6 @@ Unit.all.each do |unit|
     unit.save
 end
 
-
 Unit.all.each do |unit|
     if unit.name.downcase.include? "usa"
         unit.country_id = Country.find_by_name("United States").id
@@ -94,6 +93,27 @@ Unit.all.each do |unit|
     end
     unit.save
 end
+
+Unit.all.each do |unit|
+    if unit.name.downcase.include?("airbo*" || "airlanding" || "parachut*" || "glider")
+        unit.unit_type_id = Unit_class.find_by_name("Airborne").id
+
+    elsif unit.name.downcase.include?("cavalry" || "mechanized" ||"armored" || "armoured" || "panzer" || "tank" )
+        unit.country_id = Unit_class.find_by_name("Armored").id
+
+    elsif unit.name.downcase.include? "artillery"
+        unit.country_id = Unit_class.find_by_name("Artillery").id
+
+    elsif unit.name.downcase.include? "anti"
+        unit.country_id = Unit_class.find_by_name("Artillery").id
+
+    else
+        unit.country_id = Unit_class.find_by_name("Infantry").id
+
+    end
+    unit.save
+end
+
 
 puts "Units mapped to country: #{Unit.where("country_id > 0").count} out of #{unittotal}"
 

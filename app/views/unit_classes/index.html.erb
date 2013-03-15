@@ -1,0 +1,23 @@
+<h1>Listing unit_classes</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @unit_classes.each do |unit_class| %>
+  <tr>
+    <td><%= unit_class.name %></td>
+    <td><%= link_to 'Show', unit_class %></td>
+    <td><%= link_to 'Edit', edit_unit_class_path(unit_class) %></td>
+    <td><%= link_to 'Destroy', unit_class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Unit class', new_unit_class_path %>
