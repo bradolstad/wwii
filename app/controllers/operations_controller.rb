@@ -21,11 +21,23 @@ class OperationsController < ApplicationController
 
     @markers = @events.to_gmaps4rails
 
+    @new_events = @events.map do |event|
+      {
+        event_id:event.id,
+        date:event.event_date.to_i,
+        name:event.name,
+        lat:event.lat,
+        lng:event.lng,
+        tooltip:event.gmaps4rails_infowindow,
+        marker_icon:""
+        }
+    end
+
     @wiki = Wiki.new(@operation.name)
 
     respond_to do |format|
       format.html
-      format.json { render json: @events }
+      format.json { render json: @new_events }
       format.js
     end
   end
