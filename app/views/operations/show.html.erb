@@ -4,10 +4,6 @@
     <%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %><%= " to "+ @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></p>
 <div id="operations">
   <ul class="main-list">
-  <div class="wiki">
-    <%= raw link_to_pages(@wiki.full_text) %>
-  </div>
-
     <% @events.each do |event| %>
       <li class="main-list-item">
       <a class="main-list-link" data-toggle="collapse" data-target="#event_accordion_<%= event.id %>">
@@ -21,4 +17,7 @@
     </li>
     <% end %>
   </ul>
+  <div class="wiki">
+    <%= raw link_to_pages(@wiki.full_text) %>
+  </div>
 </div>
