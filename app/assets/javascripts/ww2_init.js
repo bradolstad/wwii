@@ -1,0 +1,27 @@
+var ww = {
+	app : {},
+	templates : {},
+	template : function( templateName, templateVars ) {
+		var container = $( document.createElement( 'div' ) );
+		templateVars = templateVars || {};
+
+		container.
+			append( ww.templates[ templateName ] ).
+			render( templateVars );
+
+		return container[ 0 ].innerHTML;
+	}
+};
+
+( function( $ ) {
+	$( document ).ready( function() {
+		var domTemplates = document.getElementsByClassName( 'ww_template' ),
+			bodyEl = document.getElementsByTagName( 'body' )[ 0 ],
+			i;
+
+		do {
+			ww.templates[ domTemplates[ 0 ].id ] = $.trim( domTemplates[ 0 ].innerHTML );
+			bodyEl.removeChild( domTemplates[ 0 ] );
+		} while ( domTemplates.length );
+	} );
+} )( jQuery );
