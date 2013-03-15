@@ -22,10 +22,12 @@
 			bodyEl = document.getElementsByTagName( 'body' )[ 0 ],
 			i;
 
-		do {
-			ww.templates[ domTemplates[ 0 ].id ] = $.trim( domTemplates[ 0 ].innerHTML );
-			bodyEl.removeChild( domTemplates[ 0 ] ); // automatically removes from array
-		} while ( domTemplates.length );
+		domTemplates[ 0 ] && ( function() {
+			do {
+				ww.templates[ domTemplates[ 0 ].id ] = $.trim( domTemplates[ 0 ].innerHTML );
+				bodyEl.removeChild( domTemplates[ 0 ] ); // automatically removes from array
+			} while ( domTemplates.length );
+		} )();
 
 		return templates;
 	};

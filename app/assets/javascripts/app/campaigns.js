@@ -51,8 +51,9 @@
 		},
 
 		render : function() {
-			this.$el.empty().append( ww.template( 'campaigns_list' ) ).
-				appendTo( '#main' );
+			this.$el.empty().append( ww.template( 'campaigns_list' ) );
+
+			ww.app.mainView.$el.empty().append( this.el );
 
 			return this;
 		}

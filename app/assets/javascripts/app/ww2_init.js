@@ -19,6 +19,7 @@ var ww = {
 		},
 		mainInit = function() {
 			ww.app.mainView = new ( Backbone.View.extend( mainViewCore ) )();
+			ww.app.mainView.renderLoader();
 		};
 
 	yepnope( [
@@ -47,7 +48,7 @@ var ww = {
 				ww.initQueue.resolve();
 				mainInit();
 
-				Backbone.history.start(); // start the app!
+				!ww.show_edit_fields && ( Backbone.history.start() ); // start the app, but only if we're not showing edit fields
 			}
 		}
 	] );
