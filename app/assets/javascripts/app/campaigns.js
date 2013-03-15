@@ -19,11 +19,6 @@
 		app.collection = new c.collection();
 		app.listView = new c.listView( { collection : app.collection } );
 
-		app.collection.fetch().done( function() {
-			app.collection.trigger( 'render' );
-		} );
-		app.listView.render();
-
 		return c;
 	}
 

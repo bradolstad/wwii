@@ -10,14 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require jquery_ujs
-//= require modernizr
-//= require lodash
-//= require backbone.min
-//= require transparency.min
-//= require ww2_init
-//= require router
-//= require campaigns
-//= require operations
-//= require_tree ./gmaps4rails
+//= require libraries/modernizr
+//= require_tree ./libraries/gmaps4rails
+//= require app/ww2_init
