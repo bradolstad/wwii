@@ -34,7 +34,7 @@ class OperationsController < ApplicationController
     end
 
     @wiki = Wiki.new(@operation.name)
-    logger.info @wiki.inspect
+
     respond_to do |format|
       format.html
       format.json { render json: @new_events }

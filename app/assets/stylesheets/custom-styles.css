@@ -117,3 +117,6 @@ body {
   font-family: 'Gentium Book Basic', georgia, serif;
   text-transform: none;
 }
+
+.wiki img {margin:0 5px;}
+
