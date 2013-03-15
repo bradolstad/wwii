@@ -35,9 +35,15 @@ class OperationsController < ApplicationController
 
     @wiki = Wiki.new(@operation.name)
     logger.info @wiki.inspect
+
+    @combined_operation_data = {
+      'events' => @new_events,
+      'article' => @wiki.full_text
+    }
+
     respond_to do |format|
       format.html
-      format.json { render json: @new_events }
+      format.json { render json: @combined_operation_data }
       format.js
     end
   end
