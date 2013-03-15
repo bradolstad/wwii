@@ -28,8 +28,6 @@
 			},
 
 			getOperationsForCampaign : function( campaignId ) {
-				campaignId = parseInt( campaignId, 10 );
-
 				ww.app.campaign.collection.where( { id : campaignId } )[ 0 ].set( 'selected', true );
 
 				return ww.app.operation.collection.
@@ -56,7 +54,8 @@
 				}
 			},
 
-			getEventsForOperation : function( campaignId ) {
+			getEventsForOperation : function( operationId ) {
+				ww.app.operation.collection.where( { id : operationId } )[ 0 ].set( 'selected', true );
 				// ww.app.operation.collection.
 				// 	setUrl( campaignId ).
 				// 	fetch().done( function() {
@@ -67,6 +66,8 @@
 
 			showEventsForOperation : function( campaignId, operationId ) {
 				var self = this;
+				campaignId = parseInt( campaignId, 10 );
+				operationId = parseInt( operationId, 10 );
 
 				ww.app.mainView.renderLoader();
 

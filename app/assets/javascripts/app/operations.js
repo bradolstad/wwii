@@ -9,6 +9,9 @@
 		o.listView = Backbone.View.extend( o.listViewCore );
 		o.singleView = Backbone.View.extend( o.singleViewCore );
 		o.detailView = Backbone.View.extend( o.detailViewCore );
+		o.detailModel = Backbone.Model.extend( o.detailModelCore );
+		o.eventModel = Backbone.Model.extend( o.eventModelCore );
+		o.eventsCollection = Backbone.Collection.extend( o.eventsCollectionCore );
 
 		return o;
 	};
@@ -20,6 +23,7 @@
 		app.collection = new o.collection();
 		app.listView = new o.listView( { collection : app.collection } );
 		app.detailView = new o.detailView();
+		app.eventsCollection = new o.eventsCollection();
 
 		return o;
 	}
@@ -132,7 +136,31 @@
 		}
 	};
 
+	operations.detailModelCore = {
+		defaults : {
+
+		}
+	};
+
 	operations.detailViewCore = {};
+
+	operations.eventModelCore = {
+		defaults : {
+			date : undefined,
+			event_id : undefined,
+			lat : undefined,
+			lng : undefined,
+			marker_icon : undefined,
+			name : undefined,
+			tooltip : undefined
+		}
+	};
+
+	operations.eventsCollectionCore = {
+		initialize : function() {
+			this.model = operations.eventModel;
+		}
+	};
 
 	ww.init( function() {
 		operations.
