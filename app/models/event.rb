@@ -45,7 +45,7 @@ class Event < ActiveRecord::Base
   end
 
   def marker_path
-    "allied_infantry_32.png"
+    "allies_infantry_32.png"
   end
 
   def gmaps4rails_marker_picture
