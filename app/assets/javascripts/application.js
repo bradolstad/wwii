@@ -17,6 +17,7 @@
 //= require backbone.min
 //= require transparency.min
 //= require ww2_init
+//= require router
 //= require campaigns
 //= require operations
 //= require_tree ./gmaps4rails

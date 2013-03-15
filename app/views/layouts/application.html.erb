@@ -29,8 +29,6 @@
   <% end %>
 
   <div id="main"></div>
-  <%= yield :scripts %>
-  <%= yield :scripts_callback %>
 
   <script type="text/html" class="ww_template" id="campaigns_list">
     <h2 class="main-title">Listing campaigns</h2>
@@ -51,5 +49,8 @@
     <li class="main-list-item name"></li>
     <a class="operation-link main-list-link name"></a>
   </script>
+
+  <%= yield :scripts %>
+  <%= yield :scripts_callback %>
 </body>
 </html>
