@@ -26,7 +26,7 @@ class CampaignsController < ApplicationController
     @markers = [{}].to_json
     respond_to do |format|
       format.html
-      format.json { render json: @campaign }
+      format.json { render json: @operations }
     end
   end
 
