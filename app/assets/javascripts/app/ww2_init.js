@@ -6,6 +6,21 @@ var ww = {
 };
 
 ( function() {
+	var mainViewCore = {
+			el : '#main',
+
+			initialize : function() {
+				_.bindAll( this );
+			},
+
+			renderLoader : function() {
+				this.$el.empty().append( ww.template( 'loader' ) );
+			}
+		},
+		mainInit = function() {
+			ww.app.mainView = new ( Backbone.View.extend( mainViewCore ) )();
+		};
+
 	yepnope( [
 		{
 			load : [ // loading libraries
@@ -30,6 +45,7 @@ var ww = {
 
 			complete : function() {
 				ww.initQueue.resolve();
+				mainInit();
 
 				Backbone.history.start(); // start the app!
 			}

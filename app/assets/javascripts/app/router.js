@@ -1,13 +1,17 @@
 ( function( $ ) {
 	var routerCore = {
 			routes : {
-				'' : 'showAllCampaigns',
-				'/' : 'showAllCampaigns',
-				'/campaigns' : 'showAllCampaigns'
+				'(/)' : 'navigateToCampaigns',
+				'campaigns/' : 'showAllCampaigns',
+				'campaigns/:campaignId/(:action)' : 'showCampaignOperations'
 			},
 
 			initialize : function() {
 				_.bindAll( this );
+			},
+
+			navigateToCampaigns : function() {
+				this.navigate( '/campaigns/', { replace : true, trigger : true } );
 			},
 
 			showAllCampaigns : function() {
@@ -15,6 +19,10 @@
 					ww.app.campaign.collection.trigger( 'render' );
 				} );
 				ww.app.campaign.listView.render();
+			},
+
+			showCampaignOperations : function( campaignId, action ) {
+
 			}
 		};
 

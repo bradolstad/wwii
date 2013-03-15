@@ -81,12 +81,13 @@
 		},
 
 		showCampaign : function( ev ) {
-			console.log( ev );
+			ww.app.router.navigate( '/campaigns/' + this.model.get( 'id' ) );
+
 			return false;
 		}
 	};
 
-	$( document ).ready( function() {
+	ww.init( function() {
 		campaigns.
 			setup().
 			init();

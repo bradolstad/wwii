@@ -91,7 +91,7 @@
 
 	operations.detailViewCore = {};
 
-	$( document ).ready( function() {
+	ww.init( function() {
 		operations.
 			setup().
 			init();
