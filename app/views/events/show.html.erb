@@ -1,46 +1,32 @@
-<p id="notice"><%= notice %></p>
-<h2><%= @event.name %><br>
-  <small><%= @event.date_formated %></small>
+<h2 class="main-title"><%= @event.name %>
 </h2>
-
-<p>
-  <b>Description:</b>
-  <%= @event.description %>
-</p>
-<p>
-
-<p>
-  <b>Location:</b>
-  <%= @event.address %>
-</p>
-<p>
-  <b>Latitude:</b>
-  <%= @event.lat %>
-</p>
-<p>
-  <b>Longitude:</b>
-  <%= @event.lng %>
-</p>
-<p>
-  <b>Date:</b>
-  <%= @event.date_formated %>
-</p>
-<p>
-  <b>Country:</b>
-  <%= @event.country.name unless @event.country.nil? %>
-</p>
-<p>
-  <b>Unit:</b>
-  <%= @event.unit.name unless @event.unit.nil? %>
-</p>
-<p>
-  <b>Operation:</b>
-  <%= @event.operation.name unless @event.operation.nil? %>
-</p>
-<p>
-  <b>Event Type:</b>
-  <%= @event.event_type.name unless @event.event_type.nil? %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<p class="main-text"><%= @event.date_formated %></p>
+<ul class="main-list">
+  <li class="main-list-item">
+    Latitude: <%= @event.lat %>
+  </li>
+  <li class="main-list-item">
+    Longitude: <%= @event.lng %>
+  </li>
+  <li class="main-list-item">
+    Latitude: <%= @event.lat %>
+  </li>
+  <li class="main-list-item">
+    Latitude: <%= @event.lat %>
+  </li>
+  <li class="main-list-item">
+    Latitude: <%= @event.lat %>
+  </li>
+  <li class="main-list-item">
+    Country: <%= @event.country.name unless @event.country.nil? %>
+  </li>
+  <li class="main-list-item">
+    Unit: <%= @event.unit.name unless @event.unit.nil? %>
+  </li>
+  <li class="main-list-item">
+    Operation: <%= @event.operation.name unless @event.operation.nil? %>
+  </li>
+  <li class="main-list-item">
+    Event Type: <%= @event.event_type.name unless @event.event_type.nil? %>
+  </li>
+</ul>

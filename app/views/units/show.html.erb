@@ -1,12 +1,12 @@
-<p id="notice"><%= notice %></p>
-<h2><%= @unit.name %></h2>
-<%= link_to 'Edit', edit_unit_path(@unit) %> |
-<%= link_to 'Back', units_path %>
-<div class="highlight">
-  <h4>Events</h4>
-  <ul class="unstyled">
+<h2 class="main-title"><%= @unit.name %></h2>
+<p class="main-text">Unit Events</p>
+<div id="units">
+  <ul class="main-list">
     <% @unit.events.each do |event| %>
-      <li><%= link_to event.name, event %><br> <%= event.date_formated %></li>
+      <li class="main-list-item">
+        <%= link_to event.name, event, class:"main-list-link" %>
+        <%= event.date_formated %>
+      </li>
     <% end  %>
   </ul>
 </div>
