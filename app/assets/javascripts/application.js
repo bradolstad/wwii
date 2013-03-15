@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require modernizr
 //= require lodash
 //= require backbone.min
 //= require transparency.min
