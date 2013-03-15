@@ -3,7 +3,8 @@
 			routes : {
 				'(/)' : 'navigateToCampaigns',
 				'campaigns/' : 'showAllCampaigns',
-				'campaigns/:campaignId/(:action)' : 'showCampaignOperations'
+				'campaigns/:campaignId/' : 'showOperationsForCampaign',
+				'campaigns/:campaignId/operations/:operationId/' : 'showEventsForOperation'
 			},
 
 			initialize : function() {
@@ -14,15 +15,76 @@
 				this.navigate( '/campaigns/', { replace : true, trigger : true } );
 			},
 
-			showAllCampaigns : function() {
-				ww.app.campaign.collection.fetch().done( function() {
-					ww.app.campaign.collection.trigger( 'render' );
-				} );
-				ww.app.campaign.listView.render();
+			getAllCampaigns : function() {
+				return ww.app.campaign.collection.fetch();
 			},
 
-			showCampaignOperations : function( campaignId, action ) {
+			showAllCampaigns : function() {
+				ww.app.mainView.renderLoader();
 
+				this.getAllCampaigns().done( function() {
+					ww.app.campaign.listView.render();
+				} );
+			},
+
+			getOperationsForCampaign : function( campaignId ) {
+				campaignId = parseInt( campaignId, 10 );
+
+				ww.app.campaign.collection.where( { id : campaignId } )[ 0 ].set( 'selected', true );
+
+				return ww.app.operation.collection.
+					setUrl( campaignId ).
+					fetch();
+			},
+
+			showOperationsForCampaign : function( campaignId ) {
+				var self = this;
+				campaignId = parseInt( campaignId, 10 );
+
+				ww.app.mainView.renderLoader();
+
+				if ( ww.app.campaign.collection.length ) {
+					this.getOperationsForCampaign( campaignId ).done( function() {
+						ww.app.operation.listView.render();
+					} );
+				} else {
+					this.getAllCampaigns().done( function() {
+						self.getOperationsForCampaign( campaignId ).done( function() {
+							ww.app.operation.listView.render();
+						} );
+					} );
+				}
+			},
+
+			getEventsForOperation : function( campaignId ) {
+				// ww.app.operation.collection.
+				// 	setUrl( campaignId ).
+				// 	fetch().done( function() {
+				// 		ww.app.operation.collection.trigger( 'render' );
+				// 	} );
+				// ww.app.operation.listView.render();
+			},
+
+			showEventsForOperation : function( campaignId, operationId ) {
+				var self = this;
+
+				ww.app.mainView.renderLoader();
+
+				if ( ww.app.campaign.collection.length ) {
+					if ( ww.app.operation.collection.length ) {
+						this.getEventsForOperation( operationId );
+					} else {
+						this.getOperationsForCampaign( campaignId ).done( function() {
+							this.getEventsForOperation( operationId );
+						} );
+					}
+				} else {
+					this.getAllCampaigns().done( function() {
+						self.getOperationsForCampaign( campaignId ).done( function() {
+							self.getEventsForOperation( operationId );
+						} );
+					} );
+				}
 			}
 		};
 

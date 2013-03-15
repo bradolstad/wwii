@@ -27,7 +27,7 @@ var ww = {
 			load : [ // loading libraries
 				'/assets/jquery.js?body=1',
 				'/assets/libraries/lodash.js?body=1',
-				'/assets/libraries/backbone.min.js?body=1',
+				'/assets/libraries/backbone.js?body=1',
 				'/assets/libraries/transparency.min.js?body=1',
 			],
 

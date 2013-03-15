@@ -33,16 +33,47 @@
 
 		initialize : function() {
 			new operations.singleView( { model : this } );
+
+			this.listenTo( this.collection, 'reset', this.teardown );
+		},
+
+		teardown : function() {
+			this.stopListening();
 		}
 	};
 
 	operations.collectionCore = {
-		url : '/operations.json',
-
 		initialize : function() {
 			_.bindAll( this );
 
 			this.model = operations.model;
+		},
+
+		setUrl : function( campaignId ) {
+			this.url = '/campaigns/'+ campaignId +'.json';
+			return this;
+		},
+
+		fetch : function() {
+			var self = this;
+
+			this.reset();
+
+			return $.get( this.url ).done( function( response ) {
+				var i = 0;
+
+				for ( i; i < response.length; i++ ) {
+					self.add( new self.model( response[ i ], { collection : self } ) );
+				}
+			} );
+		},
+
+		deselectAllExcept : function( selectedOperationModel ) {
+			var unselectedModels = this.without( selectedOperationModel );
+
+			_.forEach( unselectedModels, function( model ) {
+				model.set( 'selected', false, { silent : true} );
+			} );
 		}
 	};
 
@@ -54,8 +85,12 @@
 		},
 
 		render : function() {
-			this.$el.empty().append( ww.template( 'operations_list' ) ).
-				appendTo( '#main' );
+			var campaignVars = ww.app.campaign.collection.where( { selected : true } )[ 0 ].toJSON();
+			this.$el.empty().append( ww.template( 'operations_list', campaignVars ) );
+
+			ww.app.mainView.$el.empty().append( this.el );
+
+			this.trigger( 'render', this );
 
 			return this;
 		}
@@ -63,29 +98,37 @@
 
 	operations.singleViewCore = {
 		tagName : 'li',
-		className : 'main-list-item campaign-list-item',
+		className : 'main-list-item operation-list-item',
 		events : {
-			'click .campaign-link' : 'showCampaign'
+			'click .operation-link' : 'showOperation'
 		},
 
 		initialize : function() {
 			_.bindAll( this );
 
-			ww.app.campaign.collection.on( 'render', this.render );
+			this.listenTo( ww.app.operation.listView, 'render', this.render );
+			this.listenTo( this.model.collection, 'reset', this.teardown );
 		},
 
 		render : function() {
 			var templateVars = this.model.toJSON();
 
-			this.$el.empty().append( ww.template( 'campaign_list_item', templateVars ) ).
-				appendTo( ww.app.campaign.listView.$el.find( '#operations-list' ) );
+			this.$el.empty().append( ww.template( 'operation_list_item', templateVars ) ).
+				appendTo( ww.app.operation.listView.$el.find( '#operations-list' ) );
 
 			return this;
 		},
 
 		showOperation : function( ev ) {
-			console.log( ev );
+			ww.app.router.navigate( 'campaigns/'+ ww.app.campaign.collection.where( { selected : true } )[ 0 ].get( 'id' ) +'/operations/' + this.model.get( 'id' ) + '/', { trigger : true } );
+
 			return false;
+		},
+
+		teardown : function() {
+			this.remove();
+			this.stopListening();
+			this.model = undefined;
 		}
 	};
 
