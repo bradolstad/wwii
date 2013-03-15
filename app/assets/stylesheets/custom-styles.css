@@ -2,6 +2,10 @@ body, h1, h2, h3, h4, h5, h6, li {
   line-height: 1.4;
 }
 
+body {
+  font-size: 100%;
+}
+
 .map_container,
 #map,
 #main {
@@ -48,11 +52,13 @@ body, h1, h2, h3, h4, h5, h6, li {
 
 .main-title {
   display: inline-block;
-  margin: 10px 0 15px 30px;
+  margin: 10px 30px 15px 30px;
+  padding-bottom: 20px;
 
   border-bottom: 4px solid #4a3f2d;
   color: #4a3f2d;
   font-size: 48px;
+  line-height: 1.1;
 }
 
 .main-text {
@@ -105,4 +111,9 @@ body, h1, h2, h3, h4, h5, h6, li {
 }
 
 /*styling for wikipedia text*/
-#main .wiki {margin: 0 30px;}
+.wiki {
+  margin: 0 30px;
+
+  font-family: 'Gentium Book Basic', georgia, serif;
+  text-transform: none;
+}
