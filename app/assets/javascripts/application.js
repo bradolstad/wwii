@@ -12,4 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require lodash
+//= require backbone.min
+//= require transparency.min
+//= require ww2_init
+//= require campaigns
+//= require operations
+//= require_tree ./gmaps4rails

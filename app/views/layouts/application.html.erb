@@ -28,10 +28,28 @@
     <%= gmaps("markers" => {"data" => @markers, "options"=>{"do_clustering"=>true}}) %>
   <% end %>
 
-  <div id="main">
-    <%= yield %>
-  </div>
+  <div id="main"></div>
   <%= yield :scripts %>
   <%= yield :scripts_callback %>
+
+  <script type="text/html" class="ww_template" id="campaigns_list">
+    <h2 class="main-title">Listing campaigns</h2>
+    <ul id="campaigns-list" class="main-list"></ul>
+  </script>
+
+  <script type="text/html" class="ww_template" id="campaign_list_item">
+    <a class="campaign-link main-list-link name" href="#"></a>
+  </script>
+
+  <script type="text/html" class="ww_template" id="operations_list">
+    <h2 class="main-title name"></h2>
+    <p class="main-text">Select an operation below</p>
+    <ul id="operations-list" class="main-list"></ul>
+  </script>
+
+  <script type="text/html" class="ww_template" id="operations_list_item">
+    <li class="main-list-item name"></li>
+    <a class="operation-link main-list-link name"></a>
+  </script>
 </body>
 </html>

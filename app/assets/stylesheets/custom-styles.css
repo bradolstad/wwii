@@ -110,6 +110,14 @@ body {
   border-top-color: #c7bca6;
 }
 
+.main-list-item:last-child .main-list-link {
+  border-bottom: 1px solid transparent;
+}
+
+.main-list-item:last-child .main-list-link:hover {
+  border-bottom-color: #b7b0aa;
+}
+
 /*styling for wikipedia text*/
 .wiki {
   margin: 0 30px;

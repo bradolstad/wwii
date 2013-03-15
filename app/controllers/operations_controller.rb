@@ -22,7 +22,7 @@ class OperationsController < ApplicationController
     @markers = @events.to_gmaps4rails
 
     @wiki = Wiki.new(@operation.name)
-    logger.info "@events: #{@events.inspect}"
+
     respond_to do |format|
       format.html
       format.json { render json: @markers }
