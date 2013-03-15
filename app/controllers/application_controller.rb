@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
       images = @wiki.image_urls.shuffle
       h = @wiki.sanitized_content
       images.each do |image|
-        num = rand(1..6)
+        num = (1..6).to_a.sample
         if num==1
           h.sub!("<p>","<p class=\"clearfix\"><img class=\"img-polaroid\" src=\"#{image}\" width=150 align=\"left\")\">")
         elsif num==2
