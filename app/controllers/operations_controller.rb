@@ -23,9 +23,10 @@ class OperationsController < ApplicationController
 
     @wiki = Wiki.new(@operation.name)
 
+    wiki_raw = Wikipedia.find('Operation Market Garden').json
     respond_to do |format|
       format.html
-      format.json { render json: @markers }
+      format.json { render json: wiki_raw }
       format.js
     end
   end

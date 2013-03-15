@@ -231,6 +231,8 @@ Event.all.each do |event|
   if event.name && event.name.include?(' lost at ')
     event.update_attributes(event_type_id:eventtype.id)
     record += 1
+  else
+    event.update_attributes(event_type_id:0)
   end
 end
 puts "Records updated with Event Type: #{record}"
