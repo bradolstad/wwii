@@ -17,7 +17,7 @@ class OperationsController < ApplicationController
   def show
     @operation = Operation.find(params[:id])
 
-    @events = @operation.filtered_events(params["d"])
+    @events = @operation.filtered_events.includes(:unit)
 
     @markers = @events.to_gmaps4rails
 
@@ -34,7 +34,6 @@ class OperationsController < ApplicationController
     end
 
     @wiki = Wiki.new(@operation.name)
-    logger.info @wiki.inspect
 
     @combined_operation_data = {
       'events' => @new_events,

@@ -59,4 +59,39 @@ namespace :wwii do
     puts "Records updated: #{record}"
   end
 
+  desc "Fix Event Types"
+  task :unit_class => :environment do
+
+    UnitClass.destroy_all
+    UnitClass.create([
+        {name:"Artillery"},
+        {name:"Armoured"},
+        {name:"Infantry"},
+        {name:"Airborne"}
+        ])
+
+    puts "Unit Class created: #{UnitClass.count}"
+    record = 0
+    Unit.all.each do |unit|
+      if unit.name.downcase.include?("airbo" || "airlanding" || "parachut" || "glider")
+          unit.unit_class_id = UnitClass.find_by_name("Airborne").id
+
+      elsif unit.name.downcase.include?("cavalry" || "mechanized" ||"armored" || "armoured" || "panzer" || "tank" )
+          unit.unit_class_id = UnitClass.find_by_name("Armoured").id
+
+      elsif unit.name.downcase.include? ("artillery" || "anti")
+          unit.unit_class_id = UnitClass.find_by_name("Artillery").id
+
+      else
+          unit.unit_class_id = UnitClass.find_by_name("Infantry").id
+
+      end
+      if unit.save
+        record += 1
+      end
+
+    end
+    puts "Units updated: #{record}"
+  end
+
 end

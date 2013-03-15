@@ -1,13 +1,8 @@
-<h1>Listing campaigns</h1>
-<table class="table table-striped">
-  <thead>
-    <th>Name</th>
-    <th>Operations</th>
-  </thead>
-
+<h2 class="main-title">WWII Campaigns</h2>
+<p class="main-text">Choose a campaign</p>
+<ul class="main-list">
 <% @campaigns.each do |campaign| %>
   <%= render 'campaign',:campaign=>campaign %>
 <% end %>
-</table>
-<%= render 'form' %>
+</li>
 
