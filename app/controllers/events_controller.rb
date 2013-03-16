@@ -38,6 +38,9 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.create(params[:event])
+    if @event.operation.active == false
+      @event.update_attributes(active:true)
+    end
     @markers = @event.to_gmaps4rails
     respond_to do |format|
       if @event.save
