@@ -1,5 +1,5 @@
 class Operation < ActiveRecord::Base
-  attr_accessible :name, :old_id, :campaign_id, :start_date, :end_date, :description
+  attr_accessible :name, :old_id, :campaign_id, :start_date, :end_date, :description, :active
 
   belongs_to :campaign
 
@@ -9,13 +9,7 @@ class Operation < ActiveRecord::Base
   validates_uniqueness_of :name
 
    def self.events?
-
-    operations = Operation.order('name asc').map do |operation|
-      if operation.events.any?
-        operation
-      end
-    end
-    return operations.compact
+    Operation.where(active:true).order('name asc')
   end
 
   def filtered_events(date=nil)
@@ -30,7 +24,7 @@ class Operation < ActiveRecord::Base
 
   def units
     units = self.events.collect do |event|
-      if event.unit
+      if event.unit.any?
         event.unit
       else
         nil

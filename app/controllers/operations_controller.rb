@@ -17,7 +17,7 @@ class OperationsController < ApplicationController
   def show
     @operation = Operation.find(params[:id])
 
-    @events = @operation.filtered_events.includes(:unit)
+    @events ||= @operation.filtered_events
 
     @markers = @events.to_gmaps4rails
 
