@@ -45,29 +45,29 @@ class Event < ActiveRecord::Base
   end
 
   def marker_path
-    "allies_infantry_32.png"
+    "allies_armor_16.png"
   end
 
-  def gmaps4rails_marker_picture
-    if self.marker_path.present?
-      path = self.marker_path
-      folder_path = path.split("_")
-      size = folder_path.delete_at(-1).split(".")[0].to_i
-      folder_path = "/assets/" + folder_path.join("_") + "/" + path
-      {
-        "picture" => folder_path,
-        "width" => size,
-        "height" => size,
-        "marker_anchor" => [ size/2, size]
-      }
-    else
-      {
-        "picture" => "/assets/allies_infantry/allies_infantry_32.png",
-        "width" => 32,
-        "height" => 32,
-        "marker_anchor" => [ 16, 32]
-      }
-    end
-  end
+  # def gmaps4rails_marker_picture
+  #   if self.marker_path.present?
+  #     path = self.marker_path
+  #     folder_path = path.split("_")
+  #     size = folder_path.delete_at(-1).split(".")[0].to_i
+  #     folder_path = "/assets/" + folder_path.join("_") + "/" + path
+  #     {
+  #       "picture" => folder_path,
+  #       "width" => size,
+  #       "height" => size,
+  #       "marker_anchor" => [ size/2, size]
+  #     }
+  #   else
+  #     {
+  #       "picture" => "/assets/allies_infantry/allies_infantry_32.png",
+  #       "width" => 32,
+  #       "height" => 32,
+  #       "marker_anchor" => [ 16, 32]
+  #     }
+  #   end
+  # end
 
 end

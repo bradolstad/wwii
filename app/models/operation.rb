@@ -9,8 +9,9 @@ class Operation < ActiveRecord::Base
   validates_uniqueness_of :name
 
    def self.events?
+
     operations = Operation.order('name asc').map do |operation|
-      if operation.events.count > 0
+      if operation.events.any?
         operation
       end
     end
@@ -21,9 +22,9 @@ class Operation < ActiveRecord::Base
     @event_type = EventType.where(name:"Plane Crash").first
     if date
       date = DateTime.parse(date)
-      return Event.where('operation_id = ? AND event_type_id != ? AND event_date = ?',self.id, @event_type.id, date)
+      return Event.includes(:unit,:country).where('operation_id = ? AND event_type_id != ? AND event_date = ?',self.id, @event_type.id, date)
     else
-      return Event.where('operation_id = ? AND event_type_id != ?',self.id, @event_type.id).order('event_date asc')
+      return Event.includes(:unit,:country).where('operation_id = ? AND event_type_id != ?',self.id, @event_type.id).order('event_date asc')
     end
   end
 
