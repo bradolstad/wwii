@@ -14,5 +14,8 @@
 /log/*.log
 /tmp
 
+# Ignore Environment Variables Config File
+/config/app_environment_variables.rb
+
 # OS X
 .DS_Store
