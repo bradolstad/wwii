@@ -94,6 +94,7 @@ module Wikipedia
         s.gsub!(/<ref[^<>]*>[\s\S]*?<\/ref>/, '')
         s.gsub!(/<!--[^>]+?-->/, '')
         s.gsub!('  ', ' ')
+
         s.strip!
 
         # create paragraphs
