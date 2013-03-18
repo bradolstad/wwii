@@ -7,6 +7,8 @@
       <%= f.date_select :start_date, start_year: 1939,end_year: 1949, default:nil, include_blank:true %>
       <%= f.label :end_date %>
       <%= f.date_select :end_date, start_year:1939,end_year:1949, default:nil, include_blank:true %>
+      <%= f.label :active %>
+      <%= f.select :active, options_for_select([["True",true],["False",false]]) %>
       <%= f.label :campaign_id %>
       <%= f.collection_select :campaign_id, Campaign.all, :id, :name,default:nil, include_blank:true %>
     </div>

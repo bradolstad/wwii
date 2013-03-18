@@ -32,7 +32,11 @@ var ww = {
 			],
 
 			complete : function() {
-				yepnope( '/assets/libraries/bootstrap.min.js?body=1' );
+				yepnope( [
+					'/assets/libraries/bootstrap.min.js?body=1',
+					'/assets/jquery_ujs.js?body=1',
+					'/assets/jquery-ui.js?body=1'
+				] );
 				ww.initQueue = jQuery.Deferred();
 			}
 		},

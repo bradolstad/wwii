@@ -89,12 +89,12 @@ module Wikipedia
         s.gsub!(/'''''(.+?)'''''/, '<b><i>\1</i></b>')
         s.gsub!(/'''(.+?)'''/, '<b>\1</b>')
         s.gsub!(/''(.+?)''/, '<i>\1</i>')
-        s.gsub!('==/(.+?)/==','\1')
 
         # misc
         s.gsub!(/<ref[^<>]*>[\s\S]*?<\/ref>/, '')
         s.gsub!(/<!--[^>]+?-->/, '')
         s.gsub!('  ', ' ')
+
         s.strip!
 
         # create paragraphs

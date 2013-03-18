@@ -1,4 +1,7 @@
 class CampaignsController < ApplicationController
+
+  before_filter :authenticate_user, except:[:show, :index]
+
   require 'wikipedia'
   def index
     @campaigns = Campaign.all

@@ -1,5 +1,7 @@
 class OperationsController < ApplicationController
 
+  before_filter :authenticate_user, except:[:show]
+
   def index
     @operations = Operation.events?
     @operation = Operation.new
@@ -17,7 +19,7 @@ class OperationsController < ApplicationController
   def show
     @operation = Operation.find(params[:id])
 
-    @events = @operation.filtered_events.includes(:unit)
+    @events ||= @operation.filtered_events
 
     @markers = @events.to_gmaps4rails
 

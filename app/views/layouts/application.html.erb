@@ -4,71 +4,65 @@
   <title>WWII</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= stylesheet_link_tag    "//fonts.googleapis.com/css?family=Montserrat:400,700|Gentium+Book+Basic", :media => "all" %>
+  <%= stylesheet_link_tag  "http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if Rails.application.config.show_edit_fields === true %>
-  <div class="row-fluid">
-    <nav class="navbar navbar-inverse navbar-fixed-top span12">
-      <div class="navbar-inner">
-        <div id="primary-menu" class="nav-collapse collapse span8 offset4">
-          <%= link_to "Campaigns", campaigns_path %> |
-          <%= link_to "Operations", operations_path %> |
-          <%= link_to "Events", events_path %> |
-          <%= link_to "Countries", countries_path %> |
-          <%= link_to "Units", units_path %> |
-          <%= link_to "Event Types", event_types_path %>
+  <% if authorized? %>
+    <div class="row-fluid">
+      <nav class="navbar navbar-inverse navbar-fixed-top span12">
+        <div class="navbar-inner">
+          <div id="primary-menu" class="nav-collapse collapse span8 offset4">
+            <%= link_to "Campaigns", campaigns_path %> |
+            <%= link_to "Operations", operations_path %> |
+            <%= link_to "Events", events_path %> |
+            <%= link_to "Countries", countries_path %> |
+            <%= link_to "Units", units_path %> |
+            <%= link_to "Event Types", event_types_path %> |
+            <%= link_to "Logout", logout_url, method:"delete" %>
+          </div>
         </div>
-      </div>
-    </nav>
-  </div>
+      </nav>
+    </div>
   <% end %>
-
   <% if @controller == "events" && @action == "edit" %>
-    <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true}}) %>
+    <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true, "do_clustering"=>false}}) %>
   <% else %>
     <%= gmaps("markers" => {"data" => @markers, "options"=>{"do_clustering"=>true}}) %>
   <% end %>
 
-  <% if Rails.application.config.show_edit_fields %>
-    <div id="main">
-      <%= yield %>
+  <div id="main">
+    <%= yield %>
+  </div>
+
+  <script type="text/html" class="ww_template" id="loader">
+    <div class="loader-container">
+      <img class="loader" src="/assets/main-loader.gif" alt="Loading" />
     </div>
+  </script>
 
-    <script>
-      ww.show_edit_fields = true;
-    </script>
-  <% else %>
-    <div id="main"></div>
+  <script type="text/html" class="ww_template" id="campaigns_list">
+    <h2 class="main-title">Listing campaigns</h2>
+    <ul id="campaigns-list" class="main-list"></ul>
+  </script>
 
-    <script type="text/html" class="ww_template" id="loader">
-      <div class="loader-container">
-        <img class="loader" src="/assets/main-loader.gif" alt="Loading" />
-      </div>
-    </script>
+  <script type="text/html" class="ww_template" id="campaign_list_item">
+    <a class="campaign-link main-list-link name" href="#"></a>
+  </script>
 
-    <script type="text/html" class="ww_template" id="campaigns_list">
-      <h2 class="main-title">Listing campaigns</h2>
-      <ul id="campaigns-list" class="main-list"></ul>
-    </script>
+  <script type="text/html" class="ww_template" id="operations_list">
+    <h2 class="main-title name"></h2>
+    <p class="main-text">Select an operation below</p>
+    <ul id="operations-list" class="main-list"></ul>
+  </script>
 
-    <script type="text/html" class="ww_template" id="campaign_list_item">
-      <a class="campaign-link main-list-link name" href="#"></a>
-    </script>
+  <script type="text/html" class="ww_template" id="operation_list_item">
+    <a class="operation-link main-list-link name" href="#"></a>
+  </script>
 
-    <script type="text/html" class="ww_template" id="operations_list">
-      <h2 class="main-title name"></h2>
-      <p class="main-text">Select an operation below</p>
-      <ul id="operations-list" class="main-list"></ul>
-    </script>
-
-    <script type="text/html" class="ww_template" id="operation_list_item">
-      <a class="operation-link main-list-link name" href="#"></a>
-    </script>
-
-    <%= yield :scripts %>
-    <%= yield :scripts_callback %>
-  <% end %>
+  <%= yield :slider %>
+  <%= yield :scripts %>
+  <%= yield :scripts_callback %>
 </body>
 </html>

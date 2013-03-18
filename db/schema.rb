@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130315193100) do
+ActiveRecord::Schema.define(:version => 20130318162335) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -75,17 +75,23 @@ ActiveRecord::Schema.define(:version => 20130315193100) do
     t.integer  "event_type_id", :default => 0
   end
 
+  add_index "events", ["country_id"], :name => "index_events_on_country_id"
+  add_index "events", ["operation_id"], :name => "index_events_on_operation_id"
+  add_index "events", ["unit_id"], :name => "index_events_on_unit_id"
+
   create_table "operations", :force => true do |t|
     t.string   "name"
     t.integer  "campaign_id"
     t.integer  "old_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "description"
+    t.boolean  "active",      :default => true
   end
 
+  add_index "operations", ["active"], :name => "index_operations_on_active"
   add_index "operations", ["old_id"], :name => "index_operations_on_old_id"
 
   create_table "unit_classes", :force => true do |t|
@@ -114,5 +120,12 @@ ActiveRecord::Schema.define(:version => 20130315193100) do
   add_index "units", ["country_id"], :name => "index_units_on_country_id"
   add_index "units", ["old_id"], :name => "index_units_on_old_id"
   add_index "units", ["unit_type_id"], :name => "index_units_on_unit_type_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
 end

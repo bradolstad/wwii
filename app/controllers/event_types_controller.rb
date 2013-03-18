@@ -1,4 +1,7 @@
 class EventTypesController < ApplicationController
+
+  before_filter :authenticate_user
+
   def index
     @event_types = EventType.all
   end

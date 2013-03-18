@@ -134,4 +134,6 @@ body {
 }
 
 .wiki img {margin:0 5px;}
+.wiki .main-list-link {padding-left: 0;}
 
+#slider {width: 50%;position:absolute;bottom:20px;right:20px;}
