@@ -15,7 +15,6 @@ class Wiki
         end
         h.gsub!(/====\s*(.+)\s*====/,'<i>\1</i>')
         h.gsub!(/===\s*(.+)\s*===/,'<b>\1</b>')
-
         h.sub!(/<p>\s*==(.+)\s*==/,'<a class="main-list-link" id="wiki_div_link_0" data-toggle="collapse" data-target="#wiki_div_0">\1</a><div id="wiki_div_0" class="collapse"><p>')
         index = 1
         while index < topics do
@@ -23,12 +22,11 @@ class Wiki
           index += 1
         end
         h = h + "</p></div>"
-
         while images.count > 0
           if images.count.odd?
-            h.sub!("<p>","<p class=\"clearfix\"><img class=\"img-polaroid\" src=\"#{images.delete_at(0)}\" width=150 align=\"left\")\">")
+            h.sub!("<p>","<p class=\"clearfix\"><img class=\"img-polaroid\" src=\"#{images.delete_at(0)}\" width=150 align=\"left\"\>")
           else
-            h.sub!("<p>","<p class=\"clearfix\"><img class=\"img-polaroid\" src=\"#{images.delete_at(0)}\" width=150 align=\"right\")\">")
+            h.sub!("<p>","<p class=\"clearfix\"><img class=\"img-polaroid\" src=\"#{images.delete_at(0)}\" width=150 align=\"right\"\>")
           end
         end
         h
