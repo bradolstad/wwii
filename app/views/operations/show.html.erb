@@ -22,3 +22,11 @@
   </ul>
 
 </div>
+
+<% content_for :slider do %>
+  <%= content_tag "div", id:"slider", data:{mindate:@operation.start_date.to_i,maxdate:@operation.end_date.to_i} do %>
+      <input type="text" id="date" style="border:none;background-color:white;font-weight:bold;" />
+      <div id="slider-range"></div>
+  <% end %>
+<% end %>
+
