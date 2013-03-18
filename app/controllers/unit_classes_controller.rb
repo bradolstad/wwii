@@ -1,6 +1,6 @@
 class UnitClassesController < ApplicationController
-  # GET /unit_classes
-  # GET /unit_classes.json
+  before_filter :authenticate_user
+
   def index
     @unit_classes = UnitClass.all
 

@@ -1,10 +1,17 @@
 Wwii::Application.routes.draw do
 
-  resources :unit_classes
-
-
   root :to => 'Campaigns#index'
 
+  get "login" => "Sessions#new", as:"login"
+
+  post "login" => "Sessions#create"
+
+  delete "logout"=>"Sessions#destroy", as:"logout"
+
+  get "logout"=>"Sessions#destroy"
+
+  resources :users
+  resources :unit_classes
   resources :operations
   resources :campaigns
   resources :units

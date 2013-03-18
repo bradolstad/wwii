@@ -1,6 +1,7 @@
 class CountriesController < ApplicationController
-  # GET /countries
-  # GET /countries.json
+
+  before_filter :authenticate_user
+
   def index
     @countries = Country.all
 

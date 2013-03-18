@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130316185705) do
+ActiveRecord::Schema.define(:version => 20130318162335) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -120,5 +120,12 @@ ActiveRecord::Schema.define(:version => 20130316185705) do
   add_index "units", ["country_id"], :name => "index_units_on_country_id"
   add_index "units", ["old_id"], :name => "index_units_on_old_id"
   add_index "units", ["unit_type_id"], :name => "index_units_on_unit_type_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
 end

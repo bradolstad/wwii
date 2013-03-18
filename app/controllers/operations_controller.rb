@@ -1,5 +1,7 @@
 class OperationsController < ApplicationController
 
+  before_filter :authenticate_user, except:[:show]
+
   def index
     @operations = Operation.events?
     @operation = Operation.new

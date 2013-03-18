@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 
+  before_filter :authenticate_user, except:[:show]
+
   def index
     @events = Event.order(:event_date).page(params[:page])
 
