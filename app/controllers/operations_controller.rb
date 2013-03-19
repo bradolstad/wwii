@@ -18,9 +18,9 @@ class OperationsController < ApplicationController
 
   def show
     @operation = Operation.find(params[:id])
-
-    @events ||= @operation.filtered_events
-
+    min = Time.at(params[:start].to_i).to_datetime if params[:start].present?
+    max = Time.at(params[:end].to_i).to_datetime if params[:end].present?
+    @events = @operation.filtered(min,max)
     @markers = @events.to_gmaps4rails
 
     @new_events = @events.map do |event|

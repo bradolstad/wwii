@@ -8,17 +8,20 @@ class Operation < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
-   def self.events?
+  def self.events?
     Operation.where(active:true).order('name asc')
   end
 
-  def filtered_events(date=nil)
-    @event_type = EventType.where(name:"Plane Crash").first
-    if date
-      date = DateTime.parse(date)
-      return Event.includes(:unit,:country).where('operation_id = ? AND event_type_id != ? AND event_date = ?',self.id, @event_type.id, date)
+  def filtered(min=nil,max=nil)
+    event_type = EventType.find_by_name("Plane Crash")
+    if min.nil? && max.nil?
+      Event.includes(:unit,:country).where("operation_id = ? AND event_type_id != ?",self.id,event_type.id).order('event_date asc')
+    elsif min.nil?
+      Event.includes(:unit,:country).where("operation_id = ? AND event_type_id != ? AND event_date < ?",self.id,event_type.id,max).order('event_date asc')
+    elsif max.nil?
+      Event.includes(:unit,:country).where("operation_id = ? AND event_type_id != ? AND event_date > ?",self.id,event_type.id,min).order('event_date asc')
     else
-      return Event.includes(:unit,:country).where('operation_id = ? AND event_type_id != ?',self.id, @event_type.id).order('event_date asc')
+      Event.includes(:unit,:country).where("operation_id = ? AND event_type_id != ? AND event_date between ? and ? ",self.id,event_type.id,min,max).order('event_date asc')
     end
   end
 
