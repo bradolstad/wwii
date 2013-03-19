@@ -4,7 +4,6 @@
   <title>WWII</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= stylesheet_link_tag    "//fonts.googleapis.com/css?family=Montserrat:400,700|Gentium+Book+Basic", :media => "all" %>
-  <%= stylesheet_link_tag  "http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -61,7 +60,6 @@
     <a class="operation-link main-list-link name" href="#"></a>
   </script>
 
-  <%= yield :slider %>
   <%= yield :scripts %>
   <%= yield :scripts_callback %>
 </body>

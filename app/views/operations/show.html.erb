@@ -1,32 +1,10 @@
 <h2 class="main-title">
-  Operation <%= @operation.name %></h2>
-  <p class="main-text">
-    <%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %><%= " to "+ @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></p>
-<div id="operations">
-  <ul class="main-list">
-    <div class="wiki">
-    <%= raw link_to_pages(@wiki.full_text, @operation.id) %>
-  </div>
-    <% @events.each do |event| %>
-      <li class="main-list-item">
-      <a class="main-list-link" data-toggle="collapse" data-target="#event_accordion_<%= event.id %>">
-        <%= event.name %> - <%= event.date_formated %>
-      </a>
-      <div id="event_accordion_<%= event.id %>" class="collapse">
-        <%= event.country.name unless event.country.nil? %><br>
-        <%= event.description %><br>
-        <%= link_to "Edit", edit_event_path(event) %><br><br>
-      </div>
-    </li>
-    <% end %>
-  </ul>
-
+  Operation <%= @operation.name %>
+</h2>
+<p class="main-text">
+  <%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %>
+  <%= " to "+ @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %>
+</p>
+<div class="wiki">
+  <%= raw @wiki.full_text %>
 </div>
-
-<% content_for :slider do %>
-  <%= content_tag "div", id:"slider", data:{mindate:@operation.start_date.to_i,maxdate:@operation.end_date.to_i} do %>
-      <input type="text" id="date" style="border:none;background-color:white;font-weight:bold;" />
-      <div id="slider-range"></div>
-  <% end %>
-<% end %>
-

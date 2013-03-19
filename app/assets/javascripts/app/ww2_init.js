@@ -29,6 +29,8 @@ var ww = {
 				'/assets/libraries/lodash.js?body=1',
 				'/assets/libraries/backbone.js?body=1',
 				'/assets/libraries/transparency.min.js?body=1',
+				'/assets/libraries/timeline-min.js?body=1',
+				'/assets/libraries/storyjs-embed.js?body=1'
 			],
 
 			complete : function() {
@@ -50,9 +52,9 @@ var ww = {
 
 			complete : function() {
 				ww.initQueue.resolve();
-				mainInit();
+				// mainInit();
 
-				!ww.show_edit_fields && ( Backbone.history.start() ); // start the app, but only if we're not showing edit fields
+				// !ww.show_edit_fields && ( Backbone.history.start() ); // start the app, but only if we're not showing edit fields
 			}
 		}
 	] );

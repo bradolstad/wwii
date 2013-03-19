@@ -13,4 +13,3 @@
 //= require libraries/modernizr
 //= require_tree ./libraries/gmaps4rails
 //= require app/ww2_init
-//= require slider
