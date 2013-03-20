@@ -41,7 +41,7 @@ class Event < ActiveRecord::Base
   end
 
   def location
-     return {lng: lat, lng: lng} unless lat.nil? || lng.nil?
+     return {lat: lat, lng: lng} unless lat.nil? || lng.nil?
    end
 
   def gmaps4rails_infowindow
