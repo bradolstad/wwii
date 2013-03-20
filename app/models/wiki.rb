@@ -16,6 +16,9 @@ class Wiki
         if h.scan(/==\s*References\s*==/).count > 0
           h = h.split(/==\s*References\s*==/).reverse.pop
         end
+        if h.scan(/==\s*See also\s*==/).count > 0
+          h = h.split(/==\s*See also\s*==/).reverse.pop
+        end
         if h.scan(/==\s*Footnotes\s*==/).count > 0
           h = h.split(/==\s*Footnotes\s*==/).reverse.pop
         end
@@ -23,11 +26,13 @@ class Wiki
         h.gsub!(/===\s*(.+)\s*===/,'<b>\1</b>')
         h.sub!(/<p>\s*==(.+)\s*==/,'<a class="main-list main-list-link" id="wiki_div_link_0" data-toggle="collapse" data-target="#wiki_div_0">\1</a><div id="wiki_div_0" class="collapse"><p>')
         index = 1
-        while index < topics do
-          h.sub!(/<p>==\s*(.+)\s*==/,'</p></div><a class="main-list main-list-link" id="wiki_div_link_'+ index.to_s + '" data-toggle="collapse" data-target="#wiki_div_'+index.to_s+'">\1</a><div id="wiki_div_'+index.to_s+'" class="collapse"><p>')
-          index += 1
+        if topics > 0
+          while index < topics do
+            h.sub!(/<p>==\s*(.+)\s*==/,'</p></div><a class="main-list main-list-link" id="wiki_div_link_'+ index.to_s + '" data-toggle="collapse" data-target="#wiki_div_'+index.to_s+'">\1</a><div id="wiki_div_'+index.to_s+'" class="collapse"><p>')
+            index += 1
+          end
+          h = h + "</p></div>"
         end
-        h = h + "</p></div>"
         while images.count > 0
           if images.count.odd?
             h.sub!("<p>","<p class=\"clearfix\"><img class=\"img-polaroid\" src=\"#{images.delete_at(0)}\" width=150 align=\"left\"\>")
