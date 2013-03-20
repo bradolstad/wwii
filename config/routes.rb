@@ -1,8 +1,5 @@
 Wwii::Application.routes.draw do
 
-  resources :icons
-
-
   root :to => 'Campaigns#index'
 
   get "login" => "Sessions#new", as:"login"
@@ -12,7 +9,7 @@ Wwii::Application.routes.draw do
   delete "logout"=>"Sessions#destroy", as:"logout"
 
   get "logout"=>"Sessions#destroy"
-
+  resources :icons
   resources :users
   resources :unit_classes
   resources :operations

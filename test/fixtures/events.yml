@@ -2,16 +2,26 @@
 
 one:
   name: MyString
-  location: 
-  date: 2013-02-21 20:55:09
-  campaign: 
-  zoom_level: 1
-  event_type: 
+  description: MyString
+  address: 1234 Address
+  lat: 1.2
+  lng: 1.5
+  operation:
+  event_type:
+  country:
+  unit:
+  event_date : 1944-02-21 21:23:09
+  event_type:
 
 two:
   name: MyString
-  location: 
-  date: 2013-02-21 20:55:09
-  campaign: 
-  zoom_level: 1
-  event_type: 
+  description: MyString
+  address: 1234 Address
+  lat: 1.2
+  lng: 1.5
+  operation:
+  event_type:
+  country:
+  unit:
+  event_date : 1944-02-21 21:23:09
+  event_type:

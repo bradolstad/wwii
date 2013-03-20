@@ -2,8 +2,12 @@
 
 one:
   name: MyString
-  unit_type: 
+  unit_type:
+  unit_class:
+  country:
 
 two:
   name: MyString
-  unit_type: 
+  unit_type:
+  unit_class:
+  country:

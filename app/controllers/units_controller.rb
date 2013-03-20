@@ -3,7 +3,7 @@ class UnitsController < ApplicationController
   before_filter :authenticate_user, except:[:show]
 
   def index
-    @units = Unit.order(:name)
+    @units = Unit.includes(:unit_type,:country).order(:name)
     @unit = Unit.new
     respond_to do |format|
       format.html # index.html.erb
@@ -16,6 +16,7 @@ class UnitsController < ApplicationController
   def show
     @unit = Unit.find(params[:id])
     @markers = @unit.events.to_gmaps4rails
+    @wiki = Wiki.new(@unit.name)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @unit }
@@ -38,7 +39,7 @@ class UnitsController < ApplicationController
     @unit = Unit.find(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to units_url }
+      format.html
       format.json { head :no_content }
       format.js
     end

@@ -21,6 +21,8 @@ class OperationsController < ApplicationController
     min = Time.at(params[:start].to_i).to_datetime if params[:start].present?
     max = Time.at(params[:end].to_i).to_datetime if params[:end].present?
     @events = @operation.filtered(min,max)
+
+    #@markers = @operation.boundaries.to_json
     @markers = @events.to_gmaps4rails
 
     @new_events = @events.map do |event|
@@ -35,7 +37,7 @@ class OperationsController < ApplicationController
         }
     end
 
-    @wiki = Wiki.new(@operation.name)
+    @wiki = Wiki.new(@operation.name,'Operation ')
 
     respond_to do |format|
       format.html

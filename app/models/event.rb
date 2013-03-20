@@ -11,7 +11,11 @@ class Event < ActiveRecord::Base
   acts_as_gmappable :process_geocoding => :geocode?,:lat=>'lat', :lng=>'lng',:address => "address"
 
   def date_formated
-    return event_date.strftime('%a, %b %e %Y') unless event_date.nil?
+    if self.event_date.present?
+      return event_date.strftime('%a, %b %e %Y')
+    else
+      return ""
+    end
   end
 
   def flag_path
@@ -36,8 +40,12 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def location
+     return {lng: lat, lng: lng} unless lat.nil? || lng.nil?
+   end
+
   def gmaps4rails_infowindow
-    "<h6>#{name}<br><small>#{date_formated}</small></h6><img src=\"/assets/#{flag_path}\" width=40 />"
+    "<div class=\"gwindow\"><h5>#{name}</h5><h6>on #{date_formated}</h6><p><img src=\"/assets/#{flag_path}\" width=40 class=\"flag\" align=\"left\"/><a href=\"/units/#{self.unit.id}\">#{self.unit.name}</a><br><a href=\"/operations/#{self.operation.id unless self.operation.nil?}\">#{'Operation ' + self.operation.name unless self.operation.nil?}</a></p></div>"
   end
 
   def gmaps4rails_title

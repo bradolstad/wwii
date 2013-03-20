@@ -1,8 +1,8 @@
 class Wiki
     require 'wikipedia'
     #pass in the topic
-    def initialize(topic)
-      @wiki ||= Wikipedia.find('Operation ' + topic)
+    def initialize(topic,prepend="")
+      @wiki ||= Wikipedia.find(prepend + topic)
     end
 
     def full_text

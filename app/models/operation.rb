@@ -57,7 +57,7 @@ class Operation < ActiveRecord::Base
   end
 
   def boundaries
-    locations = self.events.collect { |event| {lat:event.lat,lng:event.lng} }
+    locations = self.events.collect { |event| event.location }
     return locations.uniq
   end
 end

@@ -110,6 +110,12 @@ body {
   border-top-color: #c7bca6;
 }
 
+/*styling for info window*/
+div.gwindow .flag {
+  padding: 5px 3px 5px 0px;
+}
+div.gwindow p {font-size: 90%;}
+
 /*styling for wikipedia text*/
 .wiki {
   margin: 0 30px;
