@@ -18,7 +18,7 @@
 /config/app_environment_variables.rb
 
 # OS X
-.DS_Store
+*/.DS_Store
 
 #erd diagram
 erd.pdf
