@@ -45,7 +45,8 @@ class Event < ActiveRecord::Base
    end
 
   def gmaps4rails_infowindow
-    "<div class=\"gwindow\"><h5>#{name}</h5><h6>on #{date_formated}</h6><p><img src=\"/assets/#{flag_path}\" width=40 class=\"flag\" align=\"left\"/><a href=\"/units/#{self.unit.id}\">#{self.unit.name}</a><br><a href=\"/operations/#{self.operation.id unless self.operation.nil?}\">#{'Operation ' + self.operation.name unless self.operation.nil?}</a></p></div>"
+    #todo - Clean this up
+    "<div class=\"gwindow\"><h5>#{name}</h5><h6>on #{date_formated}</h6><p><img src=\"/assets/#{flag_path}\" width=40 class=\"flag\" align=\"left\"/><a href=\"/units/#{self.unit.id unless self.unit.nil?}\">#{self.unit.name unless self.unit.nil?}</a><br><a href=\"/operations/#{self.operation.id unless self.operation.nil?}\">#{'Operation ' + self.operation.name unless self.operation.nil?}</a></p></div>"
   end
 
   def gmaps4rails_title
