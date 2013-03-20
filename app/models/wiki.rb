@@ -33,7 +33,7 @@ class Wiki
           end
           h = h + "</p></div>"
         end
-        while images.count > 0
+        while images.present? && images.count > 0
           if images.count.odd?
             h.sub!("<p>","<p class=\"clearfix\"><img class=\"img-polaroid\" src=\"#{images.delete_at(0)}\" width=150 align=\"left\"\>")
           else
