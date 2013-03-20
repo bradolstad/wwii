@@ -10,6 +10,8 @@ class Event < ActiveRecord::Base
 
   acts_as_gmappable :process_geocoding => :geocode?,:lat=>'lat', :lng=>'lng',:address => "address"
 
+  scope :no_planes, lambda { where("event_type_id != ?",EventType.find_by_name("Plane Crash").id)}
+
   def date_formated
     if self.event_date.present?
       return event_date.strftime('%a, %b %e %Y')

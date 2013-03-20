@@ -4,7 +4,7 @@ $ ->
   min: $('#slider').data('mindate'),
   max: $('#slider').data('maxdate'),
   step: 86400,
-  values: [ $('#slider').data('mindate')+345600, $('#slider').data('maxdate')-345600 ],
+  values: [ $('#slider').data('defmin') || $('#slider').data('mindate'), $('#slider').data('defmax') || $('#slider').data('maxdate')],
   slide: (event,ui) ->
     $("#slider #date").val("Date: " + ui.values[0] + " - " + ui.values[1] )
   stop: (event,ui) ->

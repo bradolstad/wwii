@@ -13,15 +13,14 @@ class Operation < ActiveRecord::Base
   end
 
   def filtered(min=nil,max=nil)
-    event_type = EventType.find_by_name("Plane Crash")
     if min.nil? && max.nil?
-      Event.includes(:unit,:country).where("operation_id = ? AND event_type_id != ?",self.id,event_type.id).order('event_date asc')
+      self.events.includes(:unit,:country).no_planes.order('event_date asc')
     elsif min.nil?
-      Event.includes(:unit,:country).where("operation_id = ? AND event_type_id != ? AND event_date < ?",self.id,event_type.id,max).order('event_date asc')
+      self.events.includes(:unit,:country).no_planes.where("event_date <= ?",max).order('event_date asc')
     elsif max.nil?
-      Event.includes(:unit,:country).where("operation_id = ? AND event_type_id != ? AND event_date > ?",self.id,event_type.id,min).order('event_date asc')
+      self.events.includes(:unit,:country).no_planes.where("event_date >= ?",min).order('event_date asc')
     else
-      Event.includes(:unit,:country).where("operation_id = ? AND event_type_id != ? AND event_date between ? and ? ",self.id,event_type.id,min,max).order('event_date asc')
+      self.events.includes(:unit,:country).no_planes.where("event_date between ? and ? ",min,max).order('event_date asc')
     end
   end
 
@@ -54,6 +53,14 @@ class Operation < ActiveRecord::Base
 
   def date_formated(date_object)
     return date_object.strftime('%b %Y') unless date_object == nil
+  end
+
+  def first_date
+    return self.events.no_planes.order("event_date asc").first.event_date.beginning_of_day || self.start_date.beginning_of_day
+  end
+
+  def last_date
+    return self.events.no_planes.order("event_date asc").last.event_date.end_of_day || self.end_date.end_of_day
   end
 
   def boundaries
