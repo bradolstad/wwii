@@ -49,7 +49,7 @@ class Event < ActiveRecord::Base
       path = self.unit.icon.path
       folder_path = path.split("_")
       size = folder_path.delete_at(-1).split(".")[0].to_i
-      folder_path = "/assets/" + folder_path.join("_") + "/" + path
+      folder_path = "/assets/" + path
       {
         "picture" => folder_path,
         "width" => size,
