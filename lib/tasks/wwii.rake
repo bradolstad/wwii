@@ -242,4 +242,29 @@ namespace :wwii do
     end # do loop
     puts "Units updated with type: #{count}"
   end # task
+
+  desc "Remove country from unit names"
+  task :unit_name_fix => :environment do
+    puts "Starting..."
+    count = 0
+    not_matched = []
+    matched = []
+    Unit.all.each do |unit|
+      if unit.name.scan(/\(..?.?\)/).present?
+        new_name = unit.name.sub(/\w?\(..?.?\)\w?/,'')
+        matched << new_name
+        if unit.update_attributes(name: new_name)
+          count += 1
+        else
+          puts "Failed update: #{unit.name} - #{unit.id}"
+        end
+      else
+        not_matched << unit.name
+      end
+    end
+    puts "Not matched: #{not_matched.inspect}"
+    puts "Matched: #{matched.inspect}"
+    puts "Total Units: #{Unit.count}"
+    puts "Updated: #{count}"
+  end #task
 end # namespace

@@ -6,7 +6,6 @@ class OperationsController < ApplicationController
     @operations = Operation.events?
     @operation = Operation.new
 
-    @markers = {}.to_json
     @operations_data = Operation.data
 
     respond_to do |format|

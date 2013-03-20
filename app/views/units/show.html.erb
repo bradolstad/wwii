@@ -2,12 +2,11 @@
 <div id="units">
   <ul class="main-list">
     <div class="wiki">
-    <%= raw @wiki.full_text %>
+      <%= raw @wiki.full_text %>
     </div>
     <% @unit.events.each do |event| %>
       <li class="main-list-item">
         <%= link_to event.name + " - " + event.date_formated, event, class:"main-list-link" %>
-
       </li>
     <% end  %>
   </ul>

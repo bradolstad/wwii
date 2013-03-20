@@ -1,23 +1,11 @@
-<h1>Listing countries</h1>
-
-<table class="table table-striped">
-  <thead>
-    <th>Country Name</th>
-    <th></th>
-    <th></th>
-  </thead>
-
-<% @countries.each do |country| %>
-  <tr>
-    <td><%= link_to country.name, country %></td>
-    <td>
-      <%= link_to 'Edit', edit_country_path(country), class:"btn btn-warning" %>
-      <%= link_to 'Destroy', country, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
-    </td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Country', new_country_path %>
+<h2 class="main-title">Countries of WWII</h2>
+<p class="main-text">Select a country</p>
+<div id="countries">
+  <ul class="main-list">
+  <% @countries.each do |country| %>
+    <li class="main-list-item">
+      <%= link_to country.name, country, class:"main-list-link" %>
+    </li>
+  <% end %>
+  </ul>
+</div>

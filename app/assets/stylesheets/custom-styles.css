@@ -110,13 +110,13 @@ body {
   border-top-color: #c7bca6;
 }
 
-/*styling for info window*/
+/*marker info window*/
 div.gwindow .flag {
   padding: 5px 3px 5px 0px;
 }
 div.gwindow p {font-size: 90%;}
 
-/*styling for wikipedia text*/
+/*wikipedia text*/
 .wiki {
   margin: 0 30px;
 
@@ -127,4 +127,5 @@ div.gwindow p {font-size: 90%;}
 .wiki img {margin:0 5px;}
 .wiki .main-list-link {padding-left: 0;}
 
+/*date slider*/
 #slider {width: 50%;position:absolute;bottom:20px;right:20px;}
