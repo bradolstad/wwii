@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318162335) do
+ActiveRecord::Schema.define(:version => 20130319163050) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -79,6 +79,13 @@ ActiveRecord::Schema.define(:version => 20130318162335) do
   add_index "events", ["operation_id"], :name => "index_events_on_operation_id"
   add_index "events", ["unit_id"], :name => "index_events_on_unit_id"
 
+  create_table "icons", :force => true do |t|
+    t.string   "name"
+    t.string   "path"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "operations", :force => true do |t|
     t.string   "name"
     t.integer  "campaign_id"
@@ -115,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20130318162335) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "unit_class_id"
+    t.integer  "icon_id"
   end
 
   add_index "units", ["country_id"], :name => "index_units_on_country_id"

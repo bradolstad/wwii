@@ -1,5 +1,8 @@
 Wwii::Application.routes.draw do
 
+  resources :icons
+
+
   root :to => 'Campaigns#index'
 
   get "login" => "Sessions#new", as:"login"

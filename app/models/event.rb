@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
   def flag_path
     if self.country.present?
       country.flag_path
-    elsif self.unit.country.present?
+    elsif self.unit.present? && self.unit.country.present?
       unit.country.flag_path
     else
       nil
@@ -44,30 +44,26 @@ class Event < ActiveRecord::Base
       return event_date.strftime("%b %e %Y") unless event_date.nil?
   end
 
-  def marker_path
-    "allies_armor_16.png"
+  def gmaps4rails_marker_picture
+    if self.unit.present? && self.unit.icon.present?
+      path = self.unit.icon.path
+      folder_path = path.split("_")
+      size = folder_path.delete_at(-1).split(".")[0].to_i
+      folder_path = "/assets/" + folder_path.join("_") + "/" + path
+      {
+        "picture" => folder_path,
+        "width" => size,
+        "height" => size,
+        "marker_anchor" => [ size/2, size]
+      }
+    else
+      {
+        "picture" => "/assets/allies_infantry/allies_infantry_24.png",
+        "width" => 24,
+        "height" => 24,
+        "marker_anchor" => [ 12, 24]
+      }
+    end
   end
-
-  # def gmaps4rails_marker_picture
-  #   if self.marker_path.present?
-  #     path = self.marker_path
-  #     folder_path = path.split("_")
-  #     size = folder_path.delete_at(-1).split(".")[0].to_i
-  #     folder_path = "/assets/" + folder_path.join("_") + "/" + path
-  #     {
-  #       "picture" => folder_path,
-  #       "width" => size,
-  #       "height" => size,
-  #       "marker_anchor" => [ size/2, size]
-  #     }
-  #   else
-  #     {
-  #       "picture" => "/assets/allies_infantry/allies_infantry_32.png",
-  #       "width" => 32,
-  #       "height" => 32,
-  #       "marker_anchor" => [ 16, 32]
-  #     }
-  #   end
-  # end
 
 end
