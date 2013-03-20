@@ -4,7 +4,7 @@
   <ul class="main-list">
   <% @countries.each do |country| %>
     <li class="main-list-item">
-      <%= link_to country.name, country, class:"main-list-link" %>
+      <%= link_to image_tag(country.flag_path, width:"40") + " " + country.name, country, class:"main-list-link" %>
     </li>
   <% end %>
   </ul>
