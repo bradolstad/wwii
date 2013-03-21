@@ -56,11 +56,11 @@ class Operation < ActiveRecord::Base
   end
 
   def first_date
-    events.no_planes.first.event_date.beginning_of_day || start_date.beginning_of_day || Date.parse('1940-01-01')
+    events.with_dates.no_planes.first.event_date.beginning_of_day || start_date.beginning_of_day || Date.parse('1940-01-01')
   end
 
   def last_date
-    events.no_planes.last.event_date.end_of_day || end_date.end_of_day || Date.parse('1949-12-31')
+    events.with_dates.no_planes.last.event_date.end_of_day || end_date.end_of_day || Date.parse('1949-12-31')
   end
 
   def boundaries

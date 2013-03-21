@@ -12,6 +12,8 @@ class Event < ActiveRecord::Base
 
   scope :no_planes, lambda { where("event_type_id != ?",EventType.find_by_name("Plane Crash").id).order('event_date asc')}
 
+  scope :with_dates, lambda { where("event_date IS NOT null")}
+
   def date_formated
     (event_date.strftime('%a, %b %e %Y') unless event_date.nil?) || ""
   end
