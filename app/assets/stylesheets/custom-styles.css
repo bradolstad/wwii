@@ -132,3 +132,12 @@ div.gwindow p {font-size: 90%;}
 
 /*date slider*/
 #slider {width: 50%;position:absolute;bottom:20px;right:20px;}
+#slider input {
+  border:none;
+  width:250px;
+  text-align:center;
+  background-color:rgba(255,255,255,0.5);
+  color:black;
+  margin:5px auto;
+  font-weight:bold;
+}

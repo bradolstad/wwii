@@ -6,11 +6,11 @@ class Event < ActiveRecord::Base
   belongs_to :country
   belongs_to :event_type
 
-  validates_presence_of :name
+  validates_presence_of :name, :event_date
 
   acts_as_gmappable :process_geocoding => :geocode?,:lat=>'lat', :lng=>'lng',:address => "address"
 
-  scope :no_planes, lambda { where("event_type_id != ?",EventType.find_by_name("Plane Crash").id)}
+  scope :no_planes, lambda { where("event_type_id != ?",EventType.find_by_name("Plane Crash").id).order('event_date asc')}
 
   def date_formated
     (event_date.strftime('%a, %b %e %Y') unless event_date.nil?) || ""
