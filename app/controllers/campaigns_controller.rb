@@ -15,18 +15,9 @@ class CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find(params[:id])
-    @operations = @campaign.operations
+    @operations = @campaign.operations.includes(:events)
+    @markers = @campaign.events.to_gmaps4rails
 
-    # @units = @operations.collect do |operation|
-    #   operation.units
-    # end
-    # @units.flatten!
-    # @markers = @operations.map do |operation|
-    #   operation.boundaries
-    # end
-    # @markers = @markers.to_json
-
-    @markers = [{}].to_json
     respond_to do |format|
       format.html
       format.json { render json: @operations }
