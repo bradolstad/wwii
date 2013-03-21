@@ -3,7 +3,7 @@
   <p class="main-text">
     <%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %><%= " to "+ @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></p>
 <div id="operations">
-  <ul class="main-list">
+  <ul class="main-list" id="operations_blah">
     <div class="wiki">
       <%= raw link_to_pages(@wiki.full_text, @operation.id) %>
     </div>
