@@ -6,7 +6,7 @@ class Wiki
     end
 
     def full_text
-      if h = @wiki.sanitized_content
+      if @wiki && h = @wiki.sanitized_content
         paragraphs = h.scan('<p>').count
         topics = h.scan(/==(.+)==/).count
         images = @wiki.image_urls
@@ -47,7 +47,7 @@ class Wiki
     end
 
     def summary
-      @wiki.sanitized_content.slice(0..275) + '...</p>'
+      @wiki.sanitized_content.slice(0..275) + '...</p>' unless @wiki.nil?
     end
   end
 

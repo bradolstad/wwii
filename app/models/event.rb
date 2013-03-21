@@ -13,21 +13,11 @@ class Event < ActiveRecord::Base
   scope :no_planes, lambda { where("event_type_id != ?",EventType.find_by_name("Plane Crash").id)}
 
   def date_formated
-    if self.event_date.present?
-      return event_date.strftime('%a, %b %e %Y')
-    else
-      return ""
-    end
+    (event_date.strftime('%a, %b %e %Y') unless event_date.nil?) || ""
   end
 
   def flag_path
-    if self.country.present?
-      country.flag_path
-    elsif self.unit.present? && self.unit.country.present?
-      unit.country.flag_path
-    else
-      nil
-    end
+      (country.flag_path unless country.nil?) || (unit.country.flag_path unless unit.nil?) || nil
   end
 
   def geocode?
@@ -44,11 +34,11 @@ class Event < ActiveRecord::Base
 
   def location
      return {lat: lat, lng: lng} unless lat.nil? || lng.nil?
-   end
+  end
 
   def gmaps4rails_infowindow
     #todo - Clean this up
-    "<div class=\"gwindow\"><h5>#{name}</h5><h6>on #{date_formated}</h6><p><a href=\"/countries/#{self.unit.country.id unless self.unit.nil?||self.unit.country.nil?}\"><img src=\"/assets/#{flag_path}\" width=40 class=\"flag\" align=\"left\"/></a><a href=\"/units/#{self.unit.id unless self.unit.nil?}\">#{self.unit.name unless self.unit.nil?}</a><br><a href=\"/operations/#{self.operation.id unless self.operation.nil?}\">#{'Operation ' + self.operation.name unless self.operation.nil?}</a></p></div>"
+    "<div class='gwindow'><h5>#{name}</h5>      <h6>on #{date_formated}</h6><p><a href=\"/countries/#{self.unit.country.id unless self.unit.nil?||self.unit.country.nil?}\"><img src=\"/assets/#{flag_path}\" width=40 class=\"flag\" align=\"left\"/></a><a href=\"/units/#{self.unit.id unless self.unit.nil?}\">#{self.unit.name unless self.unit.nil?}</a><br><a href=\"/operations/#{self.operation.id unless self.operation.nil?}\">#{'Operation ' + self.operation.name unless self.operation.nil?}</a></p></div>"
   end
 
   def gmaps4rails_title

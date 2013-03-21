@@ -6,7 +6,7 @@ $ ->
   step: 86400,
   values: [ $('#slider').data('defmin') || $('#slider').data('mindate'), $('#slider').data('defmax') || $('#slider').data('maxdate')],
   slide: (event,ui) ->
-    $("#slider #date").val("Date: " + ui.values[0] + " - " + ui.values[1] )
+    $("#slider #date").val("Date: " + $.datepicker.formatDate('M d yy', new Date(ui.values[0]*1000)) + " - " + $.datepicker.formatDate('M d yy', new Date(ui.values[1]*1000)) )
   stop: (event,ui) ->
     value1 = ui.values[0]
     value2 = ui.values[1]
@@ -18,4 +18,4 @@ $ ->
       cache: false
       })
     })
-  $("#slider #date").val("Date: " + $("#slider-range").slider("values", 0) + " - " + $("#slider-range").slider("values", 1 ) )
+  $("#slider #date").val("Date: " + $.datepicker.formatDate('M d yy', new Date($("#slider-range").slider("values", 0)*1000)) + " - " + $.datepicker.formatDate('M d yy', new Date($("#slider-range").slider("values", 1 )*1000)) )
