@@ -24,7 +24,7 @@ class Wiki
         end
         h.gsub!(/====\s*(.+)\s*====/,'<i>\1</i>')
         h.gsub!(/===\s*(.+)\s*===/,'<b>\1</b>')
-        h.sub!(/<p>\s*==(.+)\s*==/,'<a class="main-list main-list-link" id="wiki_div_link_0" data-toggle="collapse" data-target="#wiki_div_0">\1</a><div id="wiki_div_0" class="collapse"><p>')
+        h.sub!(/<p>\s*==(.+)\s*==/,'<p class="clearfix"></p><a class="main-list main-list-link" id="wiki_div_link_0" data-toggle="collapse" data-target="#wiki_div_0">\1</a><div id="wiki_div_0" class="collapse"><p>')
         index = 1
         if topics > 0
           while index < topics do
