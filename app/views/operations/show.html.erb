@@ -8,7 +8,7 @@
 <div class="wiki">
   <%= raw @wiki.full_text %>
 </div>
-
+<%= render 'date_slider', :operation=>@operation %>
 <script>
 ( function() {
   ww.initAtEnd( function() {

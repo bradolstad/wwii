@@ -1,10 +1,9 @@
-<p id="notice"><%= notice %></p>
-<h1><%= @country.name %></h1>
-<h4>Units</h4>
-<ul class="unstyled">
-  <% @units.each do |unit| %>
-    <li><%= link_to unit.name, unit %></li>
-  <% end  %>
-</ul>
-<%= link_to 'Edit', edit_country_path(@country),class:"btn btn-warning" %>
-<%= link_to 'Back', countries_path, class:"btn"%>
+<h2 class="main-title"><%= @country.name %></h2>
+<p class="main-text">Units</p>
+<div id="units">
+  <ul class="main-list">
+    <% @units.each do |unit| %>
+      <li class="main-list-item"><%= link_to unit.name, unit, class:"main-list-link"%></li>
+    <% end  %>
+  </ul>
+</div>

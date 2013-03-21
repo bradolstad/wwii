@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def new
-    @markers = [{}].to_json
   end
 
   def create
@@ -15,6 +14,6 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_url
+    redirect_to :back
   end
 end

@@ -1,8 +1,10 @@
-<h1>Sign In</h1>
-<p><%= notice %></p>
-<%= form_tag login_path %>
-  <%= label_tag :username %>
-  <%= text_field_tag :username %>
-  <%= label_tag :password %>
-  <%= password_field_tag :password %><br>
-  <%= submit_tag "Login" %>
+<h2 class="main-title">Sign In</h2>
+<p class="main-text"><%= notice %></p>
+<ul class="main-list narrow">
+  <%= form_tag login_path %>
+    <li class="main-list-item"><%= label_tag :username %></li>
+    <li class="main-list-item"><%= text_field_tag :username %></li>
+    <li class="main-list-item"><%= label_tag :password %></li>
+    <li class="main-list-item"><%= password_field_tag :password %></li>
+    <li class="main-list-item"><%= submit_tag "Login", class:"btn" %></li>
+</ul>

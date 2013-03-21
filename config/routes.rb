@@ -9,7 +9,7 @@ Wwii::Application.routes.draw do
   delete "logout"=>"Sessions#destroy", as:"logout"
 
   get "logout"=>"Sessions#destroy"
-
+  resources :icons
   resources :users
   resources :unit_classes
   resources :operations

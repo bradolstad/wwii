@@ -8,17 +8,19 @@ class Operation < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
-   def self.events?
+  def self.events?
     Operation.where(active:true).order('name asc')
   end
 
-  def filtered_events(date=nil)
-    @event_type = EventType.where(name:"Plane Crash").first
-    if date
-      date = DateTime.parse(date)
-      return Event.includes(:unit,:country).where('operation_id = ? AND event_type_id != ? AND event_date = ?',self.id, @event_type.id, date)
+  def filtered(min=nil,max=nil)
+    if min.nil? && max.nil?
+      self.events.includes(:unit,:country).no_planes.order('event_date asc')
+    elsif min.nil?
+      self.events.includes(:unit,:country).no_planes.where("event_date <= ?",max).order('event_date asc')
+    elsif max.nil?
+      self.events.includes(:unit,:country).no_planes.where("event_date >= ?",min).order('event_date asc')
     else
-      return Event.includes(:unit,:country).where('operation_id = ? AND event_type_id != ?',self.id, @event_type.id).order('event_date asc')
+      self.events.includes(:unit,:country).no_planes.where("event_date between ? and ? ",min,max).order('event_date asc')
     end
   end
 
@@ -53,8 +55,16 @@ class Operation < ActiveRecord::Base
     return date_object.strftime('%b %Y') unless date_object == nil
   end
 
+  def first_date
+    return self.events.no_planes.order("event_date asc").first.event_date.beginning_of_day || self.start_date.beginning_of_day
+  end
+
+  def last_date
+    return self.events.no_planes.order("event_date asc").last.event_date.end_of_day || self.end_date.end_of_day
+  end
+
   def boundaries
-    locations = self.events.collect { |event| {lat:event.lat,lng:event.lng} }
+    locations = self.events.collect { |event| event.location }
     return locations.uniq
   end
 end

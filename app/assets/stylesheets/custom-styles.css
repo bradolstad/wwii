@@ -126,9 +126,18 @@ body {
   border-bottom-color: #b7b0aa;
 }
 
-/*styling for wikipedia text*/
+/*marker info window*/
+div.gwindow .flag {
+  padding: 5px 3px 5px 0px;
+}
+div.gwindow p {font-size: 90%;}
+
+/*wikipedia text*/
+.narrow {margin-left: 30px;padding-right: 30px;}
+
 .wiki {
-  margin: 0 30px;
+  margin: 5px 0 5px 30px;
+  padding-right: 30px;
 
   font-family: 'Gentium Book Basic', georgia, serif;
   text-transform: none;
@@ -146,4 +155,5 @@ body {
   margin-bottom: 10px;
 }
 
+/*date slider*/
 #slider {width: 50%;position:absolute;bottom:20px;right:20px;}
