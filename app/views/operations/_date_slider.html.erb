@@ -1,6 +1,6 @@
 <% content_for :slider do %>
   <%= content_tag "div", id:"slider", data:{mindate:operation.first_date.to_i,maxdate:operation.last_date.to_i,url:operation_path, defmin:(operation.start_date.to_i unless operation.start_date.nil?), defmax:(operation.end_date.to_i unless operation.end_date.nil?)} do %>
-      <input type="text" id="date" style="border:none;background-color:white;font-weight:bold;" />
+      <input type="text" id="date" style="border:none;width:250px;text-align:center;background-color:rgba(255,255,255,0.5);color:black;margin:5px auto;font-weight:bold;" />
       <div id="slider-range"></div>
   <% end %>
 <% end %>

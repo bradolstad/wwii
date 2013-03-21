@@ -33,12 +33,12 @@ class Wiki
           end
           h = h + "</p></div>"
         end
-        while images.present? && images.count > 0
-          if images.count.odd?
-            h.sub!("<p>","<p class=\"clearfix\"><img class=\"img-polaroid\" src=\"#{images.delete_at(0)}\" width=150 align=\"left\"\>")
-          else
-            h.sub!("<p>","<p class=\"clearfix\"><img class=\"img-polaroid\" src=\"#{images.delete_at(0)}\" width=150 align=\"right\"\>")
-          end
+        index = 0
+        while images.present? && images.count >= 0
+          image = images.delete_at(0)
+          (align = "left" if images.count.odd?) || align = "right"
+          h.sub!("<p>","<p class=\"clearfix\"><div id=\"wiki_image_#{index}\" class=\"modal hide fade\" tabindex=\"-1\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">x</button><h3>&nbsp;</h3></div><div class=\"modal-body\"><img src=\"#{image}\"/></div></div><img onclick=\"$('#wiki_image_#{index}').modal('toggle')\" class=\"img-polaroid\" src=\"#{image}\" width=150 align=\"#{align}\"/>")
+          index += 1
         end
         h
       else
