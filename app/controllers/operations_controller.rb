@@ -17,9 +17,9 @@ class OperationsController < ApplicationController
 
   def show
     @operation = Operation.find(params[:id])
-    min = (Time.at(params[:start].to_i).to_datetime.beginning_of_day if params[:start].present?) || @operation.start_date.beginning_of_day
+    min = (Time.at(params[:start].to_i).to_datetime.beginning_of_day if params[:start].present?) || (@operation.start_date.beginning_of_day if @operation.start_date.present?)
 
-    max = (Time.at(params[:end].to_i).to_datetime.end_of_day if params[:end].present?) || @operation.end_date.end_of_day
+    max = (Time.at(params[:end].to_i).to_datetime.end_of_day if params[:end].present?) || (@operation.end_date.end_of_day if @operation.end_date.present?)
     @events = @operation.filtered(min,max)
 
     #@markers = @operation.boundaries.to_json
