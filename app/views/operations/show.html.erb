@@ -8,3 +8,29 @@
 <div class="wiki">
   <%= raw @wiki.full_text %>
 </div>
+
+<script>
+( function() {
+  ww.initAtEnd( function() {
+    ww.app.operation.eventsCollection.url = '/operations/<%= @operation.id %>.json';
+    ww.app.operation.eventsCollection.fetch().done( function() {
+      var app = ww.app.operation,
+          allLongitudes = app.eventsCollection.pluck( 'lng' ),
+          allLatitudes = app.eventsCollection.pluck( 'lat' ),
+          middleLong = ( _.max( allLongitudes ) + _.min( allLongitudes ) ) / 2,
+          middleLat = ( _.max( allLatitudes ) + _.min( allLatitudes ) ) / 2,
+          newBounds = [
+            { lat : middleLat - 5, lng : middleLong - 15 },
+            { lat : middleLat - 5, lng : middleLong - 5 },
+            { lat : middleLat + 5, lng : middleLong - 15 },
+            { lat : middleLat + 5, lng : middleLong - 5 },
+          ];
+
+      Gmaps.map.map_options.bounds = newBounds;
+      Gmaps.map.adjustMapToBounds();
+
+      // ww.app.operation.timelineView.render();
+    } );
+  } );
+} )();
+</script>

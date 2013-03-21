@@ -1,7 +1,12 @@
 var ww = {
 	app : {},
+	initQueue : [],
+	queueAtEnd : [],
 	init : function( func ) {
-		ww.initQueue.done( func );
+		ww.initQueue.push( func );
+	},
+	initAtEnd : function( func ) {
+		ww.queueAtEnd.push( func );
 	}
 };
 
@@ -39,7 +44,6 @@ var ww = {
 					'/assets/jquery_ujs.js?body=1',
 					'/assets/jquery-ui.js?body=1'
 				] );
-				ww.initQueue = jQuery.Deferred();
 			}
 		},
 		{
@@ -51,7 +55,16 @@ var ww = {
 			],
 
 			complete : function() {
-				ww.initQueue.resolve();
+				var i = 0;
+
+				for ( i; i < ww.initQueue.length; i++ ) {
+					ww.initQueue[ i ]();
+				}
+
+				for ( i = 0; i < ww.queueAtEnd.length; i++ ) {
+					ww.queueAtEnd[ i ]();
+				}
+
 				// mainInit();
 
 				// !ww.show_edit_fields && ( Backbone.history.start() ); // start the app, but only if we're not showing edit fields

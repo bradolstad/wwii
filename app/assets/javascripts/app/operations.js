@@ -8,10 +8,9 @@
 		o.collection = Backbone.Collection.extend( o.collectionCore );
 		o.listView = Backbone.View.extend( o.listViewCore );
 		o.singleView = Backbone.View.extend( o.singleViewCore );
-		o.detailView = Backbone.View.extend( o.detailViewCore );
-		o.detailModel = Backbone.Model.extend( o.detailModelCore );
 		o.eventModel = Backbone.Model.extend( o.eventModelCore );
 		o.eventsCollection = Backbone.Collection.extend( o.eventsCollectionCore );
+		o.timelineView = Backbone.View.extend( o.timelineViewCore );
 
 		return o;
 	};
@@ -22,11 +21,11 @@
 
 		app.collection = new o.collection();
 		app.listView = new o.listView( { collection : app.collection } );
-		app.detailView = new o.detailView();
 		app.eventsCollection = new o.eventsCollection();
+		app.timelineView = new o.timelineView( { collection : app.eventsCollection } );
 
 		return o;
-	}
+	};
 
 	operations.modelCore = {
 		defaults : {
@@ -123,7 +122,7 @@
 			return this;
 		},
 
-		showOperation : function( ev ) {
+		showOperation : function() {
 			ww.app.router.navigate( 'campaigns/'+ ww.app.campaign.collection.where( { selected : true } )[ 0 ].get( 'id' ) +'/operations/' + this.model.get( 'id' ) + '/', { trigger : true } );
 
 			return false;
@@ -135,14 +134,6 @@
 			this.model = undefined;
 		}
 	};
-
-	operations.detailModelCore = {
-		defaults : {
-
-		}
-	};
-
-	operations.detailViewCore = {};
 
 	operations.eventModelCore = {
 		defaults : {
@@ -159,6 +150,74 @@
 	operations.eventsCollectionCore = {
 		initialize : function() {
 			this.model = operations.eventModel;
+		},
+
+		comparator : function( model ) {
+			return model.get( 'date' );
+		}
+	};
+
+	operations.timelineViewCore = {
+		id : 'timeline',
+
+		initialize : function() {
+			_.bindAll( this );
+
+			this.listenTo( ww.app.operation.eventsCollection, 'reset', this.render );
+		},
+
+		render : function() {
+			// this.$el.appendTo( 'body' );
+			// createStoryJS({
+			// 	type : 'timeline',
+			// 	source : this.getTimelineJSON(),
+			// 	embed_id : 'timeline',
+			// 	css : '/assets/timeline.css?body=1',
+			// 	js : '/assets/libraries/timeline-min.js?body=1'
+			// });
+		},
+
+		getTimelineJSON : function() {
+			var eventsJSON = this.collection.toJSON(),
+				timelineJSON = {
+					timeline : {
+						"headline" : "Operation Timeline",
+						"type" : "default",
+						"text" : "", // <p>Intro body text goes here, some HTML is ok</p>
+						"asset" : {
+							// "media" : "http://yourdomain_or_socialmedialink_goes_here.jpg",
+							// "credit" : "Credit Name Goes Here",
+							// "caption" : "Caption text goes here"
+						},
+						"date" : []
+					}
+				},
+				i,
+				tempDate,
+				tempDateStr;
+
+			for ( i = 0; i < eventsJSON.length; i++ ) {
+				tempDate = new Date( eventsJSON[ i ].date * 1000 );
+				tempDateStr = tempDate.getUTCFullYear() +","+
+					( tempDate.getUTCMonth() + 1 ) +","+
+					tempDate.getUTCDate();
+
+				if ( i === 0 ) {
+					timelineJSON.timeline.startDate = tempDate.getUTCFullYear();
+				}
+
+				timelineJSON.timeline.date.push( {
+					startDate : tempDateStr,
+					endDate : tempDateStr,
+					headline : eventsJSON[ i ].name,
+					text : eventsJSON[ i ].tooltip/*,
+					asset : {
+						media : eventsJSON[ i ].marker_icon
+					}*/
+				} );
+			}
+
+			return timelineJSON;
 		}
 	};
 

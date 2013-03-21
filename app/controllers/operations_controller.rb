@@ -37,14 +37,14 @@ class OperationsController < ApplicationController
 
     @wiki = Wiki.new(@operation.name)
 
-    @combined_operation_data = {
-      'events' => @new_events,
-      'article' => @wiki.full_text
-    }
+    # @combined_operation_data = {
+    #   'events' => @new_events,
+    #   'article' => @wiki.full_text
+    # }
 
     respond_to do |format|
       format.html
-      format.json { render json: @combined_operation_data }
+      format.json { render json: @new_events }
       format.js
     end
   end
