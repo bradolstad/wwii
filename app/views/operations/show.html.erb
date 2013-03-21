@@ -8,6 +8,18 @@
 <div class="wiki">
   <%= raw @wiki.full_text %>
 </div>
+<div id="events">
+  <ul class="main-list" id="events-list">
+    <% @events.each do |event| %>
+      <li class="main-list-item">
+        <a class="main-list-link" data-toggle="collapse" data-target="#event_accordion_<%= event.id %>">
+          <%= event.name %> - <%= event.date_formated %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
 <%= render 'date_slider', :operation=>@operation %>
 <script>
 ( function() {
