@@ -1,5 +1,7 @@
-<h2 class="main-title">Operation <%= @operation.name %></h2>
-<div id="operation-container">
+<h2 class="main-title">
+  <!-- Operation --> <%= @operation.name %>
+</h2>
+<div class="main-container">
   <p class="main-text">
     <%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %>
     <%= " to "+ @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %>

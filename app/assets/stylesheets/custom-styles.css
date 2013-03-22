@@ -21,11 +21,43 @@ body {
 }
 
 #primary-menu {
-  padding-right: 30px;
-  padding-left: 30px;
+  position: absolute;
+  z-index: 3;
+  right: 0px;
+  top: 0px;
+  padding: 5px 15px;
 
-  line-height: 40px;
-  text-align: right;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+
+  background-color: #4a3f2d;
+  background-color: rgba(74, 63, 45, 0.8);
+  box-shadow: 0 0 3px rgba(0,0,0,0.4);
+  border-bottom-left-radius: 3px;
+}
+
+.primary-menu-link {
+  margin-left: 30px;
+
+  color: #cbc5b3;
+  text-transform: uppercase;
+}
+
+.primary-menu-link:first-child {
+  margin-left: 0;
+}
+
+.primary-menu-link:hover {
+  color: #ddd6c3;
+  text-decoration: none;
+}
+
+.navbar .navbar-inner {
+  background: transparent;
+  border-bottom: 0 none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 /* NOTE: Map wouldn't show up without a specified width and height not sure why */
@@ -41,14 +73,14 @@ body {
   overflow: hidden;
   padding-top: 10px;
   width: 38.2%;
-  height: 90%;
+  height: 100%;
   max-width: 550px;
-  left: 30px;
-  top: 30px;
+  left: 0px;
+  top: 0px;
   -webkit-font-smoothing: antialiased;
   background-color: #ddd6c3;
   background-color: rgba(221, 214, 195, 0.95);
-  box-shadow: 0px 0 10px 0px rgba(0,0,0,0.4);
+  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.4), 0 0 20px 10px rgba(74, 63, 45, 0.1) inset;
 }
 
 #main > .loader-container {
@@ -58,10 +90,9 @@ body {
   text-align: center;
 }
 
-#operation-container,
-.list-container {
+.main-container {
   overflow: auto;
-  height: 600px;
+  height: 100%;
 }
 
 .main-title,
@@ -74,7 +105,8 @@ body {
 
 .main-title {
   display: inline-block;
-  margin: 10px 30px 15px 30px;
+  margin: 0 30px 15px 30px;
+  padding-top: 10px;
   padding-bottom: 20px;
 
   border-bottom: 4px solid #4a3f2d;

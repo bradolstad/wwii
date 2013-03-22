@@ -17,28 +17,23 @@
   </script>
 </head>
 <body>
-  <div class="row-fluid">
-    <nav class="navbar navbar-inverse navbar-fixed-top span12">
-      <div class="navbar-inner">
-        <div id="primary-menu" class="nav-collapse collapse span8 offset4">
-          <% if authorized? %>
-            <%= link_to "Campaigns", campaigns_path %> |
-            <%= link_to "Operations", operations_path %> |
-            <%= link_to "Events", events_path %> |
-            <%= link_to "Countries", countries_path %> |
-            <%= link_to "Units", units_path %> |
-            <%= link_to "Icons", icons_path %> |
-            <%= link_to "Event Types", event_types_path %> |
-            <%= link_to "Users", users_path %> |
-            <%= link_to "Logout", logout_url, method:"delete" %>
-          <% else %>
-            <%= link_to "Campaigns", campaigns_path %> |
-            <%= link_to "Operations", operations_path %> |
-            <%= link_to "Countries", countries_path %> |
-          <% end %>
-        </div>
-      </nav>
-    </div>
+  <div id="primary-menu">
+    <% if authorized? %>
+      <%= link_to "Campaigns", campaigns_path %> |
+      <%= link_to "Operations", operations_path %> |
+      <%= link_to "Events", events_path %> |
+      <%= link_to "Countries", countries_path %> |
+      <%= link_to "Units", units_path %> |
+      <%= link_to "Icons", icons_path %> |
+      <%= link_to "Event Types", event_types_path %> |
+      <%= link_to "Users", users_path %> |
+      <%= link_to "Logout", logout_url, method:"delete" %>
+    <% else %>
+      <%= link_to "Campaigns", campaigns_path, class:"primary-menu-link" %>
+      <%= link_to "Operations", operations_path, class:"primary-menu-link" %>
+      <%= link_to "Countries", countries_path, class:"primary-menu-link" %>
+    <% end %>
+  </div>
   <% if @controller === "events" && @action === "edit" %>
     <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true, "do_clustering"=>false}}) %>
   <% elsif @controller === "operations" %>

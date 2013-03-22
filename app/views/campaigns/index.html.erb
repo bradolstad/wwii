@@ -1,6 +1,6 @@
 <h2 class="main-title">Operation Overlord</h2>
-<p class="main-text">Choose a campaign</p>
-<div class="list-container">
+<div class="main-container">
+	<p class="main-text">Choose a campaign</p>
 	<ul class="main-list">
 	<% @campaigns.each do |campaign| %>
 	  <%= render 'campaign',:campaign=>campaign %>

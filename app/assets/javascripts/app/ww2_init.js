@@ -25,6 +25,14 @@ var ww = {
 		mainInit = function() {
 			ww.app.mainView = new ( Backbone.View.extend( mainViewCore ) )();
 			ww.app.mainView.renderLoader();
+		},
+		resizeMainContainer = function() {
+			var $mainEl = $( '#main' ),
+				mainHeight = $mainEl.outerHeight(),
+				mainTitleHeight = $mainEl.find( '.main-title' ).outerHeight(),
+				mainContainerHeight = mainHeight - mainTitleHeight;
+
+			$mainEl.find( '.main-container' ).css( 'height', mainContainerHeight + 'px' );
 		};
 
 	yepnope( [
@@ -64,6 +72,8 @@ var ww = {
 				for ( i = 0; i < ww.queueAtEnd.length; i++ ) {
 					ww.queueAtEnd[ i ]();
 				}
+
+				$( window ).on( 'resize', resizeMainContainer );
 
 				// mainInit();
 
