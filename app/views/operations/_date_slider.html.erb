@@ -4,3 +4,35 @@
     <div class="slider"></div>
   </div>
 <% end %>
+<script>
+( function() {
+  ww.initAtEnd( function() {
+    ww.app.operation.timelineView.set_default_min_date( <%= @defmin %> );
+    ww.app.operation.eventsCollection.url = '<%= operation_path %>';
+    ww.app.operation.eventsCollection.fetch().done( function() {
+      var app = ww.app.operation,
+          allLongitudes = app.eventsCollection.pluck( 'lng' ),
+          allLatitudes = app.eventsCollection.pluck( 'lat' ),
+          middleLong = ( _.max( allLongitudes ) + _.min( allLongitudes ) ) / 2,
+          middleLat = ( _.max( allLatitudes ) + _.min( allLatitudes ) ) / 2,
+          newBounds = [
+            { lat : middleLat - 5, lng : middleLong - 15 },
+            { lat : middleLat - 5, lng : middleLong - 5 },
+            { lat : middleLat + 5, lng : middleLong - 15 },
+            { lat : middleLat + 5, lng : middleLong - 5 },
+          ];
+
+      Gmaps.map.callback( function() {
+        Gmaps.map.map_options.bounds = newBounds;
+        Gmaps.map.adjustMapToBounds();
+      } );
+
+      // ww.app.operation.timelineView.render();
+
+      // $dateEl.empty().append();
+
+      // $("#slider #date").val("Date: " + $.datepicker.formatDate('M d yy', new Date($("#slider-range").slider("values", 0)*1000)) + " - " + $.datepicker.formatDate('M d yy', new Date($("#slider-range").slider("values", 1 )*1000)) )
+    } );
+  } );
+} )();
+</script>
