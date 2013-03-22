@@ -15,6 +15,4 @@
 //= require jquery_ujs
 //= require_tree ./libraries
 //= require jquery-ui
-//= require icons
-//= require slider
 //= require_tree ./app
