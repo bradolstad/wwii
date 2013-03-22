@@ -1,6 +1,6 @@
 <h2 class="main-title"><%= @country.name %></h2>
-<p class="main-text">Units</p>
-<div id="units">
+<div class="main-container">
+  <p class="main-text">Units</p>
   <ul class="main-list">
     <% @units.each do |unit| %>
       <li class="main-list-item"><%= link_to unit.name, unit, class:"main-list-link"%></li>
