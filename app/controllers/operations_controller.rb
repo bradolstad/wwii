@@ -28,16 +28,16 @@ class OperationsController < ApplicationController
     #@markers = @operation.boundaries.to_json
     @markers = @events.to_gmaps4rails
 
-    @new_events = @events.map do |event|
+    @new_markers = @events.collect do |event|
       {
         event_id:event.id,
-        date:event.event_date.to_i,
         name:event.name,
-        lat:event.lat,
-        lng:event.lng,
-        tooltip:event.gmaps4rails_infowindow,
-        marker_icon:""
-        }
+        date:event.event_date.to_i,
+        description: event.gmaps4rails_infowindow,
+        title: event.gmaps4rails_title,
+        lng: event.lng,
+        lat: event.lat,
+      }.merge(event.gmaps4rails_marker_picture)
     end
 
     @wiki = Wiki.new(@operation.name,'Operation ')
@@ -49,7 +49,7 @@ class OperationsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @new_events }
+      format.json { render json: @new_markers }
       format.js
     end
   end

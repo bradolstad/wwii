@@ -173,16 +173,19 @@
 		render : function() {
 			var minDate = this.collection.min( function( model ) { return model.get( 'date' ); } ).get( 'date' ),
 				maxDate = this.collection.max( function( model ) { return model.get( 'date' ); } ).get( 'date' ),
-				$dateEl = this.$el.children( '.date' );
+				$dateEl = this.$el.children( '.date' ),
+				real_min_date = this.defmin || minDate;
 
 			this.$el.children( '.slider' ).slider( {
 				min : minDate,
 				max : maxDate,
 				step : 86400,
-				value : this.defmin || minDate,
+				value : real_min_date,
 				slide : this.ev_change_date_display,
 				stop : this.determine_nearest_event_date
 			} );
+
+			this.change_date_display( new Date( real_min_date * 1000 ) );
 		},
 
 		ev_change_date_display : function( ev, ui ) {
