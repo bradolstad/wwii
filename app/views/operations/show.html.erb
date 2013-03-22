@@ -8,6 +8,8 @@
 <div class="wiki">
   <%= raw @wiki.full_text %>
 </div>
+
+<h3 class="subtitle">Events</h3>
 <div id="events">
   <ul class="main-list" id="events-list">
     <% @events.each do |event| %>
@@ -21,9 +23,11 @@
 </div>
 
 <%= render 'date_slider', :operation=>@operation %>
+
 <script>
 ( function() {
   ww.initAtEnd( function() {
+    ww.app.operation.timelineView.set_default_min_date( <%= @defmin %> );
     ww.app.operation.eventsCollection.url = '/operations/<%= @operation.id %>.json';
     ww.app.operation.eventsCollection.fetch().done( function() {
       var app = ww.app.operation,
@@ -38,10 +42,16 @@
             { lat : middleLat + 5, lng : middleLong - 5 },
           ];
 
-      Gmaps.map.map_options.bounds = newBounds;
-      Gmaps.map.adjustMapToBounds();
+      Gmaps.map.callback( function() {
+        Gmaps.map.map_options.bounds = newBounds;
+        Gmaps.map.adjustMapToBounds();
+      } );
 
       // ww.app.operation.timelineView.render();
+
+      // $dateEl.empty().append();
+
+      // $("#slider #date").val("Date: " + $.datepicker.formatDate('M d yy', new Date($("#slider-range").slider("values", 0)*1000)) + " - " + $.datepicker.formatDate('M d yy', new Date($("#slider-range").slider("values", 1 )*1000)) )
     } );
   } );
 } )();

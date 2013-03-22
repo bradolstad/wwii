@@ -158,66 +158,92 @@
 	};
 
 	operations.timelineViewCore = {
-		id : 'timeline',
-
 		initialize : function() {
 			_.bindAll( this );
 
-			this.listenTo( ww.app.operation.eventsCollection, 'reset', this.render );
+			this.listenTo( this.collection, 'reset', this.render );
+
+			this.setElement( '#timeline' );
+		},
+
+		set_default_min_date : function( defmin ) {
+			this.defmin = defmin;
 		},
 
 		render : function() {
-			// this.$el.appendTo( 'body' );
-			// createStoryJS({
-			// 	type : 'timeline',
-			// 	source : this.getTimelineJSON(),
-			// 	embed_id : 'timeline',
-			// 	css : '/assets/timeline.css?body=1',
-			// 	js : '/assets/libraries/timeline-min.js?body=1'
-			// });
+			var minDate = this.collection.min( function( model ) { return model.get( 'date' ); } ).get( 'date' ),
+				maxDate = this.collection.max( function( model ) { return model.get( 'date' ); } ).get( 'date' ),
+				$dateEl = this.$el.children( '.date' );
+
+			this.$el.children( '.slider' ).slider( {
+				min : minDate,
+				max : maxDate,
+				step : 86400,
+				value : this.defmin || minDate,
+				slide : this.ev_change_date_display,
+				stop : this.determine_nearest_event_date
+			} );
 		},
 
-		getTimelineJSON : function() {
-			var eventsJSON = this.collection.toJSON(),
-				timelineJSON = {
-					timeline : {
-						"headline" : "Operation Timeline",
-						"type" : "default",
-						"text" : "", // <p>Intro body text goes here, some HTML is ok</p>
-						"asset" : {
-							// "media" : "http://yourdomain_or_socialmedialink_goes_here.jpg",
-							// "credit" : "Credit Name Goes Here",
-							// "caption" : "Caption text goes here"
-						},
-						"date" : []
-					}
-				},
+		ev_change_date_display : function( ev, ui ) {
+			var date = new Date( ui.value * 1000 );
+
+			this.change_date_display( date );
+		},
+
+		change_date_display : function( date ) {
+			var month = $.datepicker.regional[""].monthNamesShort[ date.getUTCMonth() ],
+				day_of_month = date.getUTCDate(),
+				year = date.getUTCFullYear();
+
+			this.$el.children( '.date' ).empty().append( month +' '+ day_of_month +', '+ year );
+		},
+
+		determine_nearest_event_date : function( ev, ui ) {
+			var ubound_date, lbound_date,
+				current_date = ui.value,
+				models_by_date = this.collection.sortBy( 'date' ),
 				i,
-				tempDate,
-				tempDateStr;
+				selectedDate;
 
-			for ( i = 0; i < eventsJSON.length; i++ ) {
-				tempDate = new Date( eventsJSON[ i ].date * 1000 );
-				tempDateStr = tempDate.getUTCFullYear() +","+
-					( tempDate.getUTCMonth() + 1 ) +","+
-					tempDate.getUTCDate();
+			for ( i = 0; i < models_by_date.length; i++ ) {
+				ubound_date = models_by_date[ i ].attributes.date;
 
-				if ( i === 0 ) {
-					timelineJSON.timeline.startDate = tempDate.getUTCFullYear();
+				if ( ubound_date > current_date ) {
+					i = models_by_date.length;
+					selectedDate = this.date_difference( ubound_date, current_date ) > this.date_difference( lbound_date, current_date ) ?
+							lbound_date :
+							ubound_date;
+
+					this.move_slider_to_date( selectedDate ).
+						change_date_display( new Date( selectedDate * 1000 ) );
+				} else {
+					lbound_date = ubound_date;
 				}
+			}
+		},
 
-				timelineJSON.timeline.date.push( {
-					startDate : tempDateStr,
-					endDate : tempDateStr,
-					headline : eventsJSON[ i ].name,
-					text : eventsJSON[ i ].tooltip/*,
-					asset : {
-						media : eventsJSON[ i ].marker_icon
-					}*/
-				} );
+		date_difference : function( date_1, date_2 ) {
+			return Math.abs( date_1 - date_2 );
+		},
+
+		move_slider_to_date : function( date ) {
+			this.$el.children( '.slider' ).slider( 'value', date );
+			this.show_events_for_day( date );
+
+			return this;
+		},
+
+		show_events_for_day : function( date ) {
+			var events_for_day = this.collection.where( { date : date } ),
+				events_json = [],
+				i;
+
+			for ( i = 0; i < events_for_day.length; i++ ) {
+				events_json.push( events_for_day[ i ].toJSON() );
 			}
 
-			return timelineJSON;
+			Gmaps.map.replaceMarkers( events_json );
 		}
 	};
 
