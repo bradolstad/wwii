@@ -7,12 +7,7 @@
     <%= " to "+ @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %>
   </p>
   <%= render "wiki/full", wiki:@wiki %>
-  <h3 class="subtitle">Events</h3>
-  <div id="events">
-    <ul class="main-list" id="events-list">
-      <%= render @events %>
-    </ul>
-  </div>
+  <%= render "events/event_list" %>
 </div>
 
 <%= render 'date_slider', :operation=>@operation %>

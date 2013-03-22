@@ -14,6 +14,7 @@ class UnitsController < ApplicationController
   # GET /units/1.json
   def show
     @unit = Unit.find(params[:id])
+    @events = @unit.events
     @markers = @unit.events.to_gmaps4rails
     @wiki = Wiki.new(@unit.name)
     respond_to do |format|
