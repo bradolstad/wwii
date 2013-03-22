@@ -57,7 +57,13 @@
   <%= yield :slider %>
 
   <script>
-  var i;
+  var resizeMainContainer = function() {
+      var $container = $( '#main .main-container' ),
+        documentHeight = $( document ).outerHeight();
+
+      $container.css( 'height', ( documentHeight - $container.offset().top - 15 ) + 'px' ); // 15 for padding
+    },
+    i;
 
   for ( i = 0; i < ww.initQueue.length; i++ ) {
     ww.initQueue[ i ]();
@@ -66,4 +72,7 @@
   for ( i = 0; i < ww.queueAtEnd.length; i++ ) {
     ww.queueAtEnd[ i ]();
   }
+
+  $( window ).on( 'resize', resizeMainContainer );
+  resizeMainContainer();
   </script>
