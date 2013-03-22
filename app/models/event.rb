@@ -69,4 +69,8 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def gmaps4rails_sidebar
+  "<span class='main-list-link'>#{name} - #{date_formated}</span>"
+end
+
 end

@@ -112,6 +112,8 @@ body {
 
 .narrow {margin-left: 30px;padding-right: 30px;}
 
+#markers_list a:hover {text-decoration: none;}
+
 /*marker info window*/
 div.gwindow .flag {
   padding: 5px 3px 5px 0px;
