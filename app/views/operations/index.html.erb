@@ -2,7 +2,7 @@
 <p class="main-text">
 	Follow the events of the war by selecting an operation.
 </p>
-<div id="operations">
+<div id="operations" class="list-container">
   <ul class="main-list">
     <% @operations.each do |operation| %>
       <%= render 'operation', :operation => operation %>

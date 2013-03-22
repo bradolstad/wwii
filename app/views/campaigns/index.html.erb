@@ -1,8 +1,10 @@
 <h2 class="main-title">WWII Campaigns</h2>
 <p class="main-text">Choose a campaign</p>
-<ul class="main-list">
-<% @campaigns.each do |campaign| %>
-  <%= render 'campaign',:campaign=>campaign %>
-<% end %>
-</li>
+<div class="list-container">
+	<ul class="main-list">
+	<% @campaigns.each do |campaign| %>
+	  <%= render 'campaign',:campaign=>campaign %>
+	<% end %>
+	</li>
+</div>
 

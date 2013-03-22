@@ -1,25 +1,27 @@
 <h2 class="main-title">
   Operation <%= @operation.name %>
 </h2>
-<p class="main-text">
-  <%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %>
-  <%= " to "+ @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %>
-</p>
-<div class="wiki">
-  <%= raw @wiki.full_text %>
-</div>
+<div id="operation-container">
+  <p class="main-text">
+    <%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %>
+    <%= " to "+ @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %>
+  </p>
+  <div class="wiki">
+    <%= raw @wiki.full_text %>
+  </div>
 
-<h3 class="subtitle">Events</h3>
-<div id="events">
-  <ul class="main-list" id="events-list">
-    <% @events.each do |event| %>
-      <li class="main-list-item">
-        <a class="main-list-link" data-toggle="collapse" data-target="#event_accordion_<%= event.id %>">
-          <%= event.name %> - <%= event.date_formated %>
-        </a>
-      </li>
-    <% end %>
-  </ul>
+  <h3 class="subtitle">Events</h3>
+  <div id="events">
+    <ul class="main-list">
+      <% @events.each do |event| %>
+        <li class="main-list-item">
+          <a class="main-list-link" data-toggle="collapse" data-target="#event_accordion_<%= event.id %>">
+            <%= event.name %> - <%= event.date_formated %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 
 <%= render 'date_slider', :operation=>@operation %>
