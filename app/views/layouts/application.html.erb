@@ -19,15 +19,15 @@
 <body>
   <div id="primary-menu">
     <% if authorized? %>
-      <%= link_to "Campaigns", campaigns_path %> |
-      <%= link_to "Operations", operations_path %> |
-      <%= link_to "Events", events_path %> |
-      <%= link_to "Countries", countries_path %> |
-      <%= link_to "Units", units_path %> |
-      <%= link_to "Icons", icons_path %> |
-      <%= link_to "Event Types", event_types_path %> |
-      <%= link_to "Users", users_path %> |
-      <%= link_to "Logout", logout_url, method:"delete" %>
+      <%= link_to "Campaigns", campaigns_path, class:"primary-menu-link" %> |
+      <%= link_to "Operations", operations_path, class:"primary-menu-link" %> |
+      <%= link_to "Events", events_path, class:"primary-menu-link" %> |
+      <%= link_to "Countries", countries_path, class:"primary-menu-link" %> |
+      <%= link_to "Units", units_path, class:"primary-menu-link" %> |
+      <%= link_to "Icons", icons_path, class:"primary-menu-link" %> |
+      <%= link_to "Event Types", event_types_path, class:"primary-menu-link" %> |
+      <%= link_to "Users", users_path, class:"primary-menu-link" %> |
+      <%= link_to "Logout", logout_url, method:"delete", class:"primary-menu-link" %>
     <% else %>
       <%= link_to "Campaigns", campaigns_path, class:"primary-menu-link" %>
       <%= link_to "Operations", operations_path, class:"primary-menu-link" %>
