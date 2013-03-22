@@ -4,13 +4,16 @@ class CampaignsController < ApplicationController
 
   require 'wikipedia'
   def index
-    @campaigns = Campaign.all
-    @campaign = Campaign.new
-    @markers = [{}].to_json
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @campaigns }
-    end
+    ## temporary redirect for starter night
+    redirect_to campaign_path(Campaign.find_by_name("Allied Invasion of Continent").id)
+
+    # @campaigns = Campaign.all
+    # @campaign = Campaign.new
+    # @markers = [{}].to_json
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @campaigns }
+    # end
   end
 
   def show

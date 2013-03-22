@@ -15,7 +15,7 @@
     ga('create', 'UA-39485921-1', 'waratlas.org');
     ga('send', 'pageview');
   </script>
-</head>
+ </head>
 <body>
   <div id="primary-menu">
     <% if authorized? %>
@@ -29,8 +29,7 @@
       <%= link_to "Users", users_path, class:"primary-menu-link" %> |
       <%= link_to "Logout", logout_url, method:"delete", class:"primary-menu-link" %>
     <% else %>
-      <%= link_to "Campaigns", campaigns_path, class:"primary-menu-link" %>
-      <%= link_to "Operations", operations_path, class:"primary-menu-link" %>
+      <%= link_to "Operations", campaigns_path, class:"primary-menu-link" %>
       <%= link_to "Countries", countries_path, class:"primary-menu-link" %>
     <% end %>
   </div>

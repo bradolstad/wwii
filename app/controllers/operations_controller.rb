@@ -18,6 +18,7 @@ class OperationsController < ApplicationController
 
   def show
     @operation = Operation.find(params[:id])
+
     @controller = params[:controller]
 
     min = (Time.at(params[:start].to_i).to_datetime.beginning_of_day if params[:start].present?) || (@operation.start_date.beginning_of_day if @operation.start_date.present?)
