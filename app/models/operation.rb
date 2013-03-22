@@ -67,4 +67,8 @@ class Operation < ActiveRecord::Base
     locations = self.events.collect { |event| event.location }
     return locations.uniq
   end
+
+  def to_param
+    "#{id}-operation-#{name.parameterize}"
+  end
 end

@@ -3,4 +3,8 @@ class Country < ActiveRecord::Base
 
   has_many :units
   has_many :events, :through=>:units
+
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
 end

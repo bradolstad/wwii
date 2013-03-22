@@ -11,6 +11,7 @@ gem 'gmaps4rails'
 # pagination
 gem 'kaminari'
 
+
 #wikipedia gem - copied into the app due to a bug in the gem
 gem 'wikipedia-client', :path => "vendor/gems/wikipedia-client-1.0.0"
 
@@ -22,6 +23,9 @@ group :development do
 end
 
 group :production do
+  #bug snag
+  gem 'bugsnag'
+  #postgresql
   gem 'pg'
 end
 

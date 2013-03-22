@@ -2,15 +2,9 @@
 </h2>
 <p class="main-text"><%= @event.date_formated %></p>
 <ul class="main-list">
-  <li class="main-list-item">
-    Latitude: <%= @event.lat %>
-  </li>
-  <li class="main-list-item">
-    Longitude: <%= @event.lng %>
-  </li>
 
   <li class="main-list-item">
-    Country: <%= @event.country.name unless @event.country.nil? %>
+    <%= image_tag @event.flag_path %><%= @event.country.name unless @event.country.nil? %>
   </li>
   <li class="main-list-item">
     Unit: <%= @event.unit.name unless @event.unit.nil? %>
