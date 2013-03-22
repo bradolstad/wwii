@@ -10,18 +10,11 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require libraries/modernizr
 //= require_tree ./libraries/gmaps4rails
+//= require jquery
+//= require jquery_ujs
+//= require_tree ./libraries
+//= require jquery-ui
 //= require icons
 //= require slider
-//= require app/ww2_init
-
-function formatDate(d){
-  if(typeof d === 'number') d = new Date(d);
-  console.log(d)
-  if(!(d instanceof Date)) return d;
-  function pad(n){return n<10 ? '0'+n : n}
-  return pad(d.getMonth()+1)+'/'
-        + pad(d.getDate())+'/'
-        + d.getFullYear();
-}
+//= require_tree ./app

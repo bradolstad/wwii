@@ -73,6 +73,7 @@ body {
 #main {
   overflow: hidden;
   padding-top: 10px;
+  padding-bottom: 10px;
   width: 38.2%;
   height: 100%;
   max-width: 550px;
@@ -81,7 +82,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: #ddd6c3;
   background-color: rgba(221, 214, 195, 0.95);
-  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.4), 0 0 20px 10px rgba(74, 63, 45, 0.1) inset;
+  box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.4), 0 0 20px 10px rgba(74, 63, 45, 0.1) inset;
 }
 
 #main > .loader-container {
@@ -92,6 +93,7 @@ body {
 }
 
 .main-container {
+  box-sizing: border-box;
   overflow: auto;
   height: 100%;
 }

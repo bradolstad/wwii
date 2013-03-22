@@ -52,27 +52,18 @@
     </div>
   </script>
 
-  <script type="text/html" class="ww_template" id="campaigns_list">
-    <h2 class="main-title">Listing campaigns</h2>
-    <ul id="campaigns-list" class="main-list"></ul>
-  </script>
-
-  <script type="text/html" class="ww_template" id="campaign_list_item">
-    <a class="campaign-link main-list-link name" href="#"></a>
-  </script>
-
-  <script type="text/html" class="ww_template" id="operations_list">
-    <h2 class="main-title name"></h2>
-    <p class="main-text">Select an operation below</p>
-    <ul id="operations-list" class="main-list"></ul>
-  </script>
-
-  <script type="text/html" class="ww_template" id="operation_list_item">
-    <a class="operation-link main-list-link name" href="#"></a>
-  </script>
-
   <%= yield :scripts %>
   <%= yield :scripts_callback %>
   <%= yield :slider %>
-</body>
-</html>
+
+  <script>
+  var i;
+
+  for ( i = 0; i < ww.initQueue.length; i++ ) {
+    ww.initQueue[ i ]();
+  }
+
+  for ( i = 0; i < ww.queueAtEnd.length; i++ ) {
+    ww.queueAtEnd[ i ]();
+  }
+  </script>
