@@ -37,7 +37,7 @@
   <% if @controller === "events" && @action === "edit" %>
     <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true, "do_clustering"=>false}}) %>
   <% elsif @controller === "operations" %>
-    <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true, "do_clustering"=>false, "zoom" => 7 }}) %>
+    <%= gmaps("markers" => {"data" => @markers, "options"=>{"do_clustering"=>false, "zoom" => 7 }}) %>
   <% else %>
     <%= gmaps("markers" => {"data" => @markers, "options"=>{"do_clustering"=>true}}) %>
   <% end %>
