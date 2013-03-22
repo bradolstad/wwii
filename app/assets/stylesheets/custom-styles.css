@@ -6,6 +6,13 @@ body {
   font-size: 100%;
 }
 
+#logo {
+  height: 150px;
+  display: block;
+
+  margin: 30px 20px;
+}
+
 .map_container,
 #map,
 #main {
@@ -110,7 +117,7 @@ body {
   display: block;
   padding: 6px 30px 5px 30px;
 
-  color: #9a8e76;
+  color: #857961;
 
   border-bottom: 1px solid #c7bca6;
 }
