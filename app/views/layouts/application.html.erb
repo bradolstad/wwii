@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WWII</title>
+  <title>Operation Overlord - WarAtlas.org</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= stylesheet_link_tag    "//fonts.googleapis.com/css?family=Montserrat:400,700|Gentium+Book+Basic", :media => "all" %>
   <%= stylesheet_link_tag    "//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css", :media => "all" %>
@@ -35,9 +35,35 @@
     <% end %>
   </div>
   <% if @controller === "events" && @action === "edit" %>
-    <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true, "do_clustering"=>false}}) %>
+    <%= gmaps(
+      "markers" => {
+        "data" => @markers,
+        "options" => {
+          "do_clustering" => false
+        },
+        "map_options" => {
+          "draggable" => true
+        }
+      }
+    ) %>
   <% elsif @controller === "operations" %>
-    <%= gmaps("markers" => {"data" => @markers, "options"=>{"do_clustering"=>false, "zoom" => 7 }}) %>
+    <%= gmaps(
+      "markers" => {
+        "data" => @markers,
+        "options" => {
+          "do_clustering" => false
+        }
+      },
+      "map_options" => {
+        "draggable" => true,
+        "zoom" => 7,
+        "auto_adjust" => true,
+        "auto_zoom" => true,
+        "bounds" => [],
+        "center_latitude" => nil,
+        "center_longitude" => nil
+      }
+    ) %>
   <% else %>
     <%= gmaps("markers" => {"data" => @markers, "options"=>{"do_clustering"=>true}}) %>
   <% end %>
