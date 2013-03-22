@@ -10,10 +10,11 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require jquery_ujs
-//= require jquery-ui
-//= require_tree .
+//= require libraries/modernizr
+//= require_tree ./libraries/gmaps4rails
+//= require icons
+//= require slider
+//= require app/ww2_init
 
 function formatDate(d){
   if(typeof d === 'number') d = new Date(d);

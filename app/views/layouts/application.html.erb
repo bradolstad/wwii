@@ -4,7 +4,7 @@
   <title>WWII</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= stylesheet_link_tag    "//fonts.googleapis.com/css?family=Montserrat:400,700|Gentium+Book+Basic", :media => "all" %>
-  <%= stylesheet_link_tag  "http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" %>
+  <%= stylesheet_link_tag    "//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <script>
@@ -37,12 +37,12 @@
             <%= link_to "Countries", countries_path %> |
           <% end %>
         </div>
-      </div>
-    </nav>
-  </div>
-
-  <% if @controller == "events" && @action == "edit" %>
+      </nav>
+    </div>
+  <% if @controller === "events" && @action === "edit" %>
     <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true, "do_clustering"=>false}}) %>
+  <% elsif @controller === "operations" %>
+    <%= gmaps("markers" => {"data" => @markers, "options"=>{"draggable"=>true, "do_clustering"=>false, "zoom" => 7 }}) %>
   <% else %>
     <%= gmaps("markers" => {"data" => @markers, "options"=>{"do_clustering"=>true}}) %>
   <% end %>
@@ -50,8 +50,34 @@
   <div id="main">
     <%= yield %>
   </div>
-  <%= yield :slider %>
+
+  <script type="text/html" class="ww_template" id="loader">
+    <div class="loader-container">
+      <img class="loader" src="/assets/main-loader.gif" alt="Loading" />
+    </div>
+  </script>
+
+  <script type="text/html" class="ww_template" id="campaigns_list">
+    <h2 class="main-title">Listing campaigns</h2>
+    <ul id="campaigns-list" class="main-list"></ul>
+  </script>
+
+  <script type="text/html" class="ww_template" id="campaign_list_item">
+    <a class="campaign-link main-list-link name" href="#"></a>
+  </script>
+
+  <script type="text/html" class="ww_template" id="operations_list">
+    <h2 class="main-title name"></h2>
+    <p class="main-text">Select an operation below</p>
+    <ul id="operations-list" class="main-list"></ul>
+  </script>
+
+  <script type="text/html" class="ww_template" id="operation_list_item">
+    <a class="operation-link main-list-link name" href="#"></a>
+  </script>
+
   <%= yield :scripts %>
   <%= yield :scripts_callback %>
+  <%= yield :slider %>
 </body>
 </html>

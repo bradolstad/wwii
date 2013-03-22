@@ -17,10 +17,13 @@ class OperationsController < ApplicationController
 
   def show
     @operation = Operation.find(params[:id])
-    min = (Time.at(params[:start].to_i).to_datetime.beginning_of_day if params[:start].present?) || (@operation.start_date.beginning_of_day if @operation.start_date.present?)
 
+    min = (Time.at(params[:start].to_i).to_datetime.beginning_of_day if params[:start].present?) || (@operation.start_date.beginning_of_day if @operation.start_date.present?)
     max = (Time.at(params[:end].to_i).to_datetime.end_of_day if params[:end].present?) || (@operation.end_date.end_of_day if @operation.end_date.present?)
     @events = @operation.filtered(min,max)
+
+    @defmin = @operation.start_date.nil? ? 0 : @operation.start_date.to_i
+    @defmax = @operation.end_date.nil? ? 0 : @operation.start_date.to_i
 
     #@markers = @operation.boundaries.to_json
     @markers = @events.to_gmaps4rails
@@ -38,6 +41,11 @@ class OperationsController < ApplicationController
     end
 
     @wiki = Wiki.new(@operation.name,'Operation ')
+
+    # @combined_operation_data = {
+    #   'events' => @new_events,
+    #   'article' => @wiki.full_text
+    # }
 
     respond_to do |format|
       format.html

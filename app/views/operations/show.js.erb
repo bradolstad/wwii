@@ -1,2 +1,1 @@
 Gmaps.map.replaceMarkers( JSON.parse( '<%= j raw(@markers) %>' ) );
-$('#operation_accordion_<%= @operation.id%> .wiki').replaceWith('<div class="wiki"><%= j(raw @wiki.summary) %><%= link_to "More", operation_path(@operation), class:"btn" %></div>')

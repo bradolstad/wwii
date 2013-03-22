@@ -1,8 +1,3 @@
   <li id="operation-<%= operation.id %>" class="main-list-item">
-    <%= link_to "Operation #{operation.name}", operation, remote:true, :class => 'operation-link main-list-link', id:"operation-link_#{operation.id}", "data-toggle" => "collapse", "data-target" => "#operation_accordion_#{operation.id}" %>
-    <div id="operation_accordion_<%= operation.id %>" class="collapse">
-      <div class="wiki">
-        <%= link_to 'More', operation, class:"btn" %>
-      </div>
-    </div>
+  	<%= link_to operation.name, operation, class:"operation-link main-list-link", id:"operation-link-#{operation.id}" %>
   </li>

@@ -1,13 +1,48 @@
-<h2 class="main-title">
-  Operation <%= @operation.name %></h2>
-  <p class="main-text">
-    <%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %><%= " to "+ @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %></p>
-<div id="operations">
-  <%= render "wiki/full", wiki:@wiki %>
-  <ul class="main-list">
+<h2 class="main-title">Operation <%= @operation.name %></h2>
+<p class="main-text">
+  <%= @operation.start_date.strftime('%a, %b %e %Y') unless @operation.start_date.nil? %>
+  <%= " to "+ @operation.end_date.strftime('%a, %b %e %Y') unless @operation.end_date.nil? %>
+</p>
+<%= render "wiki/full", wiki:@wiki %>
+
+<h3 class="subtitle">Events</h3>
+<div id="events">
+  <ul class="main-list" id="events-list">
     <%= render @events %>
   </ul>
- </div>
+</div>
 
 <%= render 'date_slider', :operation=>@operation %>
 
+<script>
+( function() {
+  ww.initAtEnd( function() {
+    ww.app.operation.timelineView.set_default_min_date( <%= @defmin %> );
+    ww.app.operation.eventsCollection.url = '/operations/<%= @operation.id %>.json';
+    ww.app.operation.eventsCollection.fetch().done( function() {
+      var app = ww.app.operation,
+          allLongitudes = app.eventsCollection.pluck( 'lng' ),
+          allLatitudes = app.eventsCollection.pluck( 'lat' ),
+          middleLong = ( _.max( allLongitudes ) + _.min( allLongitudes ) ) / 2,
+          middleLat = ( _.max( allLatitudes ) + _.min( allLatitudes ) ) / 2,
+          newBounds = [
+            { lat : middleLat - 5, lng : middleLong - 15 },
+            { lat : middleLat - 5, lng : middleLong - 5 },
+            { lat : middleLat + 5, lng : middleLong - 15 },
+            { lat : middleLat + 5, lng : middleLong - 5 },
+          ];
+
+      Gmaps.map.callback( function() {
+        Gmaps.map.map_options.bounds = newBounds;
+        Gmaps.map.adjustMapToBounds();
+      } );
+
+      // ww.app.operation.timelineView.render();
+
+      // $dateEl.empty().append();
+
+      // $("#slider #date").val("Date: " + $.datepicker.formatDate('M d yy', new Date($("#slider-range").slider("values", 0)*1000)) + " - " + $.datepicker.formatDate('M d yy', new Date($("#slider-range").slider("values", 1 )*1000)) )
+    } );
+  } );
+} )();
+</script>
