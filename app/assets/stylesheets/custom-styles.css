@@ -62,7 +62,8 @@ body {
 
 /* NOTE: Map wouldn't show up without a specified width and height not sure why */
 .map_container {
-  left: 0;
+  top: 0;
+  left: 10%;
   width: 100%;
   height: 100%;
 }
