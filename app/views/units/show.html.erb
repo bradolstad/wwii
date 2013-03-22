@@ -1,7 +1,5 @@
 <h2 class="main-title"><%= @unit.name %></h2>
-<div id="operation-container">
-  <div id="units">
-      <%= render "wiki/full", wiki:@wiki %>
-      <%= render "events/event_list" %>
-  </div>
+<div class="main-container">
+  <%= render "wiki/full", wiki:@wiki %>
+  <%= render "events/event_list" %>
 </div>
