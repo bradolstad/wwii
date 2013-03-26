@@ -9,6 +9,22 @@ class ApplicationController < ActionController::Base
     @markers = {}.to_json
   end
 
+  def generate_markers(events)
+    markers = events.collect do |event|
+      {
+        :sidebar => render_to_string(:partial=>"events/event.html.erb", :locals=>{event:event}),
+        event_id:event.id,
+        name:event.name,
+        date:event.event_date.to_i,
+        title: event.gmaps4rails_title,
+        :description => render_to_string(:partial=>"events/infowindow.html.erb", :locals=>{event:event}),
+        lng: event.lng,
+        lat: event.lat
+      }.merge(event.marker_picture)
+    end
+    return markers.to_json
+  end
+
   def authorized?
     @current_user ||= User.find_by_id(session[:user_id])
     if @current_user.nil?

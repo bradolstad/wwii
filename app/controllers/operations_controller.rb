@@ -24,35 +24,15 @@ class OperationsController < ApplicationController
     min = (Time.at(params[:start].to_i).to_datetime.beginning_of_day if params[:start].present?) || (@operation.start_date.beginning_of_day if @operation.start_date.present?)
     max = (Time.at(params[:end].to_i).to_datetime.end_of_day if params[:end].present?) || (@operation.end_date.end_of_day if @operation.end_date.present?)
     @events = @operation.filtered(min,max)
-
     @defmin = @operation.start_date.nil? ? 0 : @operation.start_date.to_i
     @defmax = @operation.end_date.nil? ? 0 : @operation.start_date.to_i
-
-    #@markers = @operation.boundaries.to_json
-    @markers = @events.to_gmaps4rails
-
-    @new_markers = @events.collect do |event|
-      {
-        event_id:event.id,
-        name:event.name,
-        date:event.event_date.to_i,
-        description: event.gmaps4rails_infowindow,
-        title: event.gmaps4rails_title,
-        lng: event.lng,
-        lat: event.lat,
-      }.merge(event.gmaps4rails_marker_picture)
-    end
+    @markers = generate_markers(@events)
 
     @wiki = Wiki.new(@operation.name,'Operation ')
 
-    # @combined_operation_data = {
-    #   'events' => @new_events,
-    #   'article' => @wiki.full_text
-    # }
-
     respond_to do |format|
       format.html
-      format.json { render json: @new_markers }
+      format.json {render json: @markers}
       format.js
     end
   end

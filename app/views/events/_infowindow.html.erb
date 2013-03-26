@@ -1,0 +1,9 @@
+<div class="gwindow">
+  <h5><%= event.name %></h5>
+  <h6>on <%= event.date_formated %></h6>
+  <p>
+    <%= link_to(image_tag(event.flag_path, width:40,class:"flag",align:"left"), country_path(event.calculate_country)) %>
+    <%= (link_to event.unit.name ,unit_path(event.unit)) || nil %><br>
+    <%= (link_to 'Operation ' + event.operation.name, operation_path(event.operation)) || nil %>
+  </p>
+</div>
