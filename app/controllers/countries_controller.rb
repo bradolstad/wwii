@@ -9,15 +9,14 @@ class CountriesController < ApplicationController
     end
   end
 
-  # GET /countries/1
-  # GET /countries/1.json
   def show
     @country = Country.find(params[:id])
     @units = @country.units.includes(:events)
-    @markers = @country.events.to_gmaps4rails
+    @events = @country.events
+    @markers = generate_markers(@events)
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @country }
+      format.json { render json: @markers }
     end
   end
 

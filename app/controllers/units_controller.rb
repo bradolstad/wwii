@@ -10,12 +10,10 @@ class UnitsController < ApplicationController
     end
   end
 
-  # GET /units/1
-  # GET /units/1.json
   def show
     @unit = Unit.find(params[:id])
     @events = @unit.events
-    @markers = @unit.events.to_gmaps4rails
+    @markers = generate_markers(@events)
     @wiki = Wiki.new(@unit.name)
     respond_to do |format|
       format.html # show.html.erb
@@ -23,8 +21,6 @@ class UnitsController < ApplicationController
     end
   end
 
-  # GET /units/new
-  # GET /units/new.json
   def new
     @unit = Unit.new
     respond_to do |format|
@@ -32,7 +28,6 @@ class UnitsController < ApplicationController
     end
   end
 
-  # GET /units/1/edit
   def edit
     @unit = Unit.find(params[:id])
 
@@ -42,8 +37,6 @@ class UnitsController < ApplicationController
     end
   end
 
-  # POST /units
-  # POST /units.json
   def create
     @unit = Unit.new(params[:unit])
 
